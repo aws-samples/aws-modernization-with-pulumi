@@ -16,4 +16,4 @@ weight = 10
 
 :small_blue_diamond: Provision AWS Cloud9 IDE environment
 
-:small_blue_diamond: Provision AWS resources that run the easyTravel application
+:small_blue_diamond: Run setup scripts to optimize your environment 
