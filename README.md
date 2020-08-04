@@ -1,17 +1,7 @@
-## My Project
 
-TODO: Fill this README out!
 
-Be sure to:
+# AWSWorkshop.io base workshop 
 
-* Change the title in this README
-* Edit your repository description on GitHub
+This is a base workshop.  Clone and start from this repo to create your workshop.
 
-## Security
-
-See [CONTRIBUTING](CONTRIBUTING.md#security-issue-notifications) for more information.
-
-## License
-
-This library is licensed under the MIT-0 License. See the LICENSE file.
 
