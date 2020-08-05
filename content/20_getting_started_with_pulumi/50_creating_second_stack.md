@@ -1,4 +1,4 @@
-﻿+++
++++
 title = "Creating a Second Stack"
 chapter = false
 weight = 50
@@ -75,7 +75,7 @@ Updating (prod):
  +   └─ aws:s3:BucketObject  index.html         created
 
 Outputs:
-    bucketEndpoint: "http://my-bucket-5692022.s3-website-eu-west-1.amazonaws.com"
+    bucketEndpoint: "http://my-bucket-5692022.s3-website-us-west-2.amazonaws.com"
     bucketName    : "my-bucket-5692022"
 
 Resources:

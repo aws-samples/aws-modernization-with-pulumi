@@ -6,4 +6,4 @@ weight = 20
 
 # Getting Started with Pulumi
 
-{{% children showhidden="true" %}}
+{{% children showhidden="false" %}}
