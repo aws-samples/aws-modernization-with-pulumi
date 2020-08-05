@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "Loadbalancing the VMs"
 chapter = false
 weight = 30
@@ -47,7 +47,7 @@ export const ips: any[] = [];
 export const hostnames: any[] = [];
 for (const az of aws.getAvailabilityZones().names) {
     const server = new aws.ec2.Instance(`web-server-${az}`, {
-        instanceType: "t2.micro",
+        instanceType: "t3.micro",
         securityGroups: [ sg.name ],
         ami: ami,
         availabilityZone: az,
@@ -96,7 +96,7 @@ export = async () => {
     const azs = await aws.getAvailabilityZones()
     for (const az of azs.names) {
         const server = new aws.ec2.Instance(`web-server-${az}`, {
-            instanceType: "t2.micro",
+            instanceType: "t3.micro",
             securityGroups: [ sg.name ],
             ami: ami,
             availabilityZone: az,

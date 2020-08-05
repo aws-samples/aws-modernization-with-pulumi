@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "Creating a DynamoDB Table"
 chapter = false
 weight = 10
@@ -8,6 +8,9 @@ Start by installing the AWS SDK package. This will allow you to query your Dynam
 
 ```bash
 $ npm install aws-sdk
+``` 
+```bash
+$ npm install @pulumi/awsx
 ``` 
  
 Next you need to import the necessary packages to the top of  your `index.ts` file:

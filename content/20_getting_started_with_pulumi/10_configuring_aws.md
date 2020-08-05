@@ -37,7 +37,7 @@ import * as aws from "@pulumi/aws";
 Configure the AWS region you would like to deploy to:
 
 ```bash
-pulumi config set aws:region us-east-1
+pulumi config set aws:region us-west-2
 ```
 
 Feel free to choose any AWS region that supports the services used in these labs ([see this table](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) for a list of available regions).

@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "Creating a Second Stack"
 chapter = false
 weight = 50
@@ -17,7 +17,7 @@ pulumi stack init prod
 Next, configure its two required variables:
 
 ```bash
-pulumi config set aws:region eu-west-1
+pulumi config set aws:region us-west-2
 pulumi config set iac-workshop:siteDir wwwprod
 ```
 

@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "Creating an API Gateway"
 chapter = false
 weight = 30
@@ -6,7 +6,10 @@ weight = 30
 
 Now create an API Gateway powered by Lambda for its sole REST API handler for `GET` requests at the `/` route.
 
-The first step is to create the code for the Lambda itself — this is the code that will run in response to an API call at runtime. Place this code into a new `handler/index.js` file:
+The first step is to create the code for the Lambda itself — this is the code that will run in response to an API call at runtime. Place this code into a new `handler/index.js` file.
+
+Create a new `handler` directory and create a new file `index.js`
+Paste the below code in the the javascript file: 
 
 ```javascript
 const AWS = require("aws-sdk");

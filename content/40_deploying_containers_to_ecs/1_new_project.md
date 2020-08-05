@@ -52,7 +52,7 @@ The package will be added to `node_modules`, `package.json`, and `package-lock.j
 Configure the AWS region you would like to deploy to:
 
 ```bash
-pulumi config set aws:region eu-central-1
+pulumi config set aws:region us-west-1
 ```
 
 Feel free to choose any [AWS region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions).

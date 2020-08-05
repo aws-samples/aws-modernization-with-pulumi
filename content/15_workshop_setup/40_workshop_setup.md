@@ -9,11 +9,12 @@ These hands-on labs will walk you through various cloud infrastructure tasks. Th
 ## Pulumi
 
 You will use Pulumi to depoy infrastructure changes using code. [Install Pulumi here](https://www.pulumi.com/docs/get-started/install/). After installing the CLI, verify that it is working:
-
+ 
 ```bash
 $ pulumi version
 v2.3.0
 ```
+If the Pulumi command isn't recognized yet, You should close and relaunch the terminal window first.
 
 The Pulumi CLI will ask you to login to your Pulumi account as needed. If you prefer to signup now, [go to the signup page](http://app.pulumi.com/signup). Multiple identity provider options are available &mdash; email, GitHub, GitLab, or Atlassian &mdash; and each of them will work equally well for these labs.
 

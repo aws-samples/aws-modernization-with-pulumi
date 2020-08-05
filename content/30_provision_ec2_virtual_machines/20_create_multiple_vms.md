@@ -1,4 +1,4 @@
-+++
+﻿+++
 title = "Creating Multiple VMs"
 chapter = false
 weight = 20
@@ -13,7 +13,7 @@ const hostnames: any[] = [];
 const azs = await aws.getAvailabilityZones()
 for (const az of azs.names) {
     const server = new aws.ec2.Instance(`web-server-${az}`, {
-        instanceType: "t2.micro",
+        instanceType: "t3.micro",
         securityGroups: [ sg.name ],
         ami: ami,
         availabilityZone: az,
@@ -53,7 +53,7 @@ export = async () => {
     const azs = await aws.getAvailabilityZones()
     for (const az of azs.names) {
         const server = new aws.ec2.Instance(`web-server-${az}`, {
-            instanceType: "t2.micro",
+            instanceType: "t3.micro",
             securityGroups: [ sg.name ],
             ami: ami,
             availabilityZone: az,
