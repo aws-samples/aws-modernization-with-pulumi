@@ -23,7 +23,10 @@ weight: 10
 4 . For the name use `pulumi-workshop`
 
 
-5 . Keep the default settings and create the environment
+5 . Select Other instance type and choose t3.medium
+
+
+6 . Leave all the other settings as default
 
 ![image](/images/c9-settings.png)
 
@@ -31,7 +34,7 @@ weight: 10
 This will take about 1-2 minutes to provision
 {{% /notice %}}
 
-### COnfigure Cloud9 IDE environment
+### Configure Cloud9 IDE environment
 
 When the environment comes up, customize the environment by:
 
