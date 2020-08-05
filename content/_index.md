@@ -13,10 +13,10 @@ Topics covered include IaC fundamentals, in addition to application architecture
 
 ### Learning Objectives
 - Getting started with Pulumi
-- Deploy AWS EC2 Compute Infrastructure
-- Deploy AWS ECS Infrastructure
-- Deploy AWS EKS Clusters
-- Deploy applications to AWS EKS Cluster
+- Deploy Amazon EC2 Compute Infrastructure
+- Deploy Amazon ECS Infrastructure
+- Deploy Amazon EKS Clusters
+- Deploy applications to Amazon EKS Cluster
 
 {{% notice warning %}}
 <p style='text-align: left;'>

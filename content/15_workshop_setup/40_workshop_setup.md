@@ -12,7 +12,7 @@ You will use Pulumi to depoy infrastructure changes using code. [Install Pulumi 
  
 ```bash
 $ pulumi version
-v2.3.0
+v2.8.0
 ```
 If the Pulumi command isn't recognized yet, You should close and relaunch the terminal window first.
 
