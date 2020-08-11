@@ -62,3 +62,5 @@ aws iam get-instance-profile --instance-profile-name $INSTANCE_PROFILE_NAME --qu
 -->
 
 If the IAM role is not valid, <span style="color: red;">**DO NOT PROCEED**</span>. Go back and confirm the steps on this page.
+
+If youv'e reached the end of this section you can skip to the [**Workshop Setup**](/15_workshop_setup/50_workshop_setup.html) section.

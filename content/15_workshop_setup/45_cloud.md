@@ -20,6 +20,10 @@ any existing credentials file:
 ```sh
 rm -vf ${HOME}/.aws/credentials
 ```
+Install jq 
+```sh
+sudo yum install jq
+```
 
 We should configure our aws cli with our current region as default.
 
