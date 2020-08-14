@@ -29,8 +29,7 @@ You have 2 hours to ramp up and take over the infrastructure team. It might soun
 - Deploy a website on Amazon S3
 - Deploy Amazon EKS Infrastructure
 - Deploy an application on Amazon EKS
-- Deploy ArgoCD for EKS
-- Deploy and work with GitOps
+- Create a reusable infrastructure component
 
 {{% notice info %}}
 In this workshop, we have selected containers and various other technologies to demonstrante the strength of IaC. 
