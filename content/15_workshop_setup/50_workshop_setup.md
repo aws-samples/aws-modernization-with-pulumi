@@ -8,6 +8,10 @@ These hands-on labs will walk you through various cloud infrastructure tasks. Th
 
 ## Pulumi
 
+Before you start this workshop you will need to [sign in](https://app.pulumi.com/signin?reason=401) to your Pulumi account.
+
+If you don't have an account yet, make sure you sign up [here](https://app.pulumi.com/signup)
+
 You will use Pulumi to depoy infrastructure changes using code. 
 To install Pulumi run the following command:
 

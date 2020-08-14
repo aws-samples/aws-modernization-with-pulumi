@@ -15,6 +15,9 @@ Topics covered include IaC fundamentals, in addition to application architecture
 
 By the end of this workshop you will understand the benefits of using IaC with Pulumi.
 
+![image](/images/mm.png)
+
+You will begin this workshop as the newest member of Mythical Mysfits. Today you are tasked with learning all about how to deploy our public facing website and various robust containerized applications. 
 
 ### Learning Objectives
 
