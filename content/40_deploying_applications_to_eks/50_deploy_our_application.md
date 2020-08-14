@@ -5,11 +5,13 @@ weight = 50
 +++
 
 First, add the `StackReference` to the cluster stack, which is used to get the kubeconfig
-from its stack output. This is a reference to the project created in the [previous lab]().
+from its stack output. This is a reference to the project created in the [previous lab].
+
 
 ```bash
 pulumi config set clusterStackRef workshops/eks-infrastructure/dev
 ```
+Replace "workshops" from above command with your Pulumi username.  
 
 Deploy Everything:
 
