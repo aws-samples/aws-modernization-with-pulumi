@@ -17,7 +17,11 @@ By the end of this workshop you will understand the benefits of using IaC with P
 
 ![image](/images/mm.png)
 
-You will begin this workshop as the newest member of Mythical Mysfits. Today you are tasked with learning all about how to deploy our public facing website and various robust containerized applications. 
+You will begin this workshop as the newest member of Mythical Mysfits. A fictitious company that started off with their famous "Hello world" product and evolved into being a world leader in the unicorn socks rental market. 
+
+You have 2 hours to ramp up and take over the infrastructure team. It might sound hard but to quote the CEO of the company: "It is a very simple task, but hey I'm not a very technical guy".  
+
+
 
 ### Learning Objectives
 
@@ -28,6 +32,10 @@ You will begin this workshop as the newest member of Mythical Mysfits. Today you
 - Deploy ArgoCD for EKS
 - Deploy and work with GitOps
 
+{{% notice info %}}
+In this workshop, we have selected containers and various other technologies to demonstrante the strength of IaC. 
+At the end of the workshop you can continue to the additional content section, where you can find more labs to explore other components to work with such as serverless and EC2.
+{{% /notice %}}
 {{% notice warning %}}
 <p style='text-align: left;'>
 The examples and sample code provided in this workshop are intended to be consumed as instructional content. 

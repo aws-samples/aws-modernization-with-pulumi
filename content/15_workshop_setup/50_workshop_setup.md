@@ -8,11 +8,11 @@ These hands-on labs will walk you through various cloud infrastructure tasks. Th
 
 ## Pulumi
 
-Before you start this workshop you will need to [sign in](https://app.pulumi.com/signin?reason=401) to your Pulumi account.
+In order to run this workshop you will need to work with the Pulumi CLI.
 
-If you don't have an account yet, make sure you sign up [here](https://app.pulumi.com/signup)
-
+The Pulumi CLI will ask you to [login] (https://app.pulumi.com/signin?reason=401) to your Pulumi account as needed. If you prefer to signup now, [go to the signup page](http://app.pulumi.com/signup). Multiple identity provider options are available &mdash; email, GitHub, GitLab, or Atlassian &mdash; and each of them will work equally well for these labs.
 You will use Pulumi to depoy infrastructure changes using code. 
+
 To install Pulumi run the following command:
 
 ```bash
@@ -28,8 +28,6 @@ $ pulumi version
 v2.8.0
 ```
 If the Pulumi command isn't recognized yet, You should close and relaunch the terminal window first.
-
-The Pulumi CLI will ask you to login to your Pulumi account as needed. If you prefer to signup now, [go to the signup page](http://app.pulumi.com/signup). Multiple identity provider options are available &mdash; email, GitHub, GitLab, or Atlassian &mdash; and each of them will work equally well for these labs.
 
 ## Node.js
 
@@ -98,10 +96,6 @@ $ kubectl version --client
 
 
 ## AWS Subscription and CLI
-
-If you will be completing the AWS labs, you will need an AWS account. If you don't already have one, you can [sign up for the free tier here](https://portal.aws.amazon.com/billing/signup). 
-The labs have been designed to use the free tier as much as possible, so that the total cost of all resources should be very close to $0. 
-If in doubt, please [go here](https://aws.amazon.com/free) to see what services and resource types are available in the free tier.
 
 At various points, you will use the AWS CLI to interact with infrastructure you've provisioned. Installation instructions are 
 [available here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html). As explained further on that page, the 

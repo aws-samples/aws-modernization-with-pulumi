@@ -20,7 +20,10 @@ any existing credentials file:
 ```sh
 rm -vf ${HOME}/.aws/credentials
 ```
-
+Install jq - jq is a command-line tool for parsing JSON.
+```sh
+sudo yum install jq
+```
 We should configure our aws cli with our current region as default.
 
 {{% notice info %}}
