@@ -16,15 +16,10 @@ the EKS IAM authentication, so we will disable it and rely on the IAM role inste
 ![c9disableiam](/images/c9disableiam.png)
 
 
-Install jq - jq is a command-line tool for parsing JSON.
-```sh
-sudo yum install jq
-```
-
-
-
 
 Let's run the command below, the following actions will take place as we do that: 
+
+:small_blue_diamond: Install jq- jq is a command-line tool for parsing JSON
 
 :small_blue_diamond: Ensure temporary credentials aren’t already in place.
 
@@ -35,6 +30,7 @@ Let's run the command below, the following actions will take place as we do that
 :small_blue_diamond: Validate that our IAM role is valid. 
 
 ```sh
+sudo yum -y install jq
 rm -vf ${HOME}/.aws/credentials
 export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
