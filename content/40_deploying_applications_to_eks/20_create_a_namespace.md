@@ -1,5 +1,5 @@
 +++
-title = "Creating a Namespace"
+title = "3.3 Creating a Namespace"
 chapter = false
 weight = 20
 +++

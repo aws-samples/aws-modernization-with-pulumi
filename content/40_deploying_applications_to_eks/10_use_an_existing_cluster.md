@@ -1,5 +1,5 @@
 +++
-title = "Use an Existing Kubernetes Cluster"
+title = "3.2 Use an Existing Kubernetes Cluster"
 chapter = false
 weight = 10
 +++

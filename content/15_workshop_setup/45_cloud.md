@@ -15,54 +15,36 @@ the EKS IAM authentication, so we will disable it and rely on the IAM role inste
 - Close the Preferences tab
 ![c9disableiam](/images/c9disableiam.png)
 
-To ensure temporary credentials aren't already in place we will also remove
-any existing credentials file:
-```sh
-rm -vf ${HOME}/.aws/credentials
-```
+
 Install jq - jq is a command-line tool for parsing JSON.
 ```sh
 sudo yum install jq
 ```
 
-We should configure our aws cli with our current region as default.
 
-{{% notice info %}}
-If you are at an AWS event, ask your instructor which **AWS region** to use.
-{{% /notice %}}
+
+
+Let's run the command below, the following actions will take place as we do that: 
+
+:small_blue_diamond: Ensure temporary credentials aren’t already in place.
+
+:small_blue_diamond: Remove any existing credentials file.
+
+:small_blue_diamond: Set the region to work with our desired region.
+
+:small_blue_diamond: Validate that our IAM role is valid. 
 
 ```sh
+rm -vf ${HOME}/.aws/credentials
 export ACCOUNT_ID=$(aws sts get-caller-identity --output text --query Account)
 export AWS_REGION=$(curl -s 169.254.169.254/latest/dynamic/instance-identity/document | jq -r '.region')
-```
-
-Check if AWS_REGION is set to desired region
-```sh
 test -n "$AWS_REGION" && echo AWS_REGION is "$AWS_REGION" || echo AWS_REGION is not set
-```
- 
-Let's save these into bash_profile
-```sh
 echo "export ACCOUNT_ID=${ACCOUNT_ID}" | tee -a ~/.bash_profile
-echo "export AWS_REGION=${AWS_REGION}" | tee -a ~/.bash_profile
+echo "export AWS_REGION=${AWS_REGION}" | 
+tee -a ~/.bash_profile
 aws configure set default.region ${AWS_REGION}
 aws configure get default.region
-```
-
-### Validate the IAM role
-
-Use the [GetCallerIdentity](https://docs.aws.amazon.com/cli/latest/reference/sts/get-caller-identity.html) CLI command to validate that the Cloud9 IDE is using the correct IAM role.
-
-```
 aws sts get-caller-identity --query Arn | grep Pulumi-Workshop-Admin -q && echo "IAM role valid" || echo "IAM role NOT valid"
 ```
 
-<!--
-First, get the IAM role name from the AWS CLI.
-```bash
-INSTANCE_PROFILE_NAME=`basename $(aws ec2 describe-instances --filters Name=tag:Name,Values=aws-cloud9-${C9_PROJECT}-${C9_PID} | jq -r '.Reservations[0].Instances[0].IamInstanceProfile.Arn' | awk -F "/" "{print $2}")`
-aws iam get-instance-profile --instance-profile-name $INSTANCE_PROFILE_NAME --query "InstanceProfile.Roles[0].RoleName" --output text
-```
--->
-
-If the IAM role is not valid, <span style="color: red;">**DO NOT PROCEED**</span>. Go back and confirm the steps on this page.
+If the IAM role is not valid, <span style="color: red;">**DO NOT PROCEED**</span>. Go back and confirm the steps on this page. 

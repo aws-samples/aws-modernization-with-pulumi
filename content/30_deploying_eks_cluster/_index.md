@@ -1,5 +1,5 @@
 +++
-title = "Deploying an Amazon EKS Cluster"
+title = "Module 02"
 chapter = true
 weight = 30
 +++

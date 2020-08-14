@@ -1,5 +1,5 @@
 +++
-title = "Creating Infrastructure Components"
+title = "Module 04"
 chapter = true
 weight = 45
 +++

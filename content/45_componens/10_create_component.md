@@ -1,5 +1,5 @@
 +++
-title = "Create a ComponentResource"
+title = "4.2 Create a ComponentResource"
 chapter = false
 weight = 10
 +++

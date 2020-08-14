@@ -1,5 +1,5 @@
 +++
-title = "Creating an Amazon EKS Cluster"
+title = "2.3 Creating an Amazon EKS Cluster"
 chapter = false
 weight = 20
 +++

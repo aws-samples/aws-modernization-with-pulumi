@@ -1,5 +1,5 @@
 +++
-title = "Configuring AWS"
+title = "1.2 Configuring AWS"
 chapter = false
 weight = 10
 +++

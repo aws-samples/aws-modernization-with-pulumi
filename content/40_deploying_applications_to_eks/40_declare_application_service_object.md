@@ -1,5 +1,5 @@
 +++
-title = "Declare an Application Service Object"
+title = "3.5 Declare an Application Service Object"
 chapter = false
 weight = 40
 +++

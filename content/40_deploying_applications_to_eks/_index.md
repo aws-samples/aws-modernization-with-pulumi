@@ -1,5 +1,5 @@
 +++
-title = "Deploying Applications to EKS"
+title = "Module 03"
 chapter = true
 weight = 40
 +++

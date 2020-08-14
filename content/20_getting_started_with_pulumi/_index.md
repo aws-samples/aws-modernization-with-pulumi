@@ -1,5 +1,5 @@
 +++
-title = "Getting Started with Pulumi"
+title = "Module 01"
 chapter = true
 weight = 20
 +++

@@ -1,5 +1,5 @@
 +++
-title = "Creating an Amazon VPC"
+title = "2.2 Creating an Amazon VPC"
 chapter = false
 weight = 10
 +++

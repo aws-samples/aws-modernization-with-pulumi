@@ -1,5 +1,5 @@
 +++
-title = "Update Application Version"
+title = "3.7 Update Application Version"
 chapter = false
 weight = 60
 +++

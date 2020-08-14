@@ -1,5 +1,5 @@
 +++
-title = "Deploying our Application Stack"
+title = "4.4 Deploying our Application Stack"
 chapter = false
 weight = 50
 +++

@@ -1,5 +1,5 @@
 +++
-title = "Creating a Second Stack"
+title = "1.6 Creating a Second Stack"
 chapter = false
 weight = 50
 +++

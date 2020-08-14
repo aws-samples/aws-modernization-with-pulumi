@@ -1,5 +1,5 @@
 +++
-title = "Creating a New Project"
+title = "3.1 Creating a New Project"
 chapter = false
 weight = 1
 +++

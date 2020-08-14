@@ -1,5 +1,5 @@
 +++
-title = "Use our Component"
+title = "4.3 Use our Component"
 chapter = false
 weight = 20
 +++

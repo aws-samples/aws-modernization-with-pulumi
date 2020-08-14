@@ -1,5 +1,5 @@
 +++
-title = "Declare an Application Deployment Object"
+title = "3.4 Declare an Application Deployment Object"
 chapter = false
 weight = 30
 +++

@@ -1,5 +1,5 @@
 +++
-title = "Destroying Your Infrastructure"
+title = "1.7 Destroying Your Infrastructure"
 chapter = false
 weight = 60
 +++

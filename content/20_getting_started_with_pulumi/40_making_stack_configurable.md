@@ -1,5 +1,5 @@
 +++
-title = "Making Your Stack Configurable"
+title = "1.5 Making Your Stack Configurable"
 chapter = false
 weight = 40
 +++
