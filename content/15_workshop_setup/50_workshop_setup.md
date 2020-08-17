@@ -19,6 +19,13 @@ To install Pulumi run the following command:
 $ curl -fsSL https://get.pulumi.com | sh
 
 ```
+
+```bash
+$ source ~/.bashrc
+
+```
+
+
 Now restart your Cloud 9 terminal
 
 After installing the CLI, verify that it is working:
