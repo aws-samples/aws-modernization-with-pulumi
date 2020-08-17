@@ -29,6 +29,38 @@ v2.8.0
 ```
 If the Pulumi command isn't recognized yet, You should close and relaunch the terminal window first.
 
+You'll also need to login to Pulumi to manage the storage of your infrastructure state.  Run `pulumi login`:
+
+```text
+$ pulumi login
+Manage your Pulumi stacks by logging in.
+Run `pulumi login --help` for alternative login options.
+Enter your access token from https://app.pulumi.com/account/tokens
+    or hit <ENTER> to log in using your browser                   :
+```
+
+Then click on the https://app.pulumi.com/account/tokens URL.  If you have not yet signed up for a Pulumi account, login with your email, GitHub or other identity.  After logging in, you will see the screen below.
+
+![Pulumi Console - New Token](/images/pulumi-console-new-token.png)
+
+Click "NEW ACCESS TOKEN" and create a new accesss token.  Copy that token and paste it into the prompt in your Cloud 9 terminal. If succesful, you will see this.
+
+```text
+  Welcome to Pulumi!
+
+  Pulumi helps you create, deploy, and manage infrastructure on any cloud using
+  your favorite language. You can get started today with Pulumi at:
+
+      https://www.pulumi.com/docs/get-started/
+
+  Tip of the day: Resources you create with Pulumi are given unique names (a randomly
+  generated suffix) by default. To learn more about auto-naming or customizing resource
+  names see https://www.pulumi.com/docs/intro/concepts/programming-model/#autonaming.
+
+
+Logged in to pulumi.com as nabohekul (https://app.pulumi.com/nabohekul)
+```
+
 ## Node.js
 
 If you are not running this workshop from Cloud9 you will need to install Node.js. 
