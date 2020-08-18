@@ -10,8 +10,7 @@ These hands-on labs will walk you through various cloud infrastructure tasks. Th
 
 In order to run this workshop you will need to work with the Pulumi CLI.
 
-The Pulumi CLI will ask you to [login] (https://app.pulumi.com/signin?reason=401) to your Pulumi account as needed. If you prefer to signup now, [go to the signup page](http://app.pulumi.com/signup). Multiple identity provider options are available &mdash; email, GitHub, GitLab, or Atlassian &mdash; and each of them will work equally well for these labs.
-You will use Pulumi to depoy infrastructure changes using code. 
+You will use Pulumi to deploy infrastructure changes using code.
 
 To install Pulumi run the following command:
 
@@ -67,6 +66,8 @@ Click "NEW ACCESS TOKEN" and create a new accesss token.  Copy that token and pa
 
 Logged in to pulumi.com as nabohekul (https://app.pulumi.com/nabohekul)
 ```
+
+> Note: If you are unable to sign in to the Pulumi Service, you can still complete the workshop by using `pulumi login --local`.  However, some features highlighted in the workshop won't be available if you use this option.
 
 ## Node.js
 
