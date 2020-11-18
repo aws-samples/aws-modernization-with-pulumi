@@ -1,5 +1,5 @@
 ﻿+++
-title = "Workshop Setup"
+title = "Install Pulumi & Language Dependencies"
 chapter = false
 weight = 40
 +++
