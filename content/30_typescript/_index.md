@@ -15,6 +15,11 @@ Topics covered include IaC fundamentals, in addition to application architecture
 
 By the end of this workshop you will understand the benefits of using IaC with Pulumi.
 
+
+{{% notice note %}}
+This workshop focuses on Pulumi's TypeScript SDK.
+{{% /notice %}}
+
 ![image](/images/mm.png)
 
 You will begin this workshop as the newest member of Mythical Mysfits. A fictitious company that started off with their famous "Hello world" product and evolved into being a world leader in the unicorn socks rental market. 

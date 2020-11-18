@@ -15,8 +15,138 @@ Firstly, we need to add a new import at the top of our file
 import json
 ```
 
+Now let's define our IAM Role and attach a policy. You should define this at the end of your `__main__.py`:
+
 ```python
 ...
+role = aws.iam.Role("task-exec-role",
+    assume_role_policy=json.dumps({
+        "Version": "2008-10-17",
+        "Statement": [{
+            "Sid": "",
+            "Effect": "Allow",
+            "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+            },
+            "Action": "sts:AssumeRole"
+        }]
+    }))
+
+rpa = aws.iam.RolePolicyAttachment("task-exec-policy",
+    role=role.name,
+    policy_arn="arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+)
+...
+```
+
+Then we can define a task definition for our ECS service:
+
+```python
+task_definition = aws.ecs.TaskDefinition("app-task",
+    family="fargate-task-definition",
+    cpu="256",
+    memory="512",
+    network_mode="awsvpc",
+    requires_compatibilities=["FARGATE"],
+    execution_role_arn=role.arn,
+    container_definitions=json.dumps([{
+        "name": "my-app",
+        "image": "nginx",
+        "portMappings": [{
+            "containerPort": 80,
+            "hostPort": 80,
+            "protocol": "tcp"
+        }]
+    }])
+)
+
+service = aws.ecs.Service("app-svc",
+    cluster=cluster.arn,
+    desired_count=1,
+    launch_type="FARGATE",
+    task_definition=task_definition.arn,
+    network_configuration={
+        "assign_public_ip": "true",
+        "subnets": vpc_subnets.ids,
+        "security_groups": [group.id]
+    },
+    load_balancers=[{
+        "target_group_arn": atg.arn,
+        "container_name": "my-app",
+        "container_port": 80
+    }],
+    opts=pulumi.ResourceOptions(depends_on=[wl])
+)
+
+export("url", alb.dns_name)
+```
+
+> :white_check_mark: After these changes, your `__main__.py` should look like this
+
+```python
+"""An AWS Python Pulumi program"""
+
+import pulumi
+import pulumi_aws as aws
+import json
+
+cluster = aws.ecs.Cluster("cluster")
+
+vpc = aws.ec2.get_vpc(default=True)
+vpc_subnets = aws.ec2.get_subnet_ids(vpc_id=vpc.id)
+
+group = aws.ec2.SecurityGroup(
+    "web-secgrp",
+    vpc_id=vpc.id,
+    description="Enable HTTP access",
+    ingress=[
+        {
+            "protocol": "icmp",
+            "from_port": 8,
+            "to_port": 0,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
+        {
+            "protocol": "tcp",
+            "from_port": 80,
+            "to_port": 80,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
+    ],
+    egress=[
+        {
+            "protocol": "-1",
+            "from_port": 0,
+            "to_port": 0,
+            "cidr_blocks": ["0.0.0.0/0"],
+        }
+    ],
+)
+
+alb = aws.lb.LoadBalancer(
+    "app-lb",
+    internal="false",
+    security_groups=[group.id],
+    subnets=vpc_subnets.ids,
+    load_balancer_type="application",
+)
+
+atg = aws.lb.TargetGroup(
+    "app-tg",
+    port=80,
+    deregistration_delay=0,
+    protocol="HTTP",
+    target_type="ip",
+    vpc_id=vpc.id,
+)
+
+wl = aws.lb.Listener(
+    "web",
+    load_balancer_arn=alb.arn,
+    port=80,
+    default_actions=[{"type": "forward", "target_group_arn": atg.arn}],
+)
+
 role = aws.iam.Role("task-exec-role",
     assume_role_policy=json.dumps({
         "Version": "2008-10-17",
@@ -60,7 +190,7 @@ service = aws.ecs.Service("app-svc",
     task_definition=task_definition.arn,
     network_configuration={
         "assign_public_ip": "true",
-        "subnets": default_vpc_subnets.ids,
+        "subnets": vpc_subnets.ids,
         "security_groups": [group.id]
     },
     load_balancers=[{
@@ -68,112 +198,10 @@ service = aws.ecs.Service("app-svc",
         "container_name": "my-app",
         "container_port": 80
     }],
-    __opts__=ResourceOptions(depends_on=[wl])
+    opts=pulumi.ResourceOptions(depends_on=[wl])
 )
 
-export("url", alb.dns_name)
-```
-
-> :white_check_mark: After these changes, your `__main__.py` should look like this
-
-```python
-from pulumi import export, ResourceOptions
-import pulumi_aws as aws
-import json
-
-cluster = aws.ecs.Cluster("cluster")
-
-default_vpc = aws.ec2.get_vpc(default="true")
-default_vpc_subnets = aws.ec2.get_subnet_ids(vpc_id=default_vpc.id)
-
-group = aws.ec2.SecurityGroup(
-    "web-secgrp",
-    vpc_id=default_vpc.id,
-    description='Enable HTTP access',
-    ingress=[
-        { 'protocol': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_blocks': ['0.0.0.0/0'] }
-    ],
-    egress=[
-        { 'protocol': "-1", 'from_port': 0, 'to_port': 0, 'cidr_blocks': ['0.0.0.0/0'] }
-    ])
-
-alb = aws.lb.LoadBalancer("app-lb",
-    security_groups=[group.id],
-    subnets=default_vpc_subnets.ids,
-)
-
-atg = aws.lb.TargetGroup("app-tg",
-    port=80,
-    protocol="HTTP",
-    target_type="ip",
-    vpc_id=default_vpc.id
-)
-
-wl = aws.lb.Listener("web",
-    load_balancer_arn=alb.arn,
-    port=80,
-    default_actions=[{
-        "type": "forward",
-        "target_group_arn": atg.arn
-    }]
-)
-
-role = aws.iam.Role("task-exec-role",
-    assume_role_policy=json.dumps({
-        "Version": "2008-10-17",
-        "Statement": [{
-            "Sid": "",
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "ecs-tasks.amazonaws.com"
-            },
-            "Action": "sts:AssumeRole"
-        }]
-    })
-)
-
-rpa = aws.iam.RolePolicyAttachment("task-exec-policy",
-    role=role.name,
-    policy_arn="arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-)
-
-task_definition = aws.ecs.TaskDefinition("app-task",
-    family="fargate-task-definition",
-    cpu="256",
-    memory="512",
-    network_mode="awsvpc",
-    requires_compatibilities=["FARGATE"],
-    execution_role_arn=role.arn,
-    container_definitions=json.dumps([{
-        "name": "my-app",
-        "image": "nginx",
-        "portMappings": [{
-            "containerPort": 80,
-            "hostPort": 80,
-            "protocol": "tcp"
-        }]
-    }])
-)
-
-service = aws.ecs.Service("app-svc",
-    cluster=cluster.arn,
-    desired_count=1,
-    launch_type="FARGATE",
-    task_definition=task_definition.arn,
-    network_configuration={
-        "assign_public_ip": "true",
-        "subnets": default_vpc_subnets.ids,
-        "security_groups": [group.id]
-    },
-    load_balancers=[{
-        "target_group_arn": atg.arn,
-        "container_name": "my-app",
-        "container_port": 80
-    }],
-    opts=ResourceOptions(depends_on=[wl])
-)
-
-export("url", alb.dns_name)
+pulumi.export("url", alb.dns_name)
 
 ```
 
@@ -210,7 +238,7 @@ Resources:
 
 Duration: 2m50s
 
-Permalink: https://app.pulumi.com/joeduffy/iac-workshop/dev/updates/1
+Permalink: https://app.pulumi.com/jaxxstorm/iac-workshop/dev/updates/1
 ```
 
 You can now curl the resulting endpoint:
@@ -242,103 +270,132 @@ Now, also update the desired container count from `1` to `3`:
 > :white_check_mark: After this change, your `__main__.py` should look like this:
 
 ```python
-from pulumi import export, ResourceOptions
+"""An AWS Python Pulumi program"""
+
+import pulumi
 import pulumi_aws as aws
 import json
 
 cluster = aws.ecs.Cluster("cluster")
 
-default_vpc = aws.ec2.get_vpc(default="true")
-default_vpc_subnets = aws.ec2.get_subnet_ids(vpc_id=default_vpc.id)
+vpc = aws.ec2.get_vpc(default=True)
+vpc_subnets = aws.ec2.get_subnet_ids(vpc_id=vpc.id)
 
 group = aws.ec2.SecurityGroup(
     "web-secgrp",
-    vpc_id=default_vpc.id,
-    description='Enable HTTP access',
+    vpc_id=vpc.id,
+    description="Enable HTTP access",
     ingress=[
-        { 'protocol': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_blocks': ['0.0.0.0/0'] }
+        {
+            "protocol": "icmp",
+            "from_port": 8,
+            "to_port": 0,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
+        {
+            "protocol": "tcp",
+            "from_port": 80,
+            "to_port": 80,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
     ],
     egress=[
-        { 'protocol': "-1", 'from_port': 0, 'to_port': 0, 'cidr_blocks': ['0.0.0.0/0'] }
-    ])
-
-alb = aws.lb.LoadBalancer("app-lb",
-    security_groups=[group.id],
-    subnets=default_vpc_subnets.ids,
+        {
+            "protocol": "-1",
+            "from_port": 0,
+            "to_port": 0,
+            "cidr_blocks": ["0.0.0.0/0"],
+        }
+    ],
 )
 
-atg = aws.lb.TargetGroup("app-tg",
+alb = aws.lb.LoadBalancer(
+    "app-lb",
+    internal="false",
+    security_groups=[group.id],
+    subnets=vpc_subnets.ids,
+    load_balancer_type="application",
+)
+
+atg = aws.lb.TargetGroup(
+    "app-tg",
     port=80,
+    deregistration_delay=0,
     protocol="HTTP",
     target_type="ip",
-    vpc_id=default_vpc.id
+    vpc_id=vpc.id,
 )
 
-wl = aws.lb.Listener("web",
+wl = aws.lb.Listener(
+    "web",
     load_balancer_arn=alb.arn,
     port=80,
-    default_actions=[{
-        "type": "forward",
-        "target_group_arn": atg.arn
-    }]
+    default_actions=[{"type": "forward", "target_group_arn": atg.arn}],
 )
 
-role = aws.iam.Role("task-exec-role",
-    assume_role_policy=json.dumps({
-        "Version": "2008-10-17",
-        "Statement": [{
-            "Sid": "",
-            "Effect": "Allow",
-            "Principal": {
-                "Service": "ecs-tasks.amazonaws.com"
-            },
-            "Action": "sts:AssumeRole"
-        }]
-    })
+role = aws.iam.Role(
+    "task-exec-role",
+    assume_role_policy=json.dumps(
+        {
+            "Version": "2008-10-17",
+            "Statement": [
+                {
+                    "Sid": "",
+                    "Effect": "Allow",
+                    "Principal": {"Service": "ecs-tasks.amazonaws.com"},
+                    "Action": "sts:AssumeRole",
+                }
+            ],
+        }
+    ),
 )
 
-rpa = aws.iam.RolePolicyAttachment("task-exec-policy",
+rpa = aws.iam.RolePolicyAttachment(
+    "task-exec-policy",
     role=role.name,
-    policy_arn="arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
+    policy_arn="arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
 )
 
-task_definition = aws.ecs.TaskDefinition("app-task",
+task_definition = aws.ecs.TaskDefinition(
+    "app-task",
     family="fargate-task-definition",
     cpu="256",
     memory="512",
     network_mode="awsvpc",
     requires_compatibilities=["FARGATE"],
     execution_role_arn=role.arn,
-    container_definitions=json.dumps([{
-        "name": "my-app",
-        "image": "nginx",
-        "portMappings": [{
-            "containerPort": 80,
-            "hostPort": 80,
-            "protocol": "tcp"
-        }]
-    }])
+    container_definitions=json.dumps(
+        [
+            {
+                "name": "my-app",
+                "image": "nginx",
+                "portMappings": [
+                    {"containerPort": 80, "hostPort": 80, "protocol": "tcp"}
+                ],
+            }
+        ]
+    ),
 )
 
-service = aws.ecs.Service("app-svc",
+service = aws.ecs.Service(
+    "app-svc",
     cluster=cluster.arn,
     desired_count=3,
     launch_type="FARGATE",
     task_definition=task_definition.arn,
     network_configuration={
         "assign_public_ip": "true",
-        "subnets": default_vpc_subnets.ids,
-        "security_groups": [group.id]
+        "subnets": vpc_subnets.ids,
+        "security_groups": [group.id],
     },
-    load_balancers=[{
-        "target_group_arn": atg.arn,
-        "container_name": "my-app",
-        "container_port": 80
-    }],
-    opts=ResourceOptions(depends_on=[wl])
+    load_balancers=[
+        {"target_group_arn": atg.arn, "container_name": "my-app", "container_port": 80}
+    ],
+    opts=pulumi.ResourceOptions(depends_on=[wl]),
 )
 
-export("url", alb.dns_name)
+pulumi.export("url", alb.dns_name)
+
 ```
 
 Next update the stack:
@@ -365,7 +422,7 @@ Resources:
 
 Duration: 14s
 
-Permalink: https://app.pulumi.com/joeduffy/iac-workshop/dev/updates/2
+Permalink: https://app.pulumi.com/jaxxstorm/iac-workshop/dev/updates/2
 ```
 
 ## Step 4 &mdash; Destroy Everything

@@ -30,14 +30,25 @@ Create a directory `www/` and add a new `index.html` file with the following con
 Next, download a python image to the `www` directory:
 
 ```
-curl -o www/python.png https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png
+curl https://raw.githubusercontent.com/pulumi/examples/ec43670866809bfd64d3a39f68451f957d3c1e1d/aws-py-s3-folder/www/python.png -o www/python.png
 ```
 
 Now we've created our example website, we're ready to upload these files to our s3 bucket website.
 
 ## Step 2 &mdash; Upload the Bucket Contents
 
-Back inside our Pulumi program, we now need to upload these contents to our bucket. Because we're using Python, we can use a simple for loop over the contents of the `www` directory:
+Back inside our Pulumi program, we now need to upload these contents to our bucket. 
+
+Let's add two new imports to our program:
+
+```python
+import pulumi
+import mimetypes
+import os
+import pulumi_aws as aws
+```
+
+Next, we'll list the contents of the `www` directory and add a new Pulumi resource for each called `BucketObject. wW can use a simple for loop over the contents of the `www` directory:
 
 ```python
 content_dir = "www"
@@ -62,9 +73,23 @@ pulumi up
 This will give you a preview and selecting `yes` will apply the changes:
 
 ```
+     Type                       Name               Plan       
+     pulumi:pulumi:Stack        iac-workshop-dev              
+     └─ aws:s3:Bucket           my-website-bucket             
+ +      ├─ aws:s3:BucketObject  python.png         create     
+ +      └─ aws:s3:BucketObject  index.html         create     
+ 
+Resources:
+    + 2 to create
+    2 unchanged
+```
 
-insert output here
+We can now list the contents of our bucket again and see the files have been uploaded:
 
+```bash
+$ aws s3 ls $(pulumi stack output bucket_name)
+2020-11-18 19:06:10        237 index.html
+2020-11-18 19:06:10        831 python.png
 ```
 
 ## Step 3 &mdash; Add a Bucket Policy
@@ -72,6 +97,12 @@ insert output here
 Now we have an S3 bucket and some objects in it, we need to make the bucket accessible so you can see it. Currently, the objects in the bucket are private.
 
 There are a few methods to manage this, but we're going to do it by adding a bucket policy to the bucket that allows objects to be read.
+
+We're going to be dealing with a JSON string here, so let's add a new import so we can deal structured json:
+
+```python
+import json
+```
 
 Create a new bucket policy object in your Pulumi program like so:
 
@@ -108,6 +139,9 @@ In order to use these computed output values, we use an `apply` method to inject
 > :white_check_mark: After this change, your `__main__.py` should look like this:
 ```python
 import pulumi
+import mimetypes
+import json
+import os
 import pulumi_aws as aws
 
 bucket = aws.s3.Bucket(
@@ -147,6 +181,9 @@ bucket_policy = aws.s3.BucketPolicy(
             }]
         })),
     opts=pulumi.ResourceOptions(parent=bucket)
+
+pulumi.export("bucket_name", bucket.bucket)
+
 )
 ```
 
@@ -173,3 +210,42 @@ curl $(pulumi stack output website_url)
 {{% notice info %}}
 You should also be able to view the contents in your browser, take a look!
 {{% /notice %}}
+
+## Step 4 &mdash; Destroy your Infrastructure
+
+We're done with this section of the workshop! Let's tear everything down.
+
+```bash
+pulumi destroy
+```
+
+You'll see Pulumi tell you it's destroying infrastructure:
+
+
+```
+Previewing destroy (dev)
+
+View Live: https://app.pulumi.com/jaxxstorm/iac-workshop/dev/previews/33ce7a73-6d53-42df-854e-296a6276231d
+
+     Type                       Name                      Plan       
+ -   pulumi:pulumi:Stack        iac-workshop-dev          delete     
+ -   ├─ aws:s3:BucketPolicy     my-website-bucket-policy  delete     
+ -   └─ aws:s3:Bucket           my-website-bucket         delete     
+ -      ├─ aws:s3:BucketObject  python.png                delete     
+ -      └─ aws:s3:BucketObject  index.html                delete     
+ 
+Outputs:
+  - bucket_name: "my-website-bucket-4d8d96b"
+  - website_url: "my-website-bucket-4d8d96b.s3-website-us-west-2.amazonaws.com"
+
+Resources:
+    - 5 to delete
+```
+
+Hit yes, and watch your bucket disappear.
+
+Finally, remove the stack:
+
+```
+pulumi stack rm dev
+```

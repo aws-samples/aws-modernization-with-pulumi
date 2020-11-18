@@ -27,7 +27,7 @@ import pulumi_aws as aws
 
 bucket = aws.s3.Bucket(
     "my-website-bucket",
-    website=s3.BucketWebsiteArgs(
+    website=aws.s3.BucketWebsiteArgs(
         index_document="index.html",
     ),
 )
@@ -107,7 +107,7 @@ To inspect your new bucket, you will need its physical AWS name. Pulumi records 
 Programs can export variables which will be shown in the CLI and recorded for each deployment. Export your bucket's name by adding this line to `__main__.py`:
 
 ```python
-pulumi.export("bucket_name", mybucket.bucket)
+pulumi.export("bucket_name", bucket.bucket)
 ```
 
 > :white_check_mark: After this change, your `__main__.py` should look like this:
@@ -122,7 +122,7 @@ bucket = aws.s3.Bucket(
     ),
 )
 
-pulumi.export("bucket_name", mybucket.bucket)
+pulumi.export("bucket_name", bucket.bucket)
 ```
 
 Now deploy the changes:
@@ -135,7 +135,7 @@ Notice a new `Outputs` section is included in the output containing the bucket's
 
 ```
 Outputs:
-  + bucketName: "my-bucket-aca82a7"
+  + bucket_name: "my-website-bucket-4d8d96b"
 
 Resources:
     2 unchanged
@@ -153,7 +153,7 @@ Permalink: https://app.pulumi.com/workshops/iac-workshop/dev/updates/2
 Now run the `aws` CLI to list the objects in this new bucket:
 
 ```
-aws s3 ls $(pulumi stack output bucketName)
+aws s3 ls $(pulumi stack output bucket_name)
 ```
 
 Note that the bucket is currently empty.

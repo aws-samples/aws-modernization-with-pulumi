@@ -6,7 +6,7 @@ weight = 10
 
 ## Step 1 &mdash;  Declare the EC2 Instance
 
-Import the AWS package in an empty `__main__.py` file:
+Remove any existing code here from the bootstrapping of your project. Then, import the AWS package in an empty `__main__.py` file:
 
 ```python
 from pulumi import export
@@ -22,12 +22,19 @@ ami = aws.get_ami(
     filters=[{"name":"name","values":["amzn-ami-hvm-*-x86_64-ebs"]}])
 ```
 
+We also need to grab the default vpc that is available in our AWS account:
+
+```python
+vpc = aws.ec2.get_vpc(default=True)
+```
+
 Next, create an AWS security group. This enables `ping` over ICMP and HTTP traffic on port 80:
 
 ```python
 group = aws.ec2.SecurityGroup(
     "web-secgrp",
     description='Enable HTTP access',
+    vpc_id=vpc.id,
     ingress=[
         { 'protocol': 'icmp', 'from_port': 8, 'to_port': 0, 'cidr_blocks': ['0.0.0.0/0'] },
         { 'protocol': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_blocks': ['0.0.0.0/0'] }
@@ -40,7 +47,7 @@ Create the server. Notice it has a startup script that spins up a simple Python 
 server = aws.ec2.Instance(
     'web-server',
     instance_type="t2.micro",
-    security_groups=[group.name],
+    vpc_security_group_ids=[group.id],
     ami=ami.id,
     user_data="""
 #!/bin/bash
@@ -58,33 +65,48 @@ nohup python -m SimpleHTTPServer 80 &
 Finally export the EC2 instances's resulting IP address and hostname:
 
 ```python
-export('ip', server.public_ip)
-export('hostname', server.public_dns)
+pulumi.export('ip', server.public_ip)
+pulumi.export('hostname', server.public_dns)
 ```
 
 > :white_check_mark: After this change, your `__main__.py` should look like this:
 
 ```python
-from pulumi import export
+import pulumi
 import pulumi_aws as aws
+
 
 ami = aws.get_ami(
     most_recent="true",
     owners=["137112412989"],
-    filters=[{"name":"name","values":["amzn-ami-hvm-*-x86_64-ebs"]}])
+    filters=[{"name": "name", "values": ["amzn-ami-hvm-*-x86_64-ebs"]}],
+)
+
+vpc = aws.ec2.get_vpc(default=True)
 
 group = aws.ec2.SecurityGroup(
     "web-secgrp",
-    description='Enable HTTP access',
+    description="Enable HTTP Access",
     ingress=[
-        { 'protocol': 'icmp', 'from_port': 8, 'to_port': 0, 'cidr_blocks': ['0.0.0.0/0'] },
-        { 'protocol': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_blocks': ['0.0.0.0/0'] }
-])
+        {
+            "protocol": "icmp",
+            "from_port": 8,
+            "to_port": 0,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
+        {
+            "protocol": "tcp",
+            "from_port": 80,
+            "to_port": 80,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
+    ],
+)
 
 server = aws.ec2.Instance(
-    'web-server',
+    "web=server",
     instance_type="t2.micro",
-    security_groups=[group.name],
+    vpc_security_group_ids=[group.name],
     ami=ami.id,
     user_data="""
 #!/bin/bash
@@ -96,8 +118,8 @@ nohup python -m SimpleHTTPServer 80 &
     },
 )
 
-export('ip', server.public_ip)
-export('hostname', server.public_dns)
+pulumi.export("ip", server.public_ip)
+pulumi.export("hostname", server.public_dns)
 ```
 
 ## Step 2 &mdash; Provision the EC2 Instance and Access It

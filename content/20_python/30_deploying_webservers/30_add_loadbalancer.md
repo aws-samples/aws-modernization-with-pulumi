@@ -35,30 +35,26 @@ Now right after the security group creation, and before the EC2 creation block, 
 
 ```python
 ...
-default_vpc = aws.ec2.get_vpc(default="true")
-default_vpc_subnets = aws.ec2.get_subnet_ids(vpc_id=default_vpc.id)
+vpc = aws.ec2.get_vpc(default=True)
+vpc_subnets = aws.ec2.get_subnet_ids(vpc_id=vpc.id)
 
-lb = aws.lb.LoadBalancer("external-loadbalancer",
-    internal="false",
+lb = aws.lb.LoadBalancer(
+    "loadbalancer",
+    internal=False,
     security_groups=[group.id],
-    subnets=default_vpc_subnets.ids,
+    subnets=vpc_subnets.ids,
     load_balancer_type="application",
 )
 
-target_group = aws.lb.TargetGroup("target-group",
-    port=80,
-    protocol="HTTP",
-    target_type="ip",
-    vpc_id=default_vpc.id
+target_group = aws.lb.TargetGroup(
+    "target-group", port=80, protocol="HTTP", target_type="ip", vpc_id=vpc.id
 )
 
-listener = aws.lb.Listener("listener",
-   load_balancer_arn=lb.arn,
-   port=80,
-   default_actions=[{
-       "type": "forward",
-       "target_group_arn": target_group.arn
-   }]
+listener = aws.lb.Listener(
+    "listener",
+    load_balancer_arn=lb.arn,
+    port=80,
+    default_actions=[{"type": "forward", "target_group_arn": target_group.arn}],
 )
 ...
 ```
@@ -67,7 +63,7 @@ Here, we've defined the ALB, its TargetGroup and some Listeners, but we haven't 
 
 ## Step 3 &mdash; Add the Instances to the ALB
 
-Replace the VM creation block with the following:
+Replace the EC2 creation block with the following:
 
 ```python
 ...
@@ -104,79 +100,102 @@ export("url", lb.dns_name)
 > :white_check_mark: After this change, your `__main__.py` should look like this:
 
 ```python
-from pulumi import export
+"""An AWS Python Pulumi program"""
+
+import pulumi
 import pulumi_aws as aws
+
 
 ami = aws.get_ami(
     most_recent="true",
     owners=["137112412989"],
-    filters=[{"name":"name","values":["amzn-ami-hvm-*-x86_64-ebs"]}])
+    filters=[{"name": "name", "values": ["amzn-ami-hvm-*-x86_64-ebs"]}],
+)
+
+vpc = aws.ec2.get_vpc(default=True)
+vpc_subnets = aws.ec2.get_subnet_ids(vpc_id=vpc.id)
 
 group = aws.ec2.SecurityGroup(
     "web-secgrp",
+    description="Enable HTTP Access",
+    vpc_id=vpc.id,
     ingress=[
-        { 'protocol': 'icmp', 'from_port': 8, 'to_port': 0, 'cidr_blocks': ['0.0.0.0/0'] },
-        { 'protocol': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_blocks': ['0.0.0.0/0'] },
+        {
+            "protocol": "icmp",
+            "from_port": 8,
+            "to_port": 0,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
+        {
+            "protocol": "tcp",
+            "from_port": 80,
+            "to_port": 80,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
     ],
     egress=[
-        { 'protocol': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_blocks': ['0.0.0.0/0'] },
-    ]
+        {
+            "protocol": "tcp",
+            "from_port": 80,
+            "to_port": 80,
+            "cidr_blocks": ["0.0.0.0/0"],
+        }
+    ],
 )
 
-default_vpc = aws.ec2.get_vpc(default="true")
-default_vpc_subnets = aws.ec2.get_subnet_ids(vpc_id=default_vpc.id)
-
-lb = aws.lb.LoadBalancer("external-loadbalancer",
-    internal="false",
+lb = aws.lb.LoadBalancer(
+    "loadbalancer",
+    internal=False,
     security_groups=[group.id],
-    subnets=default_vpc_subnets.ids,
+    subnets=vpc_subnets.ids,
     load_balancer_type="application",
 )
 
-target_group = aws.lb.TargetGroup("target-group",
-    port=80,
-    protocol="HTTP",
-    target_type="ip",
-    vpc_id=default_vpc.id
+target_group = aws.lb.TargetGroup(
+    "target-group", port=80, protocol="HTTP", target_type="ip", vpc_id=vpc.id
 )
 
-listener = aws.lb.Listener("listener",
-   load_balancer_arn=lb.arn,
-   port=80,
-   default_actions=[{
-       "type": "forward",
-       "target_group_arn": target_group.arn
-   }]
+listener = aws.lb.Listener(
+    "listener",
+    load_balancer_arn=lb.arn,
+    port=80,
+    default_actions=[{"type": "forward", "target_group_arn": target_group.arn}],
 )
+
 
 ips = []
 hostnames = []
+
 for az in aws.get_availability_zones().names:
-    server = aws.ec2.Instance(f'web-server-{az}',
-      instance_type="t2.micro",
-      security_groups=[group.name],
-      ami=ami.id,
-      user_data="""#!/bin/bash
+    server = aws.ec2.Instance(
+        f"web-server-{az}",
+        instance_type="t2.micro",
+        vpc_security_group_ids=[group.id],
+        ami=ami.id,
+        user_data="""#!/bin/bash
 echo \"Hello, World -- from {}!\" > index.html
 nohup python -m SimpleHTTPServer 80 &
-""".format(az),
-      availability_zone=az,
-      tags={
-          "Name": "web-server",
-      },
+""".format(
+            az
+        ),
+        tags={
+            "Name": "web-server",
+        },
     )
     ips.append(server.public_ip)
     hostnames.append(server.public_dns)
 
-    attachment = aws.lb.TargetGroupAttachment(f'web-server-{az}',
+    attachment = aws.lb.TargetGroupAttachment(
+        f"web-server-{az}",
         target_group_arn=target_group.arn,
         target_id=server.private_ip,
         port=80,
     )
 
-export('ips', ips)
-export('hostnames', hostnames)
-export("url", lb.dns_name)
+
+pulumi.export("ips", ips)
+pulumi.export("hostnames", hostnames)
+pulumi.export("url", lb.dns_name)
 ```
 
 This is all the infrastructure we need for our load balanced webserver. Let's apply it.
@@ -199,27 +218,28 @@ Updating (dev):
 ~    ├─ aws:ec2:SecurityGroup         web-secgrp                updated     [diff: ~ingress, ~egress]
  +   ├─ aws:lb:TargetGroup            target-group              created
  +   ├─ aws:lb:LoadBalancer           external-loadbalancer     created
- +   ├─ aws:lb:TargetGroupAttachment  web-server-eu-central-1b  created
- +   ├─ aws:lb:TargetGroupAttachment  web-server-eu-central-1c  created
- +   ├─ aws:lb:TargetGroupAttachment  web-server-eu-central-1a  created
+ +   ├─ aws:lb:TargetGroupAttachment  web-server-us-west-2a        created     
+ +   ├─ aws:lb:TargetGroupAttachment  web-server-us-west-2c        created     
+ +   ├─ aws:lb:TargetGroupAttachment  web-server-us-west-2d        created     
+ +   └─ aws:lb:TargetGroupAttachment  web-server-us-west-2b        created    
  +   └─ aws:lb:Listener               listener                  created
 
 Outputs:
     hostnames: [
-        [0]: "ec2-18-197-184-46.eu-central-1.compute.amazonaws.com"
-        [1]: "ec2-18-196-225-191.eu-central-1.compute.amazonaws.com"
-        [2]: "ec2-35-158-83-62.eu-central-1.compute.amazonaws.com"
+        [0]: "ec2-18-197-184-46.us-west-2.compute.amazonaws.com"
+        [1]: "ec2-18-196-225-191.us-west-2.compute.amazonaws.com"
+        [2]: "ec2-35-158-83-62.us-west-2.compute.amazonaws.com"
     ]
     ips      : [
         [0]: "18.197.184.46"
         [1]: "18.196.225.191"
         [2]: "35.158.83.62"
-  + url      : "web-traffic-09348bc-723263075.eu-central-1.elb.amazonaws.com"
+  + url      : "web-traffic-09348bc-723263075.us-west-2.elb.amazonaws.com"
 
 Resources:
-    + 6 created
+    + 7 created
     ~ 1 updated
-    7 changes. 4 unchanged
+    8 changes. 4 unchanged
 
 Duration: 2m33s
 
@@ -237,16 +257,17 @@ for i in {0..10}; do curl $(pulumi stack output url); done
 Observe that the resulting text changes based on where the request is routed:
 
 ```
-Hello, World -- from eu-central-1b!
-Hello, World -- from eu-central-1c!
-Hello, World -- from eu-central-1a!
-Hello, World -- from eu-central-1b!
-Hello, World -- from eu-central-1b!
-Hello, World -- from eu-central-1a!
-Hello, World -- from eu-central-1c!
-Hello, World -- from eu-central-1a!
-Hello, World -- from eu-central-1c!
-Hello, World -- from eu-central-1b!
+Hello, World -- from us-west-2a!
+Hello, World -- from us-west-2a!
+Hello, World -- from us-west-2d!
+Hello, World -- from us-west-2b!
+Hello, World -- from us-west-2b!
+Hello, World -- from us-west-2c!
+Hello, World -- from us-west-2b!
+Hello, World -- from us-west-2a!
+Hello, World -- from us-west-2c!
+Hello, World -- from us-west-2d!
+Hello, World -- from us-west-2a!
 ```
 
 ## Step 6 &mdash; Destroy Everything
@@ -256,4 +277,4 @@ Finally, destroy the resources and the stack itself:
 ```
 pulumi destroy
 pulumi stack rm
-
+```

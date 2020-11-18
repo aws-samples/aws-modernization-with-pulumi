@@ -16,7 +16,7 @@ hostnames = []
 for az in aws.get_availability_zones().names:
     server = aws.ec2.Instance(f'web-server-{az}',
       instance_type="t2.micro",
-      security_groups=[group.name],
+      vpc_security_group_ids=[group.id],
       ami=ami.id,
       availability_zone=az,
       user_data="""#!/bin/bash
@@ -29,49 +29,73 @@ nohup python -m SimpleHTTPServer 80 &
     )
     ips.append(server.public_ip)
     hostnames.append(server.public_dns)
+
+pulumi.export("ips", ips)
+pulumi.export("hostnames", hostnames)
 ```
 
 > :white_check_mark: After this change, your `__main__.py` should look like this:
 
 ```python
-from pulumi import export
+"""An AWS Python Pulumi program"""
+
+import pulumi
 import pulumi_aws as aws
+
 
 ami = aws.get_ami(
     most_recent="true",
     owners=["137112412989"],
-    filters=[{"name":"name","values":["amzn-ami-hvm-*-x86_64-ebs"]}])
+    filters=[{"name": "name", "values": ["amzn-ami-hvm-*-x86_64-ebs"]}],
+)
+
+vpc = aws.ec2.get_vpc(default=True)
 
 group = aws.ec2.SecurityGroup(
     "web-secgrp",
-    description='Enable HTTP access',
+    description="Enable HTTP Access",
+    vpc_id=vpc.id,
     ingress=[
-        { 'protocol': 'icmp', 'from_port': 8, 'to_port': 0, 'cidr_blocks': ['0.0.0.0/0'] },
-        { 'protocol': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_blocks': ['0.0.0.0/0'] }
-    ])
+        {
+            "protocol": "icmp",
+            "from_port": 8,
+            "to_port": 0,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
+        {
+            "protocol": "tcp",
+            "from_port": 80,
+            "to_port": 80,
+            "cidr_blocks": ["0.0.0.0/0"],
+        },
+    ],
+)
+
 
 ips = []
 hostnames = []
+
 for az in aws.get_availability_zones().names:
-    server = aws.ec2.Instance(f'web-server-{az}',
-      instance_type="t2.micro",
-      security_groups=[group.name],
-      ami=ami.id,
-      availability_zone=az,
-      user_data="""#!/bin/bash
+    server = aws.ec2.Instance(
+        f"web-server-{az}",
+        instance_type="t2.micro",
+        vpc_security_group_ids=[group.id],
+        ami=ami.id,
+        user_data="""#!/bin/bash
 echo \"Hello, World -- from {}!\" > index.html
 nohup python -m SimpleHTTPServer 80 &
-""".format(az),
-      tags={
-          "Name": "web-server",
-      },
+""".format(
+            az
+        ),
+        tags={
+            "Name": "web-server",
+        },
     )
     ips.append(server.public_ip)
     hostnames.append(server.public_dns)
 
-export('ips', ips)
-export('hostnames', hostnames)
-
+pulumi.export("ips", ips)
+pulumi.export("hostnames", hostnames)
 ```
 
 Now run a command to update your stack with the new resource definitions:
@@ -85,31 +109,34 @@ You will see output like the following:
 ```
 Updating (dev):
 
-     Type                 Name                      Status
-     pulumi:pulumi:Stack  iac-workshop-dev
- +   ├─ aws:ec2:Instance  web-server-eu-central-1a  created
- +   ├─ aws:ec2:Instance  web-server-eu-central-1b  created
- +   ├─ aws:ec2:Instance  web-server-eu-central-1c  created
- -   └─ aws:ec2:Instance  web-server                deleted
+
+     Type                 Name                         Plan       
+     pulumi:pulumi:Stack  iac-workshop-webservers-dev             
+ +   ├─ aws:ec2:Instance  web-server-us-west-2a        create     
+ +   ├─ aws:ec2:Instance  web-server-us-west-2b        create     
+ +   ├─ aws:ec2:Instance  web-server-us-west-2c        create     
+ +   ├─ aws:ec2:Instance  web-server-us-west-2d        create     
+ -   └─ aws:ec2:Instance  web-server                   delete   
 
 Outputs:
-  + hostnames     : [
-  +     [0]: "ec2-18-197-184-46.eu-central-1.compute.amazonaws.com"
-  +     [1]: "ec2-18-196-225-191.eu-central-1.compute.amazonaws.com"
-  +     [2]: "ec2-35-158-83-62.eu-central-1.compute.amazonaws.com"
+  - hostname : "ec2-18-236-225-249.us-west-2.compute.amazonaws.com"
+  + hostnames: [
+  +     [0]: "ec2-34-221-69-215.us-west-2.compute.amazonaws.com"
+  +     [1]: "ec2-54-202-104-111.us-west-2.compute.amazonaws.com"
+  +     [2]: "ec2-54-244-18-49.us-west-2.compute.amazonaws.com"
+  +     [3]: "ec2-18-236-225-249.us-west-2.compute.amazonaws.com"
     ]
-  + ips           : [
-  +     [0]: "18.197.184.46"
-  +     [1]: "18.196.225.191"
-  +     [2]: "35.158.83.62"
+  - ip       : "18.236.225.249"
+  + ips      : [
+  +     [0]: "34.221.69.215"
+  +     [1]: "54.202.104.111"
+  +     [2]: "54.244.18.49"
+  +     [3]: "18.236.225.249"
     ]
-  - hostname: "ec2-52-57-250-206.eu-central-1.compute.amazonaws.com"
-  - ip      : "52.57.250.206"
-
 Resources:
-    + 3 created
+    + 4 created
     - 1 deleted
-    4 changes. 2 unchanged
+    5 changes. 2 unchanged
 
 Duration: 1m2s
 
@@ -131,8 +158,8 @@ for i in {0..2}; do curl $(pulumi stack output hostnames | jq -r ".[${i}]"); don
 Note that the webserver number is included in its response:
 
 ```
-Hello, World -- from eu-central-1a!
-Hello, World -- from eu-central-1b!
-Hello, World -- from eu-central-1c!
+Hello, World -- from us-west-2a!
+Hello, World -- from us-west-2b!
+Hello, World -- from us-west-2c!
 ```
 
