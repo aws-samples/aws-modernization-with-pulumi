@@ -19,9 +19,8 @@ bucket = aws.s3.Bucket(
 )
 ```
 
-{{% notice info %}}
-The `__main__.py` file should now have the following contents:
-{{% /notice %}}
+> :white_check_mark: After this change, your `__main__.py` should look like this:
+
 ```python
 import pulumi
 import pulumi_aws as aws
@@ -111,9 +110,7 @@ Programs can export variables which will be shown in the CLI and recorded for ea
 pulumi.export("bucket_name", mybucket.bucket)
 ```
 
-{{% notice info %}}
-The `__main__.py` file should now have the following contents:
-{{% /notice %}}
+> :white_check_mark: After this change, your `__main__.py` should look like this:
 ```python
 import pulumi
 import pulumi_aws as aws

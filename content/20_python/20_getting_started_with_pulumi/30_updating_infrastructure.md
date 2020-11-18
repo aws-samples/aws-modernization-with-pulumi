@@ -105,9 +105,7 @@ Your workshop host will explain Outputs here. If you're following along on your 
 
 In order to use these computed output values, we use an `apply` method to inject the bucket arn into the string.
 
-{{% notice info %}}
-The `__main__.py` file should now have the following contents:
-{{% /notice %}}
+> :white_check_mark: After this change, your `__main__.py` should look like this:
 ```python
 import pulumi
 import pulumi_aws as aws

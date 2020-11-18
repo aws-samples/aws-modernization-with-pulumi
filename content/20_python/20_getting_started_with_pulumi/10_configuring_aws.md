@@ -31,9 +31,7 @@ Now that the AWS package is installed, we need to import it as part of our proje
 import pulumi_aws as aws
 ```
 
-{{% notice info %}}
-The `__main__.py` file should now have the following contents:
-{{% /notice %}}
+> :white_check_mark: After this change, your `__main__.py` should look like this:
 ```python
 import pulumi
 import pulumi_aws as aws

@@ -31,9 +31,8 @@ nohup python -m SimpleHTTPServer 80 &
     hostnames.append(server.public_dns)
 ```
 
-{{% notice info %}}
-The `__main__.py` file should now have the following contents:
-{{% /notice %}}
+> :white_check_mark: After this change, your `__main__.py` should look like this:
+
 ```python
 from pulumi import export
 import pulumi_aws as aws
