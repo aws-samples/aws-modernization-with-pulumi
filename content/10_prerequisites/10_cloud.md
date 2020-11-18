@@ -1,5 +1,5 @@
 ﻿---
-title: "Update IAM settings for your Workspace"
+title: "(Optional) Update IAM settings for your Workspace"
 chapter: false
 weight: 19
 ---
@@ -7,6 +7,8 @@ weight: 19
 {{% notice info %}}
 Cloud9 normally manages IAM credentials dynamically. This isn't currently compatible with
 the EKS IAM authentication, so we will disable it and rely on the IAM role instead.
+
+This is only required if following the EKS tutorials
 {{% /notice %}}
 
 - Return to your workspace and click the gear icon (in top right corner), or click to open a new tab and choose "Open Preferences"

@@ -1,7 +1,7 @@
 ---
-title: "Modern Infrastructure as Code"
+title: "Modern Infrastructure as Code (TypeScript)"
 chapter: true
-weight: 1
+weight: 30
 ---
 
 # Modern Infrastructure as Code with Pulumi
