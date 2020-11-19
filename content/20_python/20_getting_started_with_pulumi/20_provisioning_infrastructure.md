@@ -117,7 +117,7 @@ import pulumi_aws as aws
 
 bucket = aws.s3.Bucket(
     "my-website-bucket",
-    website=s3.BucketWebsiteArgs(
+    website=aws.s3.BucketWebsiteArgs(
         index_document="index.html",
     ),
 )

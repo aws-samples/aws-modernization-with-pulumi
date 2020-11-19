@@ -48,7 +48,7 @@ import os
 import pulumi_aws as aws
 ```
 
-Next, we'll list the contents of the `www` directory and add a new Pulumi resource for each called `BucketObject. wW can use a simple for loop over the contents of the `www` directory:
+Next, we'll list the contents of the `www` directory and add a new Pulumi resource for each called `BucketObject`. wW can use a simple for loop over the contents of the `www` directory:
 
 ```python
 content_dir = "www"
@@ -182,9 +182,9 @@ bucket_policy = aws.s3.BucketPolicy(
         })),
     opts=pulumi.ResourceOptions(parent=bucket)
 
-pulumi.export("bucket_name", bucket.bucket)
-
 )
+
+pulumi.export("bucket_name", bucket.bucket)
 ```
 
 Before we update our pulumi program, let's add one final line of code.
