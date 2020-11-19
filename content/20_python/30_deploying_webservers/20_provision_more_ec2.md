@@ -1,5 +1,5 @@
 +++
-title = "1.3. Add more EC2 Instances"
+title = "2.3 Add more EC2 Instances"
 chapter = false
 weight = 20
 +++

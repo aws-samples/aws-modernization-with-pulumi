@@ -1,5 +1,5 @@
 +++
-title = "1.2 Create an ECS Cluster & LoadBalancer"
+title = "3.2 Create an ECS Cluster & LoadBalancer"
 chapter = false
 weight = 10
 +++
