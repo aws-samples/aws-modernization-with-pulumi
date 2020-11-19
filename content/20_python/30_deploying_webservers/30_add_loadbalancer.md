@@ -1,5 +1,5 @@
 +++
-title = "1.4. Add a LoadBalancer"
+title = "2.4 Add a LoadBalancer"
 chapter = false
 weight = 30
 +++

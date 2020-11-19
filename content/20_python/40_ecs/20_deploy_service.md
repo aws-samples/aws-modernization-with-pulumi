@@ -1,5 +1,5 @@
 +++
-title = "1.2 Deploy a Docker Image"
+title = "3.3 Deploy a Docker Image"
 chapter = false
 weight = 20
 +++
