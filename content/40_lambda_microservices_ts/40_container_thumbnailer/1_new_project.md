@@ -12,8 +12,8 @@ Infrastructure in Pulumi is organized into projects. Each project is a single pr
 Each Pulumi project lives in its own directory. Create one now and change into it:
 
 ```bash
-mkdir lambda-gateway
-cd lambda-gateway
+mkdir lambda-thumbnailer
+cd lambda-thumbnailer
 ```
 
 > Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
@@ -29,7 +29,7 @@ pulumi new typescript -y
 This will print output similar to the following with a bit more information and status as it goes:
 
 ```
-Created project 'lambda-gateway'
+Created project 'lambda-thumbnailer'
 Created stack 'dev'
 Saved config
 Installing dependencies...

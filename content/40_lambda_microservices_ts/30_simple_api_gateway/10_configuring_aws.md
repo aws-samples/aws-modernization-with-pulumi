@@ -6,22 +6,24 @@ weight = 10
 
 Now that you have a basic project, let's configure AWS support for it.
 
-## Step 1 &mdash; Install the AWS Package
+## Step 1 &mdash; Install the AWS Packages
 
 Run the following command to install the AWS package:
 
 ```bash
 npm install @pulumi/aws
+npm install @pulumi/awsx
 ```
 
 The package will be added to `node_modules`, `package.json`, and `package-lock.json`.
 
 ## Step 2 &mdash; Import the AWS Package
 
-Now that the AWS package is installed, we need to import it as part of our project:
+Now that the AWS packages are installed, we need to import it as part of our project:
 
 ```typescript
 import * as aws from "@pulumi/aws";
+import * as awsx from "@pulumi/awsx
 ```
 
 {{% notice info %}}
@@ -30,6 +32,7 @@ The `index.ts` file should now have the following contents:
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
+import * as awsx from "@pulumi/awsx
 ```
 
 ## Step 3 &mdash; Configure an AWS Region

@@ -13,7 +13,7 @@ Add the following to your `index.ts` file:
 ```typescript
 import * as awsx from "@pulumi/awsx";
 
-const api = new awsx.apigateway.API("example", {
+const api = new awsx.apigateway.API("hello-world", {
     routes: [{
         path: "/",
         method: "GET",

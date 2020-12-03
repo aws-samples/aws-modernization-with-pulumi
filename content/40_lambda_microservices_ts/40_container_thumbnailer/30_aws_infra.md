@@ -12,7 +12,9 @@ Add the following to your `index.ts` file:
 
 ```typescript
 // A bucket to store videos and thumbnails.
-const bucket = new aws.s3.Bucket("thumbnailer");
+const bucket = new aws.s3.Bucket("thumbnailer",{
+    forceDestroy: true,
+});
 
 
 const role = new aws.iam.Role("thumbnailerRole", {
@@ -318,19 +320,3 @@ You can see that the thumbnailer generated a `cat.jpg` for our video! Let's down
 ```
 aws s3 cp s3://$(pulumi stack output bucketName)/cat.jpg .
 ```
-
-## Step 6 &mdash; Destroy Everything
-
-Finally, destroy the resources and the stack itself:
-
-```
-pulumi destroy
-pulumi stack rm
-```
-
-
-
-
-
-
-
