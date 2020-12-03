@@ -42,7 +42,7 @@ Create a new route in your API Gateway that accepts post requests. We'll add thi
 }
 ```
 
-This new `echo` endpoint simply takes some HTTP body data and base64 encodes it for us. Let's run this program and add the new route to our API gateway.
+This new `encode` endpoint simply takes some HTTP body data and base64 encodes it for us. Let's run this program and add the new route to our API gateway.
 
 
 {{% notice info %}}

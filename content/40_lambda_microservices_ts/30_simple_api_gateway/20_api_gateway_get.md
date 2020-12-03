@@ -138,7 +138,7 @@ The `index.ts` file should now have the following contents:
 import * as awsx from "@pulumi/awsx";
 
 // Define a new GET endpoint that just returns a 200 and "hello" in the body.
-const api = new awsx.apigateway.API("example", {
+const api = new awsx.apigateway.API("hello-world", {
     routes: [{
         path: "/",
         method: "GET",
