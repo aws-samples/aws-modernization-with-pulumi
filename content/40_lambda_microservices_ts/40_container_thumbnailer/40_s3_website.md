@@ -100,8 +100,6 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
 }), { filterSuffix: ".jpg" });
 
 export const bucketName = bucket.id;
-export const url = bucket.websiteEndpoint
-
 ```
 
 ## Step 2 &mdash; Make the S3 Bucket a Static Website

@@ -10,7 +10,7 @@ Now, let's take things a little further.
 
 ## Step 1 &mdash; Add a new API Gateway Route
 
-Create a new route in your API Gateway that accepts post requests. The route should like this this:
+Create a new route in your API Gateway that accepts post requests. We'll add this to our already created API Gateway in the `routes: []` block. The route should like this this:
 
 ```typescript
 {
@@ -42,13 +42,14 @@ Create a new route in your API Gateway that accepts post requests. The route sho
 }
 ```
 
-This new `echo` endpoint simply takes some HTTP body data and base64 encodes it for us. Let's run this program and add the new route to our API gateway.
+This new `encode` endpoint simply takes some HTTP body data and base64 encodes it for us. Let's run this program and add the new route to our API gateway.
 
 
 {{% notice info %}}
 The `index.ts` file should now have the following contents:
 {{% /notice %}}
 ```typescript
+import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 
 const api = new awsx.apigateway.API("hello-world", {

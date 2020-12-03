@@ -23,7 +23,7 @@ Now that the AWS packages are installed, we need to import it as part of our pro
 
 ```typescript
 import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx
+import * as awsx from "@pulumi/awsx";
 ```
 
 {{% notice info %}}

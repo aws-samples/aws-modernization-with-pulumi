@@ -290,7 +290,12 @@ https://github.com/pulumi/examples/tree/master/aws-ts-lambda-thumbnailer/sample
 Let's trigger our function by uploading an `.mp4` video to the bucket:
 
 ```
-aws s3 cp ./sample/cat.mp4 s3://$(pulumi stack output bucketName)/cat_00-01.mp4                                                                                                                    <aws:pulumi-dev-sandbox>
+aws s3 cp ./sample/cat.mp4 s3://$(pulumi stack output bucketName)/cat_00-01.mp4                                                                                                                    
+```
+
+You should see the file get upload to s3:
+
+```
 upload: sample/cat.mp4 to s3://thumbnailer-f91a64e/cat_00-01.mp4
 ```
 
