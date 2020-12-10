@@ -71,7 +71,7 @@ pulumi.export('bucket_name', bucket.id)
 
 Feel free to explore the other files, although we won't be editing any of them by hand.
 
-## Step 3 &mdash; Add the Kubernetes Provider
+## Step 4 &mdash; Add the Kubernetes Provider
 
 We'll be provisioning Kubernetes resources alongside AWS resources in this Pulumi project, so we'll add the Kubernetes provider to our program.
 

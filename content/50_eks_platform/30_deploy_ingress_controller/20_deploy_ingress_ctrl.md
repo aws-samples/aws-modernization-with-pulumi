@@ -187,7 +187,117 @@ namespace = k8s.core.v1.Namespace(
 
 ```
 
-## Step 2 &mdash; Retrieve needed outputs
+## Step 3 &mdash; Create a Service Account
+
+We've defined a role that can be used by our running Kubernetes workload, we now need to pass it to a Kubernetes service account.
+
+We can define a service account in our `__main__.py` like so:
+
+```python
+service_account = k8s.core.v1.ServiceAccount(
+    "aws-lb-controller-sa",
+    metadata={
+        "name": "aws-lb-controller-serviceaccount",
+        "namespace": namespace.metadata["name"],
+        "annotations": {
+            "eks.amazonaws.com/role-arn": iam_role.arn.apply(lambda arn: arn)
+        }
+    }
+)
+```
+
+We have to use an `apply` here because the service account metadata takes a standard python string.
+
+{{% notice info %}}
+The `__main__.py` file should now have the following contents:
+{{% /notice %}}
+```python
+"""An AWS Python Pulumi program"""
+
+import pulumi
+import pulumi_aws as aws
+import json
+import pulumi_kubernetes as k8s
+
+stack = pulumi.get_stack()
+cluster = pulumi.StackReference(f"jaxxstorm/workshop-cluster/{stack}")
+
+kubeconfig = cluster.get_output("kubeconfig")
+oidc_arn = cluster.get_output("clusterOidcProviderArn")
+oidc_url = cluster.get_output("clusterOidcProvider")
+
+ns = "aws-lb-controller"
+service_account_name = f"system:serviceaccount:{ns}:aws-lb-controller-serviceaccount"
+
+iam_role = aws.iam.Role(
+	"aws-loadbalancer-controller-role",
+	assume_role_policy=pulumi.Output.all(oidc_arn, oidc_url).apply(
+		lambda args: json.dumps(
+			{
+				"Version": "2012-10-17",
+				"Statement": [
+					{
+						"Effect": "Allow",
+						"Principal": {
+							"Federated": args[0],
+						},
+						"Action": "sts:AssumeRoleWithWebIdentity",
+						"Condition": {
+							"StringEquals": {f"{args[1]}:sub": service_account_name},
+						},
+					}
+				],
+			}
+		)
+	),
+)
+
+with open("files/iam_policy.json") as policy_file:
+	policy_doc = policy_file.read()
+
+iam_policy = aws.iam.Policy(
+	"aws-loadbalancer-controller-policy",
+	policy=policy_doc,
+	opts=pulumi.ResourceOptions(parent=iam_role),
+)
+
+aws.iam.PolicyAttachment(
+	"aws-loadbalancer-controller-attachment",
+	policy_arn=iam_policy.arn,
+	roles=[iam_role.name],
+	opts=pulumi.ResourceOptions(parent=iam_role),
+)
+
+provider = k8s.Provider("provider", kubeconfig=kubeconfig)
+
+namespace = k8s.core.v1.Namespace(
+	f"{ns}-ns",
+	metadata={
+		"name": ns,
+		"labels": {
+			"app.kubernetes.io/name": "aws-load-balancer-controller",
+		}
+	},
+	opts=pulumi.ResourceOptions(
+		provider=provider,
+		parent=provider,
+	)
+)
+
+service_account = k8s.core.v1.ServiceAccount(
+	"aws-lb-controller-sa",
+	metadata={
+		"name": "aws-lb-controller-serviceaccount",
+		"namespace": namespace.metadata["name"],
+		"annotations": {
+			"eks.amazonaws.com/role-arn": iam_role.arn.apply(lambda arn: arn)
+		}
+	}
+)
+
+```
+
+## Step 4 &mdash; Retrieve needed outputs
 
 The next thing we need to do is retrieve some values from our cluster stack so that we can pass them to our helm chart. The AWS Load Balancer Controller first needs to know which cluster to target when it starts.
 
@@ -274,9 +384,20 @@ namespace = k8s.core.v1.Namespace(
         parent=provider,
     )
 )
+
+service_account = k8s.core.v1.ServiceAccount(
+	"aws-lb-controller-sa",
+	metadata={
+		"name": "aws-lb-controller-serviceaccount",
+		"namespace": namespace.metadata["name"],
+		"annotations": {
+			"eks.amazonaws.com/role-arn": iam_role.arn.apply(lambda arn: arn)
+		}
+	}
+)
 ```
 
-## Step 3 &mdash; Define your Helm Chart
+## Step 5 &mdash; Define your Helm Chart
 
 Now that we've got all our dependencies from other stacks, we can deploy our Helm Chart. We'll pass the retrieved values from the cluster stack to it.
 
@@ -293,7 +414,8 @@ k8s.helm.v3.Chart(
         values={
             "region": "us-west-1",
             "serviceAccount": {
-                "name": "aws-lb-controller-serviceaccount"
+                "name": "aws-lb-controller-serviceaccount",
+                "create": False,
             },
             "vpcId": vpc_id,
             "clusterName": cluster_name,
@@ -384,6 +506,17 @@ namespace = k8s.core.v1.Namespace(
     )
 )
 
+service_account = k8s.core.v1.ServiceAccount(
+	"aws-lb-controller-sa",
+	metadata={
+		"name": "aws-lb-controller-serviceaccount",
+		"namespace": namespace.metadata["name"],
+		"annotations": {
+			"eks.amazonaws.com/role-arn": iam_role.arn.apply(lambda arn: arn)
+		}
+	}
+)
+
 k8s.helm.v3.Chart(
     "lb", k8s.helm.v3.ChartOpts(
         chart="aws-load-balancer-controller",
@@ -394,7 +527,8 @@ k8s.helm.v3.Chart(
         values={
             "region": "us-west-1",
             "serviceAccount": {
-                "name": "aws-lb-controller-serviceaccount"
+                "name": "aws-lb-controller-serviceaccount",
+                "create": False,
             },
             "vpcId": vpc_id,
             "clusterName": cluster_name,
@@ -409,7 +543,7 @@ k8s.helm.v3.Chart(
 )
 ```
 
-## Step 4 &mdash; Patch the Helm Chart
+## Step 6 &mdash; Patch the Helm Chart
 
 Pulumi's Kubernetes provider can manipulate values in Helm charts using transformations.
 
@@ -436,7 +570,8 @@ k8s.helm.v3.Chart(
         values={
             "region": "us-west-1",
             "serviceAccount": {
-                "name": "aws-lb-controller-serviceaccount"
+                "name": "aws-lb-controller-serviceaccount",
+                "create": False,
             },
             "vpcId": vpc_id,
             "clusterName": cluster_name,
@@ -528,6 +663,17 @@ namespace = k8s.core.v1.Namespace(
     )
 )
 
+service_account = k8s.core.v1.ServiceAccount(
+	"aws-lb-controller-sa",
+	metadata={
+		"name": "aws-lb-controller-serviceaccount",
+		"namespace": namespace.metadata["name"],
+		"annotations": {
+			"eks.amazonaws.com/role-arn": iam_role.arn.apply(lambda arn: arn)
+		}
+	}
+)
+
 def remove_status(obj, opts):
     if obj["kind"] == "CustomResourceDefinition":
         del obj["status"]
@@ -558,7 +704,7 @@ k8s.helm.v3.Chart(
 )
 ```
 
-## Step 5 &mdash; Provision your Infrastructure
+## Step 7 &mdash; Provision your Infrastructure
 
 We're now ready to deploy our loadbalancer. Run `pulumi up`:
 
@@ -603,7 +749,7 @@ Do you want to perform this update?  [Use arrows to move, enter to select, type 
   details
 ```
 
-## Step 6 &mdash; Validate the changes
+## Step 8 &mdash; Validate the changes
 
 We can now verify our AWS Load Balancer Controller started correctly. Let's check the logs of the pod.
 
