@@ -40,7 +40,12 @@ All of this is done via the command line tool.
 
 We could also write a Pulumi program that uses the same logic, but this CLI tool can be used with no underlying knowledge of Pulumi.
 
-## Step 2 &mdash; Build the binary
+## Step 3 &mdash; Build the binary
+
+{{% notice info %}}
+It might be the case that you're unable to build the binary on the Cloud9 instance. If you're struggling to build it, you can download a pre-built binary from here:
+https://github.com/jaxxstorm/ploy/releases/download/v0.0.2-alpha/ploy-v0.0.2-alpha-linux-amd64.tar.gz
+{{% /notice %}}
 
 We'll need to build the binary so we can use it. You can do this using the `go build` command:
 
@@ -58,7 +63,7 @@ docker rmi $(docker images -q)
 You should be able to run the `ploy` command now locally:
 
 ```
-./ploy                                                                                                                                                                                               <aws:pulumi-dev-sandbox>
+./ploy
 Deploy your applications
 
 Usage:
