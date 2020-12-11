@@ -12,7 +12,7 @@ Before we create resources in our Kubernetes cluster, we need to provide a valid
 
 Usually, we would use `KUBECONFIG` file for interacting with Kubernetes, but we can also explicitly set a provider on each Kubernetes resource.
 
-Let's do this now. Define a `provider` resources in your `index.ts`. It gets populated from the `kubeconfig` output from the cluster:
+Let's do this now. Define a `provider` resource in your `index.ts`. It gets populated from the `kubeconfig` output from the cluster.
 
 ```python
 kubeconfig = cluster.get_output("kubeconfig")
