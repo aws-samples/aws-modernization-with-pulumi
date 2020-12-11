@@ -46,7 +46,7 @@ import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 
-const name = `lbriggs-workshop`
+const name = 'lbriggs-workshop'
 const clusName = `${name}-cluster`
 const clusterTag = `kubernetes.io/cluster/${clusName}`
 
@@ -86,7 +86,7 @@ We'll now add an EKS cluster in this project. In order to do this, we'll use the
 npm install @pulumi/eks
 ```
 
-And then we can add an EKS cluster to our project:
+And then we can add an EKS cluster to our `index.ts` file:
 
 ```typescript
 import * as eks from "@pulumi/eks";
@@ -113,7 +113,7 @@ import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 import * as eks from "@pulumi/eks";
 
-const name = `lbriggs-workshop`
+const name = 'lbriggs-workshop'
 const clusName = `${name}-cluster`
 const clusterTag = `kubernetes.io/cluster/${clusName}`
 
@@ -239,7 +239,7 @@ At this stage, you should have a working EKS cluster.
 
 Now that we have a cluster provisioned, we need to export our `KUBECONFIG` from the cluster so we can interact with it. 
 
-Add the following to your `index.ts` at the end of the file:
+Add the following to the end of the `index.ts` file:
 
 ```typescript
 export const kubeconfig = cluster.kubeconfig
@@ -258,7 +258,7 @@ import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 import * as eks from "@pulumi/eks";
 
-const name = `lbriggs-workshop`
+const name = 'lbriggs-workshop'
 const clusName = `${name}-cluster`
 const clusterTag = `kubernetes.io/cluster/${clusName}`
 
