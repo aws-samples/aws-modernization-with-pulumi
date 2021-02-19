@@ -1,5 +1,5 @@
 ---
-title: "Resize Cloud9 Workspace EBS Volume"
+title: "Resize workspace's EBS volume"
 chapter: false
 weight: 25 
 ---
@@ -16,13 +16,13 @@ run in any other region.** Future versions of this workshop will expand region a
 and this message will be removed.
 {{% /notice %}}
 
-### Increase the EBS volume size:
+### Set up resize script:
 
 - Create a file called `resize.sh` to resize the root EBS volume of the Cloud9 instance.
 ```bash
 $ touch resize.sh && chmod +x resize.sh
 ```
-- Double click `resize.sh` on the file bar and copy in the script below.
+- Double click `resize.sh` on the file bar on the left and copy in the script below. Make sure to save it. 
 ```bash
 #!/bin/bash
 
