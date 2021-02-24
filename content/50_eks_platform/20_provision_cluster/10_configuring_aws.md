@@ -35,12 +35,13 @@ import * as aws from "@pulumi/aws";
 import * as awsx from "@pulumi/awsx";
 ```
 
-## Step 3 &mdash; Configure an AWS Region
+## Step 3 &mdash; Configure AWS
 
 Configure the AWS region you would like to deploy to:
 
 ```bash
 pulumi config set aws:region us-west-2
+pulumi config set aws:skipMetadataApiCheck false # set this if running in an IAM role
 ```
 
 Feel free to choose any AWS region that supports the services used in these labs ([see this table](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) for a list of available regions).
