@@ -87,7 +87,7 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
@@ -124,7 +124,7 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
         }
     },
     policies: [
-        aws.iam.ManagedPolicies.AWSLambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
+        aws.iam.ManagedPolicy.LambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
     ],
 }), { filterSuffix: ".jpg" });
 ```
@@ -149,7 +149,7 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
@@ -173,7 +173,7 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
         }
     },
     policies: [
-        aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+        aws.iam.ManagedPolicy.LambdaFullAccess,
     ],
 }), { filterSuffix: ".jpg" });
 ```
@@ -212,7 +212,7 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
@@ -236,7 +236,7 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
         }
     },
     policies: [
-        aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+        aws.iam.ManagedPolicy.LambdaFullAccess,
     ],
 }), { filterSuffix: ".jpg" });
 
