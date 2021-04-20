@@ -22,7 +22,7 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
 ```
 
@@ -47,7 +47,7 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
 ```
 
