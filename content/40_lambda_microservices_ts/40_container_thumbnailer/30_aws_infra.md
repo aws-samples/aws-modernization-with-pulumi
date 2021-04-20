@@ -293,7 +293,7 @@ Let's trigger our function by uploading an `.mp4` video to the bucket:
 aws s3 cp ./sample/cat.mp4 s3://$(pulumi stack output bucketName)/cat_00-01.mp4                                                                                                                    
 ```
 
-You should see the file get upload to s3:
+You should see the file get uploaded to s3:
 
 ```
 upload: sample/cat.mp4 to s3://thumbnailer-f91a64e/cat_00-01.mp4
