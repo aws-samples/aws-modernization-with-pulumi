@@ -140,7 +140,7 @@ Resources:
     + 4 to create
 ```
 
-Hit yes when you're ready, you should see some output while the image builds in the background this may take a few minutes:
+Hit yes when you're ready, you should see some output while the image builds in the background (this may take a few minutes):
 
 ```
 Updating (dev)
