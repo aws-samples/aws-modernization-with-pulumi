@@ -31,7 +31,7 @@ RUN ./aws/install
 # Install ffmpeg
 RUN curl https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz -o ffmpeg.tar.xz -s
 RUN tar -xf ffmpeg.tar.xz
-RUN mv ffmpeg-4.3.1-amd64-static/ffmpeg /usr/bin
+RUN mv ffmpeg-4.4-amd64-static/ffmpeg /usr/bin
 
 # Create function directory
 RUN mkdir -p ${FUNCTION_DIR}
@@ -140,7 +140,7 @@ Resources:
     + 4 to create
 ```
 
-Hit yes when you're ready, you should see some output while the image builds in the background this may take a few minutes:
+Hit yes when you're ready, you should see some output while the image builds in the background (this may take a few minutes):
 
 ```
 Updating (dev)

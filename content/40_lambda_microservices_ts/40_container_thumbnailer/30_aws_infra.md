@@ -22,7 +22,12 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
+});
+
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
 });
 ```
 
@@ -47,7 +52,11 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
+});
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
 });
 ```
 
@@ -87,7 +96,11 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
+});
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
 });
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
@@ -124,7 +137,8 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
         }
     },
     policies: [
-        aws.iam.ManagedPolicies.AWSLambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
+        aws.iam.ManagedPolicy.LambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
+        aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
     ],
 }), { filterSuffix: ".jpg" });
 ```
@@ -149,7 +163,11 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
+});
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
 });
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
@@ -173,7 +191,8 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
         }
     },
     policies: [
-        aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+        aws.iam.ManagedPolicy.LambdaFullAccess,
+        aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
     ],
 }), { filterSuffix: ".jpg" });
 ```
@@ -212,7 +231,11 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
+});
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
 });
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
@@ -236,7 +259,8 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
         }
     },
     policies: [
-        aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+        aws.iam.ManagedPolicy.LambdaFullAccess,
+        aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
     ],
 }), { filterSuffix: ".jpg" });
 
@@ -293,7 +317,7 @@ Let's trigger our function by uploading an `.mp4` video to the bucket:
 aws s3 cp ./sample/cat.mp4 s3://$(pulumi stack output bucketName)/cat_00-01.mp4                                                                                                                    
 ```
 
-You should see the file get upload to s3:
+You should see the file get uploaded to s3:
 
 ```
 upload: sample/cat.mp4 to s3://thumbnailer-f91a64e/cat_00-01.mp4

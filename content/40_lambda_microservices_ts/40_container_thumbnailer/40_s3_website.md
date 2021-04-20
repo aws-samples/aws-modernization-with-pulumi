@@ -19,10 +19,11 @@ const bucketPolicy = new aws.s3.BucketPolicy("thumbnailer", {
                 "Effect": "Allow",
                 "Principal": "*",
                 "Action": [
-                    "s3:GetObject"
+                    "s3:*"
                 ],
                 "Resource": [
-                    `${arn}/*`
+                    `${arn}/*`,
+                    `${arn}`
                 ]
             }]
     }))
@@ -54,10 +55,11 @@ const bucketPolicy = new aws.s3.BucketPolicy("thumbnailer", {
                 "Effect": "Allow",
                 "Principal": "*",
                 "Action": [
-                    "s3:GetObject"
+                    "s3:*"
                 ],
                 "Resource": [
-                    `${arn}/*`
+                    `${arn}/*`,
+                    `${arn}`
                 ]
             }]
     }))
@@ -68,7 +70,12 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
+});
+
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
 });
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
@@ -95,7 +102,8 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
         }
     },
     policies: [
-        aws.iam.ManagedPolicies.AWSLambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
+        aws.iam.ManagedPolicy.LambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
+        aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
     ],
 }), { filterSuffix: ".jpg" });
 
@@ -151,10 +159,11 @@ const bucketPolicy = new aws.s3.BucketPolicy("thumbnailer", {
                 "Effect": "Allow",
                 "Principal": "*",
                 "Action": [
-                    "s3:GetObject"
+                    "s3:*"
                 ],
                 "Resource": [
-                    `${arn}/*`
+                    `${arn}/*`,
+                    `${arn}`
                 ]
             }]
     }))
@@ -165,7 +174,11 @@ const role = new aws.iam.Role("thumbnailerRole", {
 });
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
-    policyArn: aws.iam.ManagedPolicies.AWSLambdaFullAccess,
+    policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
+});
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
 });
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
@@ -192,7 +205,8 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
         }
     },
     policies: [
-        aws.iam.ManagedPolicies.AWSLambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
+        aws.iam.ManagedPolicy.LambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
+        aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
     ],
 }), { filterSuffix: ".jpg" });
 
