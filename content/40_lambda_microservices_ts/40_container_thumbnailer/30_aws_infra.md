@@ -24,6 +24,11 @@ const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
     policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
+
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
+});
 ```
 
 {{% notice info %}}
@@ -48,6 +53,10 @@ const role = new aws.iam.Role("thumbnailerRole", {
 const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
     policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
+});
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
 });
 ```
 
@@ -89,6 +98,10 @@ const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
     policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
+});
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
     packageType: "Image",
@@ -125,6 +138,7 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
     },
     policies: [
         aws.iam.ManagedPolicy.LambdaFullAccess,                 // Provides wide access to "serverless" services (Dynamo, S3, etc.)
+        aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
     ],
 }), { filterSuffix: ".jpg" });
 ```
@@ -151,6 +165,10 @@ const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
     policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
+});
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
     packageType: "Image",
@@ -174,6 +192,7 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
     },
     policies: [
         aws.iam.ManagedPolicy.LambdaFullAccess,
+        aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
     ],
 }), { filterSuffix: ".jpg" });
 ```
@@ -214,6 +233,10 @@ const lambdaFullAccess =  new aws.iam.RolePolicyAttachment("lambdaFullAccess", {
     role: role.name,
     policyArn: aws.iam.ManagedPolicy.LambdaFullAccess,
 });
+const lambdaBasicExecutionRole = new aws.iam.RolePolicyAttachment("basicExecutionRole", {
+    role: role.name,
+    policyArn: aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
+});
 
 const thumbnailer = new aws.lambda.Function("thumbnailer", {
     packageType: "Image",
@@ -237,6 +260,7 @@ bucket.onObjectCreated("onNewThumbnail", new aws.lambda.CallbackFunction<aws.s3.
     },
     policies: [
         aws.iam.ManagedPolicy.LambdaFullAccess,
+        aws.iam.ManagedPolicy.AWSLambdaBasicExecutionRole,
     ],
 }), { filterSuffix: ".jpg" });
 
