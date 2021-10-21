@@ -11,10 +11,10 @@ Now that you have a project configured to use AWS, you'll create some basic infr
 Add the following to your `__main__.py` file:
 
 ```python
-bucket = aws.s3.Bucket(
+bucket = aws_native.s3.Bucket(
     "my-website-bucket",
-    website=s3.BucketWebsiteArgs(
-        index_document="index.html",
+    website_configuration=aws_native.s3.BucketWebsiteConfigurationArgs(
+        index_document="index.html"
     ),
 )
 ```
@@ -23,12 +23,13 @@ bucket = aws.s3.Bucket(
 
 ```python
 import pulumi
-import pulumi_aws as aws
+import pulumi_aws as aws_classic
+import pulumi_aws_native as aws_native
 
-bucket = aws.s3.Bucket(
+bucket = aws_native.s3.Bucket(
     "my-website-bucket",
-    website=aws.s3.BucketWebsiteArgs(
-        index_document="index.html",
+    website_configuration=aws_native.s3.BucketWebsiteConfigurationArgs(
+        index_document="index.html"
     ),
 )
 ```
@@ -46,9 +47,9 @@ This command evaluates your program, determines the resource updates to make, an
 ```
 Previewing update (dev):
 
-     Type                 Name              Plan
- +   pulumi:pulumi:Stack  iac-workshop-dev  create
- +   └─ aws:s3:Bucket     my-bucket         create
+     Type                     Name              Plan
+ +   pulumi:pulumi:Stack      iac-workshop-dev  create
+ +   └─ aws-native:s3:Bucket  my-bucket         create
 
 Resources:
     + 2 to create
@@ -64,12 +65,12 @@ This is a summary view. Select `details` to view the full set of properties:
 ```
 + pulumi:pulumi:Stack: (create)
     [urn=urn:pulumi:dev::iac-workshop::pulumi:pulumi:Stack::iac-workshop-dev]
-    + aws:s3/bucket:Bucket: (create)
-        [urn=urn:pulumi:dev::iac-workshop::aws:s3/bucket:Bucket::my-bucket]
-        [provider=urn:pulumi:dev::iac-workshop::pulumi:providers:aws::default_2_6_1::04da6b54-80e4-46f7-96ec-b56ff0331ba9]
-        acl         : "private"
-        bucket      : "my-bucket-aca82a7"
-        forceDestroy: false
+    + aws-native:s3/bucket:Bucket: (create)
+        [urn=urn:pulumi:dev::iac-workshop::aws-native:s3:Bucket::my-bucket]
+        [provider=urn:pulumi:dev::iac-workshop::pulumi:providers:aws-native::default_0_2_0::04da6b54-80e4-46f7-96ec-b56ff0331ba9]
+        websiteConfiguration: {
+            indexDocument: "index.html"
+        }
 
 Do you want to perform this update?
   yes
@@ -86,9 +87,9 @@ Now that we've seen the full set of changes, let's deploy them. Select `yes`:
 ```
 Updating (dev):
 
-     Type                 Name              Status
- +   pulumi:pulumi:Stack  iac-workshop-dev  created
- +   └─ aws:s3:Bucket     my-bucket         created
+     Type                     Name              Status
+ +   pulumi:pulumi:Stack      iac-workshop-dev  created
+ +   └─ aws-native:s3:Bucket  my-bucket         created
 
 Resources:
     + 2 created
@@ -113,12 +114,13 @@ pulumi.export("bucket_name", bucket.bucket)
 > :white_check_mark: After this change, your `__main__.py` should look like this:
 ```python
 import pulumi
-import pulumi_aws as aws
+import pulumi_aws as aws_classic
+import pulumi_aws_native as aws_native
 
-bucket = aws.s3.Bucket(
+bucket = aws_native.s3.Bucket(
     "my-website-bucket",
-    website=aws.s3.BucketWebsiteArgs(
-        index_document="index.html",
+    website_configuration=aws_native.s3.BucketWebsiteConfigurationArgs(
+        index_document="index.html"
     ),
 )
 

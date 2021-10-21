@@ -45,7 +45,8 @@ Let's add two new imports to our program:
 import pulumi
 import mimetypes
 import os
-import pulumi_aws as aws
+import pulumi_aws as aws_classic
+import pulumi_aws_native as aws_native
 ```
 
 Next, we'll list the contents of the `www` directory and add a new Pulumi resource for each called `BucketObject`. wW can use a simple for loop over the contents of the `www` directory:
@@ -55,7 +56,7 @@ content_dir = "www"
 for file in os.listdir(content_dir):
     filepath = os.path.join(content_dir, file)
     mime_type, _ = mimetypes.guess_type(filepath)
-    obj = aws.s3.BucketObject(
+    obj = aws_classic.s3.BucketObject(
         file,
         bucket=bucket.id,
         source=pulumi.FileAsset(filepath),
@@ -75,7 +76,7 @@ This will give you a preview and selecting `yes` will apply the changes:
 ```
      Type                       Name               Plan       
      pulumi:pulumi:Stack        iac-workshop-dev              
-     └─ aws:s3:Bucket           my-website-bucket             
+     └─ aws-native:s3:Bucket    my-website-bucket             
  +      ├─ aws:s3:BucketObject  python.png         create     
  +      └─ aws:s3:BucketObject  index.html         create     
  
@@ -107,7 +108,7 @@ import json
 Create a new bucket policy object in your Pulumi program like so:
 
 ```python
-bucket_policy = aws.s3.BucketPolicy(
+bucket_policy = aws_classic.s3.BucketPolicy(
     "my-website-bucket-policy",
     bucket=bucket.id,
     policy=bucket.arn.apply(
@@ -142,12 +143,13 @@ import pulumi
 import mimetypes
 import json
 import os
-import pulumi_aws as aws
+import pulumi_aws as aws_classic
+import pulumi_aws_native as aws_native
 
-bucket = aws.s3.Bucket(
+bucket = aws_native.s3.Bucket(
     "my-website-bucket",
-    website=s3.BucketWebsiteArgs(
-        index_document="index.html",
+    website_configuration=aws_native.s3.BucketWebsiteConfigurationArgs(
+        index_document="index.html"
     ),
 )
 
@@ -155,7 +157,7 @@ content_dir = "www"
 for file in os.listdir(content_dir):
     filepath = os.path.join(content_dir, file)
     mime_type, _ = mimetypes.guess_type(filepath)
-    obj = aws.s3.BucketObject(
+    obj = aws_classic.s3.BucketObject(
         file,
         bucket=bucket.id,
         source=pulumi.FileAsset(filepath),
@@ -163,7 +165,7 @@ for file in os.listdir(content_dir):
         opts=pulumi.ResourceOptions(parent=bucket)
     )
 
-bucket_policy = aws.s3.BucketPolicy(
+bucket_policy = aws_classic.s3.BucketPolicy(
     "my-website-bucket-policy",
     bucket=bucket.id,
     policy=bucket.arn.apply(
@@ -230,7 +232,7 @@ View Live: https://app.pulumi.com/jaxxstorm/iac-workshop/dev/previews/33ce7a73-6
      Type                       Name                      Plan       
  -   pulumi:pulumi:Stack        iac-workshop-dev          delete     
  -   ├─ aws:s3:BucketPolicy     my-website-bucket-policy  delete     
- -   └─ aws:s3:Bucket           my-website-bucket         delete     
+ -   └─ aws-native:s3:Bucket    my-website-bucket         delete     
  -      ├─ aws:s3:BucketObject  python.png                delete     
  -      └─ aws:s3:BucketObject  index.html                delete     
  
