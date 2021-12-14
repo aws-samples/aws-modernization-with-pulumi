@@ -186,13 +186,13 @@ bucket_policy = aws_classic.s3.BucketPolicy(
 
 )
 
-pulumi.export("bucket_name", bucket.bucket)
+pulumi.export("bucket_name", bucket.bucket_name)
 ```
 
 Before we update our pulumi program, let's add one final line of code.
 
 ```python
-pulumi.export('website_url', bucket.website_endpoint)
+pulumi.export('website_url', bucket.website_url)
 ```
 
 This exports the website endpoint so we can view the contents of our bucket.
