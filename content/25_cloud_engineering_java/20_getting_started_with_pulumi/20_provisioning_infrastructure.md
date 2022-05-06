@@ -13,8 +13,9 @@ Add the following to your `Main.java` file:
 ```java
 var bucket = new Bucket("my-website-bucket",
         BucketArgs.builder()
-        .website(BucketWebsiteArgs.builder().indexDocument("index.html").build())
-        .build());
+                .website(BucketWebsiteArgs.builder().indexDocument("index.html").build())
+                .build()
+);
 ```
 
 > :white_check_mark: After this change, your `App.java` should look like this:

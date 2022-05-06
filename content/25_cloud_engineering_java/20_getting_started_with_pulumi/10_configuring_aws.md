@@ -43,9 +43,9 @@ Your `pom.xml` file should look like the following:
 
     <properties>
         <encoding>UTF-8</encoding>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <maven.compiler.release>11</maven.compiler.release>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.release>17</maven.compiler.release>
         <mainClass>myproject.App</mainClass>
         <mainArgs/>
     </properties>

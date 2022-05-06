@@ -43,16 +43,16 @@ We'll list the contents of the `www` directory and for each file, we'll add a ne
 ```java
 readFilesFromDirectory("www").forEach(path ->
         new BucketObject(path.getFileName().toString(),
-            BucketObjectArgs.builder()
-                .bucket(bucket.getId())
-                .source(new FileAsset(path.toString()))
-                .contentType(guessContentType(path))
-                .build(),
+                BucketObjectArgs.builder()
+                        .bucket(bucket.getId())
+                        .source(new FileAsset(path.toString()))
+                        .contentType(guessContentType(path))
+                        .build(),
 
-        CustomResourceOptions.builder()
-            .dependsOn(bucket)
-            .build()
-));
+                CustomResourceOptions.builder()
+                        .dependsOn(bucket)
+                        .build()
+        ));
 
 private static Stream<Path> readFilesFromDirectory(String classPathDir) {
     try {
@@ -105,20 +105,20 @@ Create a new bucket policy object in your Pulumi program like so:
 ```java
 var bucketPolicy = new BucketPolicy("my-website-bucket-policy",
         BucketPolicyArgs.builder()
-            .bucket(bucket.getId())
-            .policy(bucket.arn().applyValue(arn -> """
-                    {
-                        "Version": "2012-10-17",
-                        "Statement": [
-                            {
-                                "Effect": "Allow",
-                                "Principal": "*",
-                                "Action": ["s3:GetObject"],
-                                "Resource": ["%s/*"]
-                             }
-                        ]
-                    }""".formatted(arn)))
-        .build()
+                .bucket(bucket.getId())
+                .policy(bucket.arn().applyValue(arn -> """
+                        {
+                            "Version": "2012-10-17",
+                            "Statement": [
+                                {
+                                    "Effect": "Allow",
+                                    "Principal": "*",
+                                    "Action": ["s3:GetObject"],
+                                    "Resource": ["%s/*"]
+                                 }
+                            ]
+                        }""".formatted(arn)))
+                .build()
 );
 ```
 
