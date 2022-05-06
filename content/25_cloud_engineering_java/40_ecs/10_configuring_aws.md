@@ -1,87 +1,20 @@
 +++
-title = "1.1 Creating a New Project"
+title = "1.2 Configuring AWS"
 chapter = false
-weight = 1
+weight = 10
 +++
 
+{{% notice info %}}
+Current module of the workshop is updated to use [AWS Native](https://www.pulumi.com/registry/packages/aws-native/) and [AWS Classic](https://www.pulumi.com/registry/packages/aws/) providers side-by-side.      
+AWS Native is in public preview. AWS Native provides coverage of all resources in the [AWS Cloud Control API](https://aws.amazon.com/blogs/aws/announcing-aws-cloud-control-api/), including same-day access to all new AWS resources. However, some AWS resources are not yet available in AWS Native.
+{{% /notice %}}
 
-Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.
+Now that you have a basic project, let's configure AWS support for it.
 
-## Step 1 &mdash; Create a Directory
+## Step 1 &mdash; Add AWS dependencies
 
-Each Pulumi project lives in its own directory. Create one now and change into it:
+Before we can use [AWS Native](https://www.pulumi.com/registry/packages/aws-native/) and [AWS Classic](https://www.pulumi.com/registry/packages/aws/) providers, we need to update our project with appropriate dependencies.
 
-```bash
-mkdir iac-workshop-webservers
-cd iac-workshop-webservers
-```
-
-> Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
-
-## Step 2 &mdash; Initialize Your Project
-
-A Pulumi project is just a directory with some files in it. It's possible for you to create a new one by hand. The `pulumi new` command, however, automates the process:
-
-```bash
-pulumi new java
-```
-
-This will print output similar to the following with a bit more information and status as it goes:
-
-```
-This command will walk you through creating a new Pulumi project.
-
-Enter a value or leave blank to accept the (default), and press <ENTER>.
-Press ^C at any time to quit.
-
-project name: (iac-workshop-webservers)
-project description: (A minimal Java Pulumi program with Maven builds)
-Created project 'iac-workshop-webservers'
-
-Please enter your desired stack name.
-To create a stack in an organization, use the format <org-name>/<stack-name> (e.g. `acmecorp/dev`).
-stack name: (dev)
-Created stack 'dev'
-
-Your new project is ready to go! ✨
-
-To perform an initial deployment, run 'pulumi up'
-```
-
-This command initializes a new Pulumi stack named `dev` (an instance of our project) and generates a [Maven](https://maven.apache.org/) project template. 
-You can also use [Gradle](https://gradle.org/) build tool if you prefer by simply typing
-```bash
-pulumi new java-gradle -y
-```
-
-## Step 3 &mdash; Inspect Your New Project
-
-Our project is composed of multiple files:
-
-* **`src/main/java/myproject/App.java`**: your program's main entrypoint file
-* **`pom.xml`**: Maven xml file describing your project
-* **`Pulumi.yaml`**: your project's metadata, containing its name and language
-
-Run `cat src/main/java/myproject/App.java` to see the contents of your project's empty program:
-
-```java
-package myproject;
-
-import com.pulumi.Pulumi;
-import com.pulumi.core.Output;
-
-public class App {
-    public static void main(String[] args) {
-        Pulumi.run(ctx -> {
-            ctx.export("exampleOutput", Output.of("example"));
-        });
-    }
-}
-```
-
-## Step 4 &mdash; Add AWS Dependencies
-
-Before we continue, we need to include AWS dependencies.
 You can do it by editing your `pom.xml` file. Find the `dependencies` section and add the following entries:
 ```xml
 <dependency>
@@ -105,7 +38,7 @@ Your `pom.xml` file should look like the following:
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.pulumi</groupId>
-    <artifactId>iac-workshop-webserver</artifactId>
+    <artifactId>iac-workshop</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -197,3 +130,20 @@ Your `pom.xml` file should look like the following:
 </project>
 
 ```
+
+## Step 2 &mdash; Configure an AWS Region
+
+Configure the AWS region you would like to deploy to:
+
+```bash
+pulumi config set aws:region us-west-2
+```
+
+Feel free to choose any AWS region that supports the services used in these labs ([see this table](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) for a list of available regions).
+
+## (Optional) Step 4 &mdash; Configure an AWS Profile
+
+If you're using an alternative AWS profile, you can tell Pulumi which to use in one of two ways:
+
+* Using an environment variable: `export AWS_PROFILE=<profile name>`
+* Using configuration: `pulumi config set aws:profile <profile name>`
