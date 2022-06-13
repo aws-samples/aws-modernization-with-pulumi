@@ -37,10 +37,26 @@ Now we've created our example website, we're ready to upload these files to our 
 
 ## Step 2 &mdash; Upload the Bucket Contents
 
-Back inside our Pulumi program, we now need to upload these contents to our bucket. 
-We'll list the contents of the `www` directory and for each file, we'll add a new Pulumi resource called `BucketObject`.
+Back inside our Pulumi program, we now need to upload these contents to our bucket.
+ 
+We'll list the contents of the `www` directory, and, for each file, we'll add a new Pulumi resource called `BucketObject`. We'll add two new functions to help us: `readFilesFromDirectory` and `guessContentType`. Add the following code:
 
 ```java
+// ... in the imports
+
+import com.pulumi.aws.s3.BucketObject;
+import com.pulumi.aws.s3.BucketObjectArgs;
+
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.Objects;
+import java.util.stream.Stream;
+
+// ...
+
+// ... in main() after the bucket creation
 readFilesFromDirectory("www").forEach(path ->
         new BucketObject(path.getFileName().toString(),
                 BucketObjectArgs.builder()
@@ -54,12 +70,23 @@ readFilesFromDirectory("www").forEach(path ->
                         .build()
         ));
 
+// ...
+
+// ... then, after main() within the App() class
 private static Stream<Path> readFilesFromDirectory(String classPathDir) {
     try {
         var normalizedPath = classPathDir.startsWith("/") ? classPathDir : "/" + classPathDir;
         var directoryPath = Path.of(Objects.requireNonNull(App.class.getResource(normalizedPath)).toURI());
         return Files.walk(directoryPath).filter(Files::isRegularFile);
     } catch (IOException | URISyntaxException error) {
+        throw new RuntimeException(error);
+    }
+}
+
+private static String guessContentType(Path file) {
+    try {
+        return Files.probeContentType(file);
+    } catch (IOException error) {
         throw new RuntimeException(error);
     }
 }
@@ -103,6 +130,11 @@ We're going to be dealing with a JSON string here, so let's add a new import so 
 
 Create a new bucket policy object in your Pulumi program like so:
 ```java
+//... in the imports
+import com.pulumi.aws.s3.BucketPolicy;
+import com.pulumi.aws.s3.BucketPolicyArgs;
+
+// ... in the main() call
 var bucketPolicy = new BucketPolicy("my-website-bucket-policy",
         BucketPolicyArgs.builder()
                 .bucket(bucket.getId())
@@ -135,7 +167,11 @@ package myproject;
 
 import com.pulumi.Pulumi;
 import com.pulumi.asset.FileAsset;
-import com.pulumi.aws.s3.*;
+import com.pulumi.aws.s3.Bucket;
+import com.pulumi.aws.s3.BucketObject;
+import com.pulumi.aws.s3.BucketObjectArgs;
+import com.pulumi.aws.s3.BucketPolicy;
+import com.pulumi.aws.s3.BucketPolicyArgs;
 import com.pulumi.aws.s3.inputs.BucketWebsiteArgs;
 import com.pulumi.resources.CustomResourceOptions;
 
@@ -214,6 +250,7 @@ public class App {
 Before we update our pulumi program, let's add one final line of code.
 
 ```java
+// ... below the other export, add this line
 ctx.export("website_url", bucket.websiteEndpoint());
 ```
 

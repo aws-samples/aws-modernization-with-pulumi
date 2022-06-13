@@ -37,9 +37,28 @@ var policyAttachment = new RolePolicyAttachment("task-exec-policy",
 );
 ```
 
-Then we can define a task definition for our ECS service:
+Then we can define a task definition for our ECS service and the service itself:
 
 ```java
+var taskDefinition = new TaskDefinition("app-task",
+                    TaskDefinitionArgs.builder()
+                            .family("fargate-task-definition")
+                            .cpu("256")
+                            .memory("512")
+                            .networkMode("awsvpc")
+                            .requiresCompatibilities("FARGATE")
+                            .executionRoleArn(role.arn())
+                            .containerDefinitions("""
+                                    [
+                                        {
+                                            "name": "my-app",
+                                            "image": "nginx",
+                                            "portMappings": [{"containerPort": 80, "hostPort": 80, "protocol": "tcp"}]
+                                        }
+                                    ]""")
+                            .build()
+            );
+
 var service = new Service("app-svc",
         ServiceArgs.builder()
                 .cluster(cluster.arn())

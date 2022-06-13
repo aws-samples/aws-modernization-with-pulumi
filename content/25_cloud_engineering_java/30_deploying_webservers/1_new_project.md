@@ -96,6 +96,8 @@ You can do it by editing your `pom.xml` file. Find the `dependencies` section an
 </dependency>
 ```
 
+Also, ensure that the `properties` section references Java 17 as we will be using constructs available on newer versions.
+
 Your `pom.xml` file should look like the following:
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -197,3 +199,18 @@ Your `pom.xml` file should look like the following:
 </project>
 
 ```
+
+## Step 5 &mdash; Configure an AWS Region
+
+Finally, set up your Pulumi configurations:
+
+```bash
+$ pulumi config set aws:region us-west-2
+```
+
+## Step 6 &mdash; Configure an AWS Profile
+
+As with the first module, if you are using an alternative AWS profile, tell Pulumi which one to use by one of the following options:
+
+* Using an environment variable: `export AWS_PROFILE=<profile name>`
+* Using configuration: `pulumi config set aws:profile <profile name>`
