@@ -16,6 +16,7 @@ Now that you have a basic project, let's configure AWS support for it.
 Before we can use [AWS Native](https://www.pulumi.com/registry/packages/aws-native/) and [AWS Classic](https://www.pulumi.com/registry/packages/aws/) providers, we need to update our project with appropriate dependencies.
 
 You can do it by editing your `pom.xml` file. Find the `dependencies` section and add the following entries:
+
 ```xml
 <dependency>
     <groupId>com.pulumi</groupId>
@@ -29,7 +30,21 @@ You can do it by editing your `pom.xml` file. Find the `dependencies` section an
 </dependency>
 ```
 
+Also, so we can use some newer features of Java, update the `properties` section to point to Java 17 instead of Java 11.
+
+```xml
+<properties>
+    <encoding>UTF-8</encoding>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.release>17</maven.compiler.release>
+    <mainClass>myproject.App</mainClass>
+    <mainArgs/>
+</properties>
+```
+
 Your `pom.xml` file should look like the following:
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -130,6 +145,8 @@ Your `pom.xml` file should look like the following:
 </project>
 
 ```
+
+Update your Maven dependencies to get autocompletion for your IDE, if you so choose.
 
 ## Step 2 &mdash; Configure an AWS Region
 

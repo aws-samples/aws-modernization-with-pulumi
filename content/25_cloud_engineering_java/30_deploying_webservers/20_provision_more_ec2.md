@@ -29,6 +29,9 @@ var instances = AwsFunctions.getAvailabilityZones().thenApply(response ->
 var instancesOutput = Output.of(instances);
 var ipAddresses = instancesOutput.apply(ec2s -> Output.all(ec2s.stream().map(Instance::publicIp).toList()));
 var hostnames = instancesOutput.apply(ec2s -> Output.all(ec2s.stream().map(Instance::publicDns).toList()));
+
+ctx.export("ips", ipAddresses);
+ctx.export("hostnames", hostnames);
 ```
 
 > :white_check_mark: After this change, your `App.java` should look like this:
@@ -151,11 +154,13 @@ Duration: 3m21s
 
 Notice that your original server was deleted and new ones created in its place, because its name changed.
 
-To test the changes, curl any of the resulting IP addresses or hostnames:
+To test the changes, curl any of the resulting IP addresses or hostnames. If you have the `jq` command installed, run the following command:
 
 ```bash
 for i in {0..2}; do curl $(pulumi stack output hostnames | jq -r ".[${i}]"); done
 ```
+
+If you do not have `jq` installed, we recommend it. You can [follow the installation instructions to get `jq`](https://stedolan.github.io/jq/download/) before continuing.
 
 > The count of servers depends on the number of AZs in your region. Adjust the `{0..2}` accordingly.
 

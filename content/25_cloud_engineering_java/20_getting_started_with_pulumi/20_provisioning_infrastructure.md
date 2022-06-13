@@ -8,14 +8,26 @@ Now that you have a project configured to use AWS, you'll create some basic infr
 
 ## Step 1 &mdash; Declare a New Bucket
 
-Add the following to your `Main.java` file:
+Update the imports in the `App.java` file as follows:
 
 ```java
+// ...
+import com.pulumi.Pulumi;
+import com.pulumi.aws.s3.Bucket;
+import com.pulumi.aws.s3.BucketArgs;
+import com.pulumi.aws.s3.inputs.BucketWebsiteArgs;
+```
+
+Add the following code to your `main` method in the `App` class in the `App.java` file:
+
+```java
+// ...
 var bucket = new Bucket("my-website-bucket",
         BucketArgs.builder()
                 .website(BucketWebsiteArgs.builder().indexDocument("index.html").build())
                 .build()
 );
+// ...
 ```
 
 > :white_check_mark: After this change, your `App.java` should look like this:
@@ -116,13 +128,16 @@ Now our S3 bucket has been created in our AWS account. Feel free to click the Pe
 
 To inspect your new bucket, you will need its physical AWS name. Pulumi records a logical name, `my-bucket`, however the resulting AWS name will be different.
 
-Programs can export variables which will be shown in the CLI and recorded for each deployment. Export your bucket's name by adding this line to `Main.jva`:
+Programs can export variables which will be shown in the CLI and recorded for each deployment. Export your bucket's name by adding this line to `App.java` at the end of the `main` method:
 
 ```java
+// ...
 ctx.export("bucket_name", bucket.bucket());
+// ...
 ```
 
 > :white_check_mark: After this change, your `Main.java` should look like this:
+
 ```java
 package myproject;
 
@@ -178,4 +193,4 @@ Now run the `aws` CLI to list the objects in this new bucket:
 aws s3 ls $(pulumi stack output bucket_name)
 ```
 
-Note that the bucket is currently empty.
+Note that the bucket is currently empty, so you get a blank output without an error.
