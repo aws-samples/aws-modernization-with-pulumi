@@ -28,7 +28,7 @@ pulumi new python -y
 
 This will print output similar to the following with a bit more information and status as it goes:
 
-```
+```text
 Created project 'iac-workshop'
 Created stack 'dev'
 Saved config
@@ -57,4 +57,4 @@ Run `cat __main__.py` to see the contents of your project's empty program:
 import pulumi
 ```
 
-Feel free to explore the other files, although we won't be editing any of them by hand.
+Feel free to explore the other files, although we won't be editing any of them by hand aside from `requirments.txt`.

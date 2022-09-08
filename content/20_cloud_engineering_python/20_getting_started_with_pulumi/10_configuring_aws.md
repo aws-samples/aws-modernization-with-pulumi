@@ -4,62 +4,60 @@ chapter = false
 weight = 10
 +++
 
-{{% notice info %}}
-Current module of the workshop is updated to use [AWS Native](https://www.pulumi.com/registry/packages/aws-native/) and [AWS Classic](https://www.pulumi.com/registry/packages/aws/) providers side-by-side.      
-AWS Native is in public preview. AWS Native provides coverage of all resources in the [AWS Cloud Control API](https://aws.amazon.com/blogs/aws/announcing-aws-cloud-control-api/), including same-day access to all new AWS resources. However, some AWS resources are not yet available in AWS Native.
-{{% /notice %}}
-
-Now that you have a basic project, let's configure AWS support for it.
+Now that we have a basic project, let's add the Pulumi AWS provider and configure our credentials.
 
 ## Step 1 &mdash; Install the AWS Package
 
-Pulumi created a `virtualenv` for you when you created your `iac-workshop` project. We'll need to activate it to install dependencies:
+Pulumi created a `virtualenv` for us when we created our `iac-workshop` project. We'll need to activate it to install dependencies:
 
 ```bash
 source venv/bin/activate
+```
 
+Add the following content to `requirements.txt`:
+
+```text
+pulumi_aws>=5.0.0,<6.0.0
 ```
 
 Run the following command to install the AWS packages:
 
 ```bash
-pip install pulumi_aws
-pip install pulumi_aws_native
+pip3 install -r requrements.txt
 ```
-
-The package will be added to `requirements.txt`.
 
 ## Step 2 &mdash; Import the AWS Package
 
-Now that the AWS packages is installed, we need to import it as part of our project:
+Now that the AWS package is installed, we need to import it as part of our project.
+
+Add the following to the top of your `__main.py__`:
 
 ```python
-import pulumi_aws as aws_classic
-import pulumi_aws_native as aws_native
+import pulumi_aws as aws
 ```
 
 > :white_check_mark: After this change, your `__main__.py` should look like this:
+
 ```python
+"""A Python Pulumi program"""
+
 import pulumi
-import pulumi_aws as aws_classic
-import pulumi_aws_native as aws_native
+import pulumi_aws as aws
 ```
 
 ## Step 3 &mdash; Configure an AWS Region
 
-Configure the AWS region you would like to deploy to:
+Configure the AWS region you would like to deploy to, replacing `us-east-1` with your AWS region of choice:
 
 ```bash
-pulumi config set aws:region us-west-2
-pulumi config set aws-native:region us-west-2
+pulumi config set aws:region us-east-1
 ```
 
-Feel free to choose any AWS region that supports the services used in these labs ([see this table](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions) for a list of available regions).
+Note that the previous command will create the file `Pulumi.dev.yaml` which contains the configuration for our `dev` stack. (Stacks are the Pulumi unit of deployment.) We will be working with a single Pulumi stack in this tutorial, but we could define additional stacks to deploy our infrastructure to different regions/accounts with different parameters. To learn more about Pulumi stacks, see [Stacks](https://www.pulumi.com/docs/intro/concepts/stack/) in the Pulumi docs.
 
 ## (Optional) Step 4 &mdash; Configure an AWS Profile
 
-If you're using an alternative AWS profile, you can tell Pulumi which to use in one of two ways:
+If you are using an alternative AWS profile, you can tell Pulumi which to use in one of two ways:
 
 * Using an environment variable: `export AWS_PROFILE=<profile name>`
 * Using configuration: `pulumi config set aws:profile <profile name>`
-* Using configuration: `pulumi config set aws-native:profile <profile name>`

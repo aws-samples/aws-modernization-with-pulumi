@@ -1,5 +1,4 @@
 
-
 # Pulumi Modern Infrastructure as Code
 
 This workshop teaches you Modern Infrastructure as Code (IaC) concepts through a series of hands-on labs, using [Pulumi](http://pulumi.com/).
@@ -7,7 +6,7 @@ Topics covered include IaC fundamentals, in addition to application architecture
 
 ## Building the Website
 
-This page is built with Hugo, so you'll need it [installed](https://gohugo.io/getting-started/quick-start/#step-1-install-hugo)
+This site is built with Hugo, so you'll need it [installed](https://gohugo.io/getting-started/quick-start/#step-1-install-hugo)
 
 First, clone this repo:
 
@@ -22,18 +21,16 @@ git submodule init
 git submodule update
 ```
 
-Then server the website with hugo:
+Then serve the website with Hugo:
 
 ```bash
 hugo server
-
 ```
 
 ### Learning Objectives
+
 - Getting started with Pulumi
 - Deploy AWS EC2 Compute Infrastructure
 - Deploy AWS ECS Infrastructure
 - Deploy AWS EKS Clusters
 - Deploy applications to AWS EKS Cluster
-
-
