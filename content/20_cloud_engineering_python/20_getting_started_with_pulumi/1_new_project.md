@@ -16,7 +16,9 @@ mkdir iac-workshop
 cd iac-workshop
 ```
 
-> Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% notice note %}}
+Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% /notice %}}
 
 ## Step 2 &mdash; Initialize Your Project
 
@@ -57,4 +59,4 @@ Run `cat __main__.py` to see the contents of your project's empty program:
 import pulumi
 ```
 
-Feel free to explore the other files, although we won't be editing any of them by hand aside from `requirments.txt`.
+Feel free to explore the other files, although we won't be editing any of them by hand aside from `requirements.txt`.

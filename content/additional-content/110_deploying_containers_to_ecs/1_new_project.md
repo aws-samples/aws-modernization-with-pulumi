@@ -13,7 +13,9 @@ mkdir ecs-workshop
 cd ecs-workshop
 ```
 
-> Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% notice note %}}
+Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% /notice %}}
 
 ## Step 2 &mdash; Initialize Your Project
 
@@ -56,4 +58,3 @@ pulumi config set aws:region us-west-2
 ```
 
 Feel free to choose any [AWS region](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/using-regions-availability-zones.html#concepts-available-regions).
-

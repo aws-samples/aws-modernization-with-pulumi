@@ -1,14 +1,21 @@
 +++
-title = "1.2 Configuring AWS"
+title = "3.2 Installing and Configuring the AWS and AWSX Providers"
 chapter = false
 weight = 10
 +++
 
-Now that we have a basic project, let's add the Pulumi AWS provider and configure our credentials.
+Now that we have our project boilerplate, we will add 2 [Pulumi providers](https://www.pulumi.com/docs/intro/concepts/resources/providers/):
 
-## Step 1 &mdash; Install the AWS Package
+1. [AWS Classic](https://www.pulumi.com/registry/packages/aws/), which gives us all the fundamental AWS resources, like VPC subnets.
+1. [AWSx](https://www.pulumi.com/registry/packages/awsx/), which contains higher level [Pulumi components](https://www.pulumi.com/docs/intro/concepts/resources/components/), like a full, production-ready VPC that includes subnets, NAT gateways, routing tables, and so on.
 
-Pulumi created a `virtualenv` for us when we created our `iac-workshop` project. We'll need to activate it to install dependencies:
+{{% notice note %}}
+At the time of writing, AWSx is in beta and may change before its official 1.0 release. If you encounter any issues with AWSx, please [file a GitHub issue](https://github.com/pulumi/pulumi-awsx/issues/new/choose).
+{{% /notice %}}
+
+## Step 1 &mdash; Install the AWS and AWSx Packages
+
+Pulumi created a `virtualenv` for us when we created our `iac-workshop-ecs` project. We'll need to activate it to install dependencies:
 
 ```bash
 source venv/bin/activate
@@ -18,22 +25,24 @@ Add the following content to `requirements.txt`:
 
 ```text
 pulumi_aws>=5.0.0,<6.0.0
+pulumi_awsx>=1.0.0-beta.9,<2.0.0
 ```
 
-Run the following command to install the AWS packages:
+Run the following command to install the AWS and AWSx packages:
 
 ```bash
-pip3 install -r requrements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Step 2 &mdash; Import the AWS Package
 
-Now that the AWS package is installed, we need to import it as part of our project.
+Now that our packages are installed, we need to import them as part of our project.
 
 Add the following to the top of your `__main.py__`:
 
 ```python
 import pulumi_aws as aws
+import pulumi_awsx as awsx
 ```
 
 > :white_check_mark: After this change, your `__main__.py` should look like this:
@@ -43,6 +52,7 @@ import pulumi_aws as aws
 
 import pulumi
 import pulumi_aws as aws
+import pulumi_awsx as awsx
 ```
 
 ## Step 3 &mdash; Configure an AWS Region

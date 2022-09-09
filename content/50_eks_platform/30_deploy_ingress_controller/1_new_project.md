@@ -16,7 +16,9 @@ mkdir aws-load-balancer-controller
 cd aws-load-balancer-controller
 ```
 
-> Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% notice note %}}
+Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% /notice %}}
 
 ## Step 2 &mdash; Initialize Your Project
 
@@ -75,7 +77,7 @@ Feel free to explore the other files, although we won't be editing any of them b
 
 We'll be provisioning Kubernetes resources alongside AWS resources in this Pulumi project, so we'll add the Kubernetes provider to our program.
 
-First, we need to install it. We'll activate our virtual env, 
+First, we need to install it. We'll activate our virtual env,
 
 ```
 source venv/bin/activate
@@ -97,6 +99,7 @@ import pulumi_aws as aws
 {{% notice info %}}
 The `__main__.py` file should now have the following contents:
 {{% /notice %}}
+
 ```typescript
 import pulumi
 import pulumi_kubernetes as k8s
