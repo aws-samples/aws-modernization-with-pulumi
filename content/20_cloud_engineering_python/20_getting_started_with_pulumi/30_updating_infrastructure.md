@@ -60,7 +60,6 @@ for file in os.listdir(content_dir):
         bucket=bucket.id,
         source=pulumi.FileAsset(filepath),
         content_type=mime_type,
-        opts=pulumi.ResourceOptions(parent=bucket)
     )
 ```
 
@@ -142,9 +141,7 @@ Select `yes` to deploy the bucket objects.
 We can now list the contents of our bucket using the AWS CLI (or via the AWS Console) and see the files have been uploaded:
 
 ```bash
-$ aws s3 ls $(pulumi stack output bucket_name)
-2020-11-18 19:06:10        237 index.html
-2020-11-18 19:06:10        831 python.png
+aws s3 ls $(pulumi stack output bucket_name)
 ```
 
 ## Step 3 &mdash; Add a Bucket Policy

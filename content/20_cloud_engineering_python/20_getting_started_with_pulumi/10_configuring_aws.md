@@ -23,7 +23,7 @@ pulumi_aws>=5.0.0,<6.0.0
 Run the following command to install the AWS packages:
 
 ```bash
-pip3 install -r requrements.txt
+pip3 install -r requirements.txt
 ```
 
 ## Step 2 &mdash; Import the AWS Package

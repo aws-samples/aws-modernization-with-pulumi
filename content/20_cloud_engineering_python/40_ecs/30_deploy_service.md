@@ -76,7 +76,7 @@ service = aws.ecs.Service(
     task_definition=task_definition.arn,
     network_configuration={
         "assign_public_ip": "true",
-        "subnets": vpc.public_subnet_ids,
+        "subnets": vpc.private_subnet_ids,
         "security_groups": [group.id]
     },
     load_balancers=[{
@@ -195,7 +195,7 @@ aws.ecs.Service(
     task_definition=task_definition.arn,
     network_configuration=aws.ecs.ServiceNetworkConfigurationArgs(
         assign_public_ip=True,
-        subnets=vpc.public_subnet_ids,
+        subnets=vpc.private_subnet_ids,
         security_groups=[group.id],
     ),
     load_balancers=[aws.ecs.ServiceLoadBalancerArgs(
