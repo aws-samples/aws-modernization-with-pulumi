@@ -13,7 +13,9 @@ mkdir socks-shop
 cd socks-shop
 ```
 
-> Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% notice note %}}
+Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% /notice %}}
 
 ## Step 2 &mdash; Initialize Your Project
 

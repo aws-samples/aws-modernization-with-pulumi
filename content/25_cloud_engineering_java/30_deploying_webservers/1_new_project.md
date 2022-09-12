@@ -16,7 +16,9 @@ mkdir iac-workshop-webservers
 cd iac-workshop-webservers
 ```
 
-> Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% notice note %}}
+Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% /notice %}}
 
 ## Step 2 &mdash; Initialize Your Project
 
@@ -48,8 +50,9 @@ Your new project is ready to go! ✨
 To perform an initial deployment, run 'pulumi up'
 ```
 
-This command initializes a new Pulumi stack named `dev` (an instance of our project) and generates a [Maven](https://maven.apache.org/) project template. 
+This command initializes a new Pulumi stack named `dev` (an instance of our project) and generates a [Maven](https://maven.apache.org/) project template.
 You can also use [Gradle](https://gradle.org/) build tool if you prefer by simply typing
+
 ```bash
 pulumi new java-gradle -y
 ```
@@ -83,6 +86,7 @@ public class App {
 
 Before we continue, we need to include AWS dependencies.
 You can do it by editing your `pom.xml` file. Find the `dependencies` section and add the following entries:
+
 ```xml
 <dependency>
     <groupId>com.pulumi</groupId>
@@ -99,6 +103,7 @@ You can do it by editing your `pom.xml` file. Find the `dependencies` section an
 Also, ensure that the `properties` section references Java 17 as we will be using constructs available on newer versions.
 
 Your `pom.xml` file should look like the following:
+
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -205,7 +210,7 @@ Your `pom.xml` file should look like the following:
 Finally, set up your Pulumi configurations:
 
 ```bash
-$ pulumi config set aws:region us-west-2
+pulumi config set aws:region us-west-2
 ```
 
 ## Step 6 &mdash; Configure an AWS Profile

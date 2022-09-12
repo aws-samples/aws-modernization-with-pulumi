@@ -16,7 +16,9 @@ mkdir iac-workshop-ecs
 cd iac-workshop-ecs
 ```
 
-> Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% notice note %}}
+Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% /notice %}}
 
 ## Step 2 &mdash; Initialize Your Project
 
@@ -50,6 +52,7 @@ To perform an initial deployment, run 'pulumi up'
 
 This command initializes a new Pulumi stack named `dev` (an instance of our project) and generates a [Maven](https://maven.apache.org/) project template.
 You can also use [Gradle](https://gradle.org/) build tool if you prefer by simply typing
+
 ```bash
 pulumi new java-gradle -y
 ```

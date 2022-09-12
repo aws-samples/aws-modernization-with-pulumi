@@ -11,4 +11,4 @@ Pulumi is an Infrastructure as Code platform that uses familiar, modern programm
 The [Prerequisites]({{< ref "10_prerequisites" >}} "Prerequisites") workshop will guide you through setting up your Pulumi environment for all the workshops. It's recommended to start there.
 {{% /notice %}}
 
-Chose a workshop from the navigation bar on the left to get started. 
+Choose a workshop from the navigation bar on the left to get started.

@@ -16,19 +16,21 @@ mkdir iac-workshop-ecs
 cd iac-workshop-ecs
 ```
 
-> Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% notice note %}}
+Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+{{% /notice %}}
 
 ## Step 2 &mdash; Initialize Your Project
 
 A Pulumi project is just a directory with some files in it. It's possible for you to create a new one by hand. The `pulumi new` command, however, automates the process:
 
 ```bash
-pulumi new aws-python -y
+pulumi new python -y
 ```
 
 This will print output similar to the following with a bit more information and status as it goes:
 
-```
+```text
 Created project 'iac-workshop-ecs'
 Created stack 'dev'
 Saved config
@@ -52,24 +54,9 @@ Our project is comprised of multiple files:
 Run `cat __main__.py` to see the contents of your project's empty program:
 
 ```python
-"""An AWS Python Pulumi program"""
+"""A Python Pulumi program"""
 
 import pulumi
-from pulumi_aws import s3
-
-# Create an AWS resource (S3 Bucket)
-bucket = s3.Bucket('my-bucket')
-
-# Export the name of the bucket
-pulumi.export('bucket_name', bucket.id)
 ```
 
-Feel free to explore the other files, although we won't be editing any of them by hand.
-
-## Step 4 &mdash; Configure an AWS Region
-
-Configure the AWS region you would like to deploy to:
-
-```bash
-pulumi config set aws:region us-west-2
-```
+Feel free to explore the other files, although we won't be editing any of them by hand aside from `requirements.txt`.
