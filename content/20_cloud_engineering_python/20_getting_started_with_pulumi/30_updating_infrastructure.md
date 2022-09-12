@@ -24,6 +24,7 @@ Create a directory `www/` and add a new `index.html` file with the following con
   <p>Hello, S3!</p>
   <p>Made with ❤️ with <a href="https://pulumi.com">Pulumi</a> and Python</p>
   <p>Hosted with ❤️ by AWS!</p>
+  <img src="python.png" />
 </body>
 
 </html>
