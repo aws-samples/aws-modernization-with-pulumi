@@ -1,10 +1,10 @@
 +++
-title = "Module 01: Intro to Policy as Code in Pulumi"
+title = "Module 1: Intro to Policy as Code in Pulumi"
 chapter = true
 weight = 10
 +++
 
-# Intro to Policy as Code in Pulumi
+## Intro to Policy as Code in Pulumi
 
 {{% notice warning %}}<p> You are responsible for the cost of the AWS services used while running this workshop in your AWS account.</p> {{% /notice %}}
 
