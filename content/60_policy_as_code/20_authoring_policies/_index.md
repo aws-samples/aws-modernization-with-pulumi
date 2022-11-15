@@ -98,7 +98,7 @@ First, let's add the `force_destroy` attribute to our S3 bucket:
 bucket = aws.s3.Bucket(
     'my-bucket',
     aws.s3.BucketArgs(
-        acl="public-read-write", # <-- ensure this line is present
+        acl="public-read", # <-- ensure this line is present
         force_destroy=True, # <-- add this line
     ),
 )
@@ -168,6 +168,12 @@ Policy Violations:
     You cannot set public-read or public-read-write on an S3 bucket. Read more about ACLs here: https://docs.aws.amazon.com/AmazonS3/latest/dev/acl-overview.html
 ```
 
-## Step 4: Authoring stack policies
+## Step 4: Cleaning up
 
+Let's make sure we delete any resources we've created:
 
+```bash
+pulumi destroy -y
+```
+
+And that's it!
