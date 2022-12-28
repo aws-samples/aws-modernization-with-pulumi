@@ -94,6 +94,12 @@ pulumi policy new aws-python
 
 This command will create a Pulumi policy pack with a single policy that ensures S3 buckets do not have the `public-read` nor the `public-read-write` ACL. Feel free to check out `policy/__main__.py` for the details, but we'll explore its contents author our own rules in a future module.
 
+Let's activate the Python virtual environment and install requirements for the policy pack:
+```bash
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
 Back in the `infra/` directory, let's run the `pulumi preview` command against our policy pack by specifying the `--policy-pack` flag:
 
 ```bash
