@@ -17,12 +17,12 @@ cd iac-workshop
 ```
 
 {{% notice note %}}
-Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.
+Pulumi will use the directory name as your project name by default. You can change this during the project initiation process, but we'll stick with the default for now.
 {{% /notice %}}
 
 ## Step 2 &mdash; Initialize Your Project
 
-A Pulumi project is just a directory with some files in it. It's possible for you to create a new one by hand. The `pulumi new` command, however, automates the process:
+A Pulumi project is just a directory with some files in it. It's possible to create a new one by hand, but  `pulumi new` command automates the process:
 
 ```bash
 pulumi new typescript -y
@@ -30,27 +30,27 @@ pulumi new typescript -y
 
 This will print output similar to the following with a bit more information and status as it goes:
 
-```
+```text
 Created project 'iac-workshop'
-Created stack 'dev'
-Saved config
-Installing dependencies...
-Finished installing dependencies
 
-Your new project is ready to go!
+Please enter your desired stack name.
+To create a stack in an organization, use the format <org-name>/<stack-name> (e.g. `acmecorp/dev`).
+Created stack 'dev'
+
+Installing dependencies...
 ```
 
-This command has created all the files we need, initialized a new stack named `dev` (an instance of our project), and installed the needed package dependencies from NPM.
+This output will be followed by some `npm` output. Once that's done, the command has created all the files we need, initialized a new stack named `dev` (an instance of our project), and installed the needed package dependencies from npmjs.
 
 ## Step 3 &mdash; Inspect Your New Project
 
 Our project is comprised of multiple files:
 
-* **`index.ts`**: your program's main entrypoint file
-* **`package.json`** and **`package-lock.json`**: your project's NPM dependency information
 * **`Pulumi.yaml`**: your project's metadata, containing its name and language
-* **`tsconfig.json`**: your project's TypeScript settings
-* **`node_modules/`**: a directory containing your project's installed NPM dependencies
+* **`index.ts`**: your program's main entrypoint file
+* **`node_modules/`**: your program's npm dependencies
+* **`package.json` and `package-lock.json`**: your project's npm dependency information
+* **`tsconfig.json`**: your project's TypeScript configuration
 
 Run `cat index.ts` to see the contents of your project's empty program:
 

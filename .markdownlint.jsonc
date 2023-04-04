@@ -1,0 +1,7 @@
+{
+  // Our files use the style of one line per paragraph, so we turn off the rule
+  // for line length:
+  "MD013": false,
+  // We use inline HTML in our markdown files in order to get centered elements:
+  "MD033": false
+}

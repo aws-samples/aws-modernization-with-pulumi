@@ -4,7 +4,7 @@ chapter = true
 weight = 10
 +++
 
-## Intro to Policy as Code in Pulumi
+## Authoring Pulumi Policies
 
 {{% notice warning %}}<p> You are responsible for the cost of the AWS services used while running this workshop in your AWS account.</p> {{% /notice %}}
 
