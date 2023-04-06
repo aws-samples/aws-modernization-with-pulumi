@@ -11,47 +11,32 @@ Now that we have our project boilerplate, we will add 2 [Pulumi providers](https
 
 ## Step 1 &mdash; Install the AWS and AWSx Packages
 
-Pulumi created a `virtualenv` for us when we created our `iac-workshop-ecs` project. We'll need to activate it to install dependencies:
+Run the following commands to install the AWS Classic and AWSX packages:
 
 ```bash
-source venv/bin/activate
-```
-
-Add the following content to `requirements.txt`:
-
-```text
-pulumi_aws>=5.0.0,<6.0.0
-pulumi_awsx>=1.0.0-beta.9,<2.0.0
-```
-
-Run the following command to install the AWS and AWSx packages:
-
-```bash
-pip3 install -r requirements.txt
+npm i @pulumi/aws @pulumi/awsx
 ```
 
 ## Step 2 &mdash; Import the AWS Package
 
 Now that our packages are installed, we need to import them as part of our project.
 
-Add the following to the top of your `__main.py__`:
+Add the following to your `index.ts`:
 
-```python
-import pulumi_aws as aws
-import pulumi_awsx as awsx
+```typescript
+import * as aws from "@pulumi/aws";
+import * as awsx from "@pulumi/awsx";
 ```
 
-> :white_check_mark: After this change, your `__main__.py` should look like this:
+After this change, your `__main__.py` should look like this:
 
-```python
-"""A Python Pulumi program"""
-
-import pulumi
-import pulumi_aws as aws
-import pulumi_awsx as awsx
+```typescript
+import * as pulumi from "@pulumi/pulumi";
+import * as aws from "@pulumi/aws";
+import * as awsx from "@pulumi/awsx";
 ```
 
-## Step 3 &mdash; Configure an AWS Region
+## (Optional) Step 3 &mdash; Configure an AWS Region
 
 Configure the AWS region you would like to deploy to, replacing `us-east-1` with your AWS region of choice:
 

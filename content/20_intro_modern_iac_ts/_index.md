@@ -15,9 +15,10 @@ weight: 20
 - Create a reusable infrastructure component
 
 {{% notice info %}}
-In this workshop, we have selected containers and various other technologies to demonstrante the strength of IaC.
+In this workshop, we have selected containers and various other technologies to demonstrate the strength of IaC.
 At the end of the workshop you can continue to the additional content section, where you can find more labs to explore other components to work with such as serverless and EC2.
 {{% /notice %}}
+
 {{% notice warning %}}
 <p style='text-align: left;'>
 The examples and sample code provided in this workshop are intended to be consumed as instructional content.

@@ -30,7 +30,7 @@ pulumi new aws-python -y
 
 This will print output similar to the following with a bit more information and status as it goes:
 
-```
+```text
 Created project 'iac-workshop-webservers'
 Created stack 'dev'
 Saved config
