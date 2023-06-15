@@ -136,7 +136,9 @@ $ kubectl version --client
 
 ## AWS Subscription and CLI
 
-At various points, you will use the AWS CLI to interact with infrastructure you've provisioned.
+At various points, you will use the AWS CLI to interact with infrastructure you've provisioned. Installation instructions are 
+[available here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html), or are available for Linux below. As explained further on that page, the 
+CLI requires Python.
 
 
 ```bash
