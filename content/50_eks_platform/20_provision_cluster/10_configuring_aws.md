@@ -23,7 +23,7 @@ Now that the AWS package is installed, we need to import it as part of our proje
 
 ```typescript
 import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx";
+import * as awsx from "@pulumi/awsx/classic";
 ```
 
 {{% notice info %}}
@@ -32,7 +32,7 @@ The `index.ts` file should now have the following contents:
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx";
+import * as awsx from "@pulumi/awsx/classic";
 ```
 
 ## Step 3 &mdash; Configure AWS
