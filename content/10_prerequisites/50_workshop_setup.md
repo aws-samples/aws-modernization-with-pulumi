@@ -131,15 +131,23 @@ Test to ensure the version you installed is up to date:
 ```bash
 $ kubectl version --client
 
-
 ```
 
 
 ## AWS Subscription and CLI
 
 At various points, you will use the AWS CLI to interact with infrastructure you've provisioned. Installation instructions are 
-[available here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html). As explained further on that page, the 
+[available here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html), or are available for Linux below. As explained further on that page, the 
 CLI requires Python.
+
+
+```bash
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install
+
+```
+
 
 > If you have multiple AWS accounts, you'll need to configure a profile for the account you're using in these labs. That process is 
 >[described here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html). All Pulumi operations will respect your profile settings.

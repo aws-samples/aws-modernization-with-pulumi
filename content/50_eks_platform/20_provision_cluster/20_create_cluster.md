@@ -44,7 +44,7 @@ The `index.ts` file should now have the following contents:
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx";
+import * as awsx from "@pulumi/awsx/classic";
 
 const name = 'lbriggs-workshop'
 const clusName = `${name}-cluster`
@@ -110,7 +110,7 @@ The `index.ts` file should now have the following contents:
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx";
+import * as awsx from "@pulumi/awsx/classic";
 import * as eks from "@pulumi/eks";
 
 const name = 'lbriggs-workshop'
@@ -255,7 +255,7 @@ The `index.ts` file should now have the following contents:
 ```typescript
 import * as pulumi from "@pulumi/pulumi";
 import * as aws from "@pulumi/aws";
-import * as awsx from "@pulumi/awsx";
+import * as awsx from "@pulumi/awsx/classic";
 import * as eks from "@pulumi/eks";
 
 const name = 'lbriggs-workshop'
