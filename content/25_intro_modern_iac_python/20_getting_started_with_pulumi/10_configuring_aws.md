@@ -17,7 +17,7 @@ source venv/bin/activate
 Add the following content to `requirements.txt`:
 
 ```text
-pulumi_aws>=5.0.0,<6.0.0
+pulumi_aws>=6.0.0,<7.0.0
 ```
 
 Run the following command to install the AWS packages:
@@ -36,7 +36,7 @@ Add the following to the top of your `__main.py__`:
 import pulumi_aws as aws
 ```
 
-> :white_check_mark: After this change, your `__main__.py` should look like this:
+After this change, your `__main__.py` should look like this:
 
 ```python
 """A Python Pulumi program"""

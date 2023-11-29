@@ -21,7 +21,7 @@ bucket = aws.s3.Bucket(
 )
 ```
 
-> :white_check_mark: After this change, your `__main__.py` should look like this:
+After this change, your `__main__.py` should look like this:
 
 ```python
 """A Python Pulumi program"""
