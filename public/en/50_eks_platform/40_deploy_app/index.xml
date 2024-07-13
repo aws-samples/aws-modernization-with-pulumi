@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module 03: Deploy an Application on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/50_eks_platform/40_deploy_app.html</link>
+    <description>Recent content in Module 03: Deploy an Application on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/50_eks_platform/40_deploy_app/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3.1 Create a Sample App</title>
+      <link>//localhost:1313/en/50_eks_platform/40_deploy_app/10_create_app.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/40_deploy_app/10_create_app.html</guid>
+      <description>To simulate the experience of a backend engineer deploying to your Kubernetes platform, we&amp;rsquo;ll write a small application in Go, that we want to use to deploy to a Kubernetes clyster.&#xA;Step 1 — Create App Create a new directory in your Pulumi project called app:&#xA;mkdir platform-app Inside that directory, add a main.go file which will serve a simple webserver that returns Hello, world!:&#xA;package main import ( &amp;#34;fmt&amp;#34; &amp;#34;github.</description>
+    </item>
+    <item>
+      <title>3.2 Build Platform Binary</title>
+      <link>//localhost:1313/en/50_eks_platform/40_deploy_app/20_build_binary.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/40_deploy_app/20_build_binary.html</guid>
+      <description>We&amp;rsquo;ve created an application - how do we get it into our Kubernetes cluster?&#xA;Developers often like to use command line tools to deploy applications. We&amp;rsquo;ll build a command line tool locally.&#xA;Step 1 — Clone the Repo Our first step is to clone the Git repository containing the app locally.&#xA;git clone https://github.com/jaxxstorm/ploy.git Change into this directory now ready to build our application:&#xA;cd ploy Step 2 — Examine the Repo This repo contains Pulumi code which uses the Automation API.</description>
+    </item>
+    <item>
+      <title>3.3 Deploy with Ploy</title>
+      <link>//localhost:1313/en/50_eks_platform/40_deploy_app/30_deploy_with_ploy.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/40_deploy_app/30_deploy_with_ploy.html</guid>
+      <description>Step 1 — Run Ploy We can now use ploy to deploy our application. First let&amp;rsquo;s make sure it&amp;rsquo;s in our $PATH:&#xA;sudo mv ploy /usr/local/bin/ploy Then switch back to our platform-app directory:&#xA;cd ~/environment/platform-app Now, run ploy up from within this directory and specify an organization to use - this should match the name you signed up to the Pulumi SaaS with:&#xA;ploy up -o jaxxstorm --verbose You should see some output from the command line application:</description>
+    </item>
+  </channel>
+</rss>

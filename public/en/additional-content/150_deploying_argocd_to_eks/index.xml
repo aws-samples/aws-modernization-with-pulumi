@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Deploying ArgoCD to Amazon EKS on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks.html</link>
+    <description>Recent content in Deploying ArgoCD to Amazon EKS on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a New Project</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir argocd cd argocd Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>Use an Existing Kubernetes Cluster</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/10_use_an_existing_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/10_use_an_existing_cluster.html</guid>
+      <description>Configure the use of a StackReference to the Kubernetes cluster stack to extract and use the kubeconfig. This can be found in the previous lab.&#xA;Let&amp;rsquo;s start by adding these imports to your index.ts file:&#xA;import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; Create a StackReference to the Kubernetes cluster stack using the config clusterStackRef stack setting.&#xA;const pulumiConfig = new pulumi.Config(); // Existing Pulumi stack reference in the format: // &amp;lt;organization&amp;gt;/&amp;lt;project&amp;gt;/&amp;lt;stack&amp;gt; e.</description>
+    </item>
+    <item>
+      <title>Creating a Namespace</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/20_create_a_namespace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/20_create_a_namespace.html</guid>
+      <description>Next, declare a namespace object. This will allow scoping the deployment of the ArcoCD components to that namespace.&#xA;To do this, we need to create a stack reference to the project where we created the eks infrastructure so we can get the Kubeconfig and be able to build the correct kubernetes provider. We are going to make the stack reference name configurable:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; const pulumiConfig = new pulumi.</description>
+    </item>
+    <item>
+      <title>Declare an ArgoCD Helm Chart Object</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/30_declare_argocd_helm_chart.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/30_declare_argocd_helm_chart.html</guid>
+      <description>You&amp;rsquo;ll now declare a helm chart, which deploys all of the components that is required to deploy ArgoCD.&#xA;Next, let&amp;rsquo;s declare the helm chart:&#xA;const argocd = new k8s.helm.v2.Chart(&amp;#34;argocd&amp;#34;, { namespace: ns.metadata.name, chart: &amp;#34;argo-cd&amp;#34;, fetchOpts: { repo: &amp;#34;https://argoproj.github.io/argo-helm&amp;#34; }, values: { installCRDs: false, server: { service: { type: &amp;#39;LoadBalancer&amp;#39;, }, } }, // The helm chart is using a deprecated apiVersion, // So let&amp;#39;s transform it transformations: [ (obj: any) =&amp;gt; { if (obj.</description>
+    </item>
+    <item>
+      <title>Deploying our Application Stack</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/40_deploy_our_application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/40_deploy_our_application.html</guid>
+      <description>First, add the StackReference to the cluster stack, which is used to get the kubeconfig from its stack output. This is a reference to the project created in the previous lab.&#xA;pulumi config set clusterStackRef workshops/eks-infrastructure/dev Now we can deploy Everything:&#xA;pulumi up This will show you a preview and, after selecting yes, the application will be deployed:&#xA;Updating (dev): Type Name Status Info + pulumi:pulumi:Stack argocd-dev created + ├─ kubernetes:helm.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module 01: Simple Lambda Function on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi.html</link>
+    <description>Recent content in Module 01: Simple Lambda Function on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir simple-lambda-function cd simple-lambda-function Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/10_configuring_aws.html</guid>
+      <description>Now that you have a basic project, let&amp;rsquo;s configure AWS support for it.&#xA;Step 1 — Install the AWS Package Run the following command to install the AWS package:&#xA;npm install @pulumi/aws The package will be added to node_modules, package.json, and package-lock.json.&#xA;Step 2 — Import the AWS Package Now that the AWS package is installed, we need to import it as part of our project:&#xA;import * as aws from &amp;#34;@pulumi/aws&amp;#34;; The index.</description>
+    </item>
+    <item>
+      <title>1.3 Provisioning a Lambda Function</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/20_create_function.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/20_create_function.html</guid>
+      <description>Now that you have a project configured to use AWS, you&amp;rsquo;ll create some basic infrastructure in it. Let&amp;rsquo;s create a simple lambda function.&#xA;Step 1 — Create a Lambda Execution Role Add a role to your Pulumi project so that your Lambda function can execute.&#xA;const role = new aws.iam.Role(&amp;#39;my-function-role&amp;#39;, { assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({ Service: &amp;#34;lambda.amazonaws.com&amp;#34; }) }) The index.ts file should now have the following contents:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as aws from &amp;#34;@pulumi/aws&amp;#34;; const role = new aws.</description>
+    </item>
+  </channel>
+</rss>

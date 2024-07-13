@@ -10,4 +10,4 @@ weight = 30
 
 In this lab, you'll deploy a simple Go application to your Kubernetes cluster. We'll use a pre-built application that uses the Pulumi [Automation API](https://www.pulumi.com/blog/automation-api/) to deploy to our built Kubernetes cluster
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

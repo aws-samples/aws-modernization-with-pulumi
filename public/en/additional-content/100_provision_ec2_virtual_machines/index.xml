@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Provision EC2 Virtual Machines on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines.html</link>
+    <description>Recent content in Provision EC2 Virtual Machines on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a New Project</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir ec2-workshop cd ec2-workshop Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>Creating a VM</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/10_creating_a_vm.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/10_creating_a_vm.html</guid>
+      <description>Import the AWS package to your empty index.ts file:&#xA;import * as aws from &amp;#34;@pulumi/aws&amp;#34;; Now dynamically query the Amazon Linux machine image. Doing this in code avoids needing to hard-code the machine image (a.k.a., its AMI):&#xA;const ami = aws.getAmi({ filters: [{ name: &amp;#34;name&amp;#34;, values: [&amp;#34;amzn-ami-hvm-*-x86_64-ebs&amp;#34;] }], owners: [ &amp;#34;137112412989&amp;#34; ], mostRecent: true, }).then(ami =&amp;gt; ami.id); Next, create an AWS security group. This enables ping over ICMP and HTTP traffic on port 80:</description>
+    </item>
+    <item>
+      <title>Creating Multiple VMs</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/20_create_multiple_vms.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/20_create_multiple_vms.html</guid>
+      <description>Now you will create multiple VM instances, each running the same Python webserver, across all AWS availability zones in your region. Replace the part of your code that creates the webserver and exports the resulting IP address and hostname with the following:&#xA;const ips: any[] = []; const hostnames: any[] = []; const azs = await aws.getAvailabilityZones() for (const az of azs.names) { const server = new aws.ec2.Instance(`web-server-${az}`, { instanceType: &amp;#34;t3.</description>
+    </item>
+    <item>
+      <title>Loadbalancing the VMs</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/30_loadbalancing_the_vms.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/30_loadbalancing_the_vms.html</guid>
+      <description>Needing to loop over the webservers isn&amp;rsquo;t very realistic. You will now create a load balancer over them to distribute load evenly.&#xA;Now install the AWSX package, a collection of helpers that makes things like configuring load balancing easier:&#xA;npm install @pulumi/awsx And import this package at the top of your program:&#xA;import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; Delete the port 80 ingress rule from your security group, leaving behind only the ICMP rule:</description>
+    </item>
+    <item>
+      <title>Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/40_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/40_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+  </channel>
+</rss>

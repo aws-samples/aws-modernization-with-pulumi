@@ -10,4 +10,4 @@ weight = 20
 
 In this lab, you will use Pulumi & [Helm](https://helm.sh/) to provision the [AWS Load Balancer Controller](https://github.com/kubernetes-sigs/aws-load-balancer-controller). We'll discover how Pulumi let's you provision AWS resources & Kubernetes resources in the same program.
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

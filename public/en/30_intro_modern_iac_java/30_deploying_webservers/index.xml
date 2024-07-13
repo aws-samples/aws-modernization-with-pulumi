@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module 02: EC2 Webserver on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers.html</link>
+    <description>Recent content in Module 02: EC2 Webserver on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop-webservers cd iac-workshop-webservers Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>2.2 Provision an EC2 Instances</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/10_provision_ec2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/10_provision_ec2.html</guid>
+      <description>Step 1 — Declare the EC2 Instance Remove any existing code here from the bootstrapping of your project. We&amp;rsquo;re going to use AWS API to query the latest Amazon Linux machine image. Doing this in code avoids needing to hard-code the machine image (a.k.a., its AMI):&#xA;var latestAmi = Ec2Functions .getAmi( GetAmiArgs.builder() .mostRecent(true) .owners(&amp;#34;137112412989&amp;#34;) .filters(GetAmiFilter.builder().name(&amp;#34;name&amp;#34;).values(&amp;#34;amzn-ami-hvm-*-x86_64-ebs&amp;#34;).build()) .build() ).thenApply(GetAmiResult::id); We also need to grab the default vpc that is available in our AWS account:</description>
+    </item>
+    <item>
+      <title>2.3 Add more EC2 Instances</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/20_provision_more_ec2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/20_provision_more_ec2.html</guid>
+      <description>Step 1 – Add more EC2 instances Now you will create multiple EC2 instances, each running the same webserver, across all AWS availability zones in your region. Replace the part of your code that creates the webserver and exports the resulting IP address and hostname with the following:&#xA;var instances = AwsFunctions.getAvailabilityZones().thenApply(response -&amp;gt; response.zoneIds().stream().map(availabilityZone -&amp;gt; new Instance(&amp;#34;web-server-%s&amp;#34;.formatted(availabilityZone), InstanceArgs.builder() .instanceType(&amp;#34;t2.micro&amp;#34;) .vpcSecurityGroupIds(Output.all(securityGroup.getId())) .ami(Output.of(latestAmi)) .userData(&amp;#34;&amp;#34;&amp;#34; #!/bin/bash echo &amp;#34;Hello, World -- from %s!&amp;#34; &amp;gt; index.</description>
+    </item>
+    <item>
+      <title>2.4 Add a LoadBalancer</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/30_add_loadbalancer.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/30_add_loadbalancer.html</guid>
+      <description>Needing to loop over the webservers isn&amp;rsquo;t very realistic. You will now create a load balancer over them to distribute load evenly.&#xA;Step 1 — Update our Security Group We need to add an egress rule to our security group. Whenever you add a listener to your load balancer or update the health check port for a target group used by the load balancer to route requests, you must verify that the security groups associated with the load balancer allow traffic on the new port in both directions.</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module 01: S3 Website on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi.html</link>
+    <description>Recent content in Module 01: S3 Website on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop cd iac-workshop Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/10_configuring_aws.html</guid>
+      <description>Now that we have a basic project, let&amp;rsquo;s add the Pulumi AWS provider and configure our credentials.&#xA;Step 1 — Install the AWS Package Pulumi created a virtualenv for us when we created our iac-workshop project. We&amp;rsquo;ll need to activate it to install dependencies:&#xA;source venv/bin/activate Add the following content to requirements.txt:&#xA;pulumi_aws&amp;gt;=6.0.0,&amp;lt;7.0.0 Run the following command to install the AWS packages:&#xA;pip3 install -r requirements.txt Step 2 — Import the AWS Package Now that the AWS package is installed, we need to import it as part of our project.</description>
+    </item>
+    <item>
+      <title>1.3 Provisioning Infrastructure</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/20_provisioning_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/20_provisioning_infrastructure.html</guid>
+      <description>Now that we have a project configured to use AWS, we can create some basic infrastructure. We will start with a simple S3 bucket.&#xA;Step 1 — Declare a New Bucket Add the following to your __main__.py file:&#xA;bucket = aws.s3.Bucket( &amp;#34;my-website-bucket&amp;#34;, aws.s3.BucketArgs( website=aws.s3.BucketWebsiteArgs( index_document=&amp;#34;index.html&amp;#34; ) ) ) After this change, your __main__.py should look like this:&#xA;&amp;#34;&amp;#34;&amp;#34;A Python Pulumi program&amp;#34;&amp;#34;&amp;#34; import pulumi import pulumi_aws as aws aws.s3.Bucket( &amp;#34;my-website-bucket&amp;#34;, aws.s3.BucketArgs( website=aws.</description>
+    </item>
+    <item>
+      <title>1.4 Updating Infrastructure</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/30_updating_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/30_updating_infrastructure.html</guid>
+      <description>We just saw how to create new infrastructure. Next, let&amp;rsquo;s make a few updates.&#xA;This exercise demonstrates how declarative infrastructure as code tools can be used not just for initial provisioning, but can also be used for subsequent changes to existing resources.&#xA;Step 1 — Enable Public Read Access First, we need to enable publicly readability for our bucket because AWS disables IAM policies and ACLs that grant public readability on buckets and their objects by default.</description>
+    </item>
+  </channel>
+</rss>

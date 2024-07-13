@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Lambda for Serverless Application Patterns on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/additional-content/120_serverless_application_patterns.html</link>
+    <description>Recent content in Lambda for Serverless Application Patterns on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/additional-content/120_serverless_application_patterns/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Creating a New Project</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir serverless-deployment cd serverless-deployment Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>Creating a DynamoDB Table</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/10_creating_a_dynamodb_table.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/10_creating_a_dynamodb_table.html</guid>
+      <description>Start by installing the AWS SDK package. This will allow you to query your DynamoDB from your Lambda:&#xA;$ npm install aws-sdk Next you need to import the necessary packages to the top of your index.ts file:&#xA;import * as AWS from &amp;#34;aws-sdk&amp;#34;; import * as aws from &amp;#34;@pulumi/aws&amp;#34;; import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; We can now create our DynamoDB Table:&#xA;const hits = new aws.</description>
+    </item>
+    <item>
+      <title>Creating IAM Policies</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/20_creating_iam_policies.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/20_creating_iam_policies.html</guid>
+      <description>Before creating your website, the Lambda will need a certain IAM role and permission. This permits the Lambda&amp;rsquo;s function to assume the right identity at runtime, log into CloudWatch to aid with debugging, and to use the DynamoDB table defined in the previous step:&#xA;const handlerRole = new aws.iam.Role(&amp;#34;handler-role&amp;#34;, { assumeRolePolicy: { Version: &amp;#34;2012-10-17&amp;#34;, Statement: [{ Action: &amp;#34;sts:AssumeRole&amp;#34;, Principal: { Service: &amp;#34;lambda.amazonaws.com&amp;#34; }, Effect: &amp;#34;Allow&amp;#34;, Sid: &amp;#34;&amp;#34;, }], }, }); const handlerPolicy = new aws.</description>
+    </item>
+    <item>
+      <title>Creating an API Gateway</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/30_creating_lambda_based_apigateway.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/30_creating_lambda_based_apigateway.html</guid>
+      <description>Now create an API Gateway powered by Lambda for its sole REST API handler for GET requests at the / route.&#xA;The first step is to create the code for the Lambda itself — this is the code that will run in response to an API call at runtime. Place this code into a new handler/index.js file.&#xA;Create a new handler directory and create a new file index.js Paste the below code in the the javascript file:</description>
+    </item>
+    <item>
+      <title>Deploying Our Infrastructure</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/40_deploying_our_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/40_deploying_our_infrastructure.html</guid>
+      <description>To provision our infrastructure, run:&#xA;pulumi up After confirming, you will see output like the following:&#xA;Updating (dev): Type Name Status + pulumi:pulumi:Stack serverless-demo-dev created + ├─ aws:apigateway:x:API site created + │ ├─ aws:apigateway:RestApi site created + │ ├─ aws:apigateway:Deployment site created + │ ├─ aws:lambda:Permission site-fa520765 created + │ └─ aws:apigateway:Stage site created + ├─ aws:dynamodb:Table hits created + ├─ aws:iam:Role handler-role created + ├─ aws:iam:RolePolicy handler-policy created + └─ aws:lambda:Function get-handler created Outputs: url: &amp;#34;https://02fpixl9jf.</description>
+    </item>
+    <item>
+      <title>Replacing with Inline Code</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/50_inline_application_code.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/50_inline_application_code.html</guid>
+      <description>It&amp;rsquo;s possible to simplify this serverless application by moving the runtime code into the infrastructure definition. This isn&amp;rsquo;t always the right way to design your infrastructure as code, but for &amp;ldquo;fully serverless&amp;rdquo; applications like this one, where the boundary between application and infrastructure is intentionally blurred, this can be a great way to go.&#xA;First, delete the IAM handlerRole and handlerPolicy definitions altogether.&#xA;Next, replace your API Gateway site with the following code:</description>
+    </item>
+    <item>
+      <title>Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/60_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/60_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+  </channel>
+</rss>

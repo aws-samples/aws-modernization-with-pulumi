@@ -13,4 +13,4 @@ In this lab, you will deploy a Kubernetes cluster in EKS.
 This lab assumes you have a project set up and a Kubernetes cluster up and running. If you don't have a cluster yet, please
 complete [deploying_eks_cluster](./30_deploying_eks_cluster.html) lab first.
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}
