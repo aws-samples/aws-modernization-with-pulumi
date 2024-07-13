@@ -10,4 +10,4 @@ weight = 30
 
 In this lab, you will deploy a Kubernetes cluster in EKS. The infrastructure created in this lab will be required for the next 3 labs.
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

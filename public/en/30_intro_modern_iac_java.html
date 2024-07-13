@@ -1,0 +1,6026 @@
+<!DOCTYPE html>
+<html lang="en" class="js csstransforms3d">
+  <head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="Hugo 0.127.0">
+    <meta name="description" content="Modern Infrastructure as Code">
+<meta name="author" content="Pulumi Inc.">
+
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+
+    <title>Intro to Modern IaC with AWS &amp; Pulumi (Java) :: Modern Infrastructure as Code with Pulumi</title>
+
+    
+    <link href="/css/nucleus.css?1720832636" rel="stylesheet">
+    <link href="/css/fontawesome-all.min.css?1720832636" rel="stylesheet">
+    <link href="/css/hybrid.css?1720832636" rel="stylesheet">
+    <link href="/css/featherlight.min.css?1720832636" rel="stylesheet">
+    <link href="/css/perfect-scrollbar.min.css?1720832636" rel="stylesheet">
+    <link href="/css/auto-complete.css?1720832636" rel="stylesheet">
+    <link href="/css/atom-one-dark-reasonable.css?1720832636" rel="stylesheet">
+    <link href="/css/theme.css?1720832636" rel="stylesheet">
+    <link href="/css/hugo-theme.css?1720832636" rel="stylesheet">
+    
+    <link href="/css/theme-mine.css?1720832636" rel="stylesheet">
+    
+    
+
+    <script src="/js/jquery-3.3.1.min.js?1720832636"></script>
+
+    <style>
+      :root #header + #content > #left > #rlblock_left{
+          display:none !important;
+      }
+      
+    </style>
+    
+  </head>
+  <body class="" data-url="/en/30_intro_modern_iac_java.html">
+    <nav id="sidebar" class="showVisitedLinks">
+
+
+
+  <div id="header-wrapper">
+    <div id="header">
+      <a href="/" title="Go home"><svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 50 30" width="60%" style="padding:20px 0px;"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f90;fill-rule:evenodd;}</style></defs><title>AWS-Logo_White-Color</title><path class="cls-1" d="M14.09,10.85a4.7,4.7,0,0,0,.19,1.48,7.73,7.73,0,0,0,.54,1.19.77.77,0,0,1,.12.38.64.64,0,0,1-.32.49l-1,.7a.83.83,0,0,1-.44.15.69.69,0,0,1-.49-.23,3.8,3.8,0,0,1-.6-.77q-.25-.42-.51-1a6.14,6.14,0,0,1-4.89,2.3,4.54,4.54,0,0,1-3.32-1.19,4.27,4.27,0,0,1-1.22-3.2A4.28,4.28,0,0,1,3.61,7.75,6.06,6.06,0,0,1,7.69,6.46a12.47,12.47,0,0,1,1.76.13q.92.13,1.91.36V5.73a3.65,3.65,0,0,0-.79-2.66A3.81,3.81,0,0,0,7.86,2.3a7.71,7.71,0,0,0-1.79.22,12.78,12.78,0,0,0-1.79.57,4.55,4.55,0,0,1-.58.22l-.26,0q-.35,0-.35-.52V2a1.09,1.09,0,0,1,.12-.58,1.2,1.2,0,0,1,.47-.35A10.88,10.88,0,0,1,5.77.32,10.19,10.19,0,0,1,8.36,0a6,6,0,0,1,4.35,1.35,5.49,5.49,0,0,1,1.38,4.09ZM7.34,13.38a5.36,5.36,0,0,0,1.72-.31A3.63,3.63,0,0,0,10.63,12,2.62,2.62,0,0,0,11.19,11a5.63,5.63,0,0,0,.16-1.44v-.7a14.35,14.35,0,0,0-1.53-.28,12.37,12.37,0,0,0-1.56-.1,3.84,3.84,0,0,0-2.47.67A2.34,2.34,0,0,0,5,11a2.35,2.35,0,0,0,.61,1.76A2.4,2.4,0,0,0,7.34,13.38Zm13.35,1.8a1,1,0,0,1-.64-.16,1.3,1.3,0,0,1-.35-.65L15.81,1.51a3,3,0,0,1-.15-.67.36.36,0,0,1,.41-.41H17.7a1,1,0,0,1,.65.16,1.4,1.4,0,0,1,.33.65l2.79,11,2.59-11A1.17,1.17,0,0,1,24.39.6a1.1,1.1,0,0,1,.67-.16H26.4a1.1,1.1,0,0,1,.67.16,1.17,1.17,0,0,1,.32.65L30,12.39,32.88,1.25A1.39,1.39,0,0,1,33.22.6a1,1,0,0,1,.65-.16h1.54a.36.36,0,0,1,.41.41,1.36,1.36,0,0,1,0,.26,3.64,3.64,0,0,1-.12.41l-4,12.86a1.3,1.3,0,0,1-.35.65,1,1,0,0,1-.64.16H29.25a1,1,0,0,1-.67-.17,1.26,1.26,0,0,1-.32-.67L25.67,3.64,23.11,14.34a1.26,1.26,0,0,1-.32.67,1,1,0,0,1-.67.17Zm21.36.44a11.28,11.28,0,0,1-2.56-.29,7.44,7.44,0,0,1-1.92-.67,1,1,0,0,1-.61-.93v-.84q0-.52.38-.52a.9.9,0,0,1,.31.06l.42.17a8.77,8.77,0,0,0,1.83.58,9.78,9.78,0,0,0,2,.2,4.48,4.48,0,0,0,2.43-.55,1.76,1.76,0,0,0,.86-1.57,1.61,1.61,0,0,0-.45-1.16A4.29,4.29,0,0,0,43,9.22l-2.41-.76A5.15,5.15,0,0,1,38,6.78a3.94,3.94,0,0,1-.83-2.41,3.7,3.7,0,0,1,.45-1.85,4.47,4.47,0,0,1,1.19-1.37A5.27,5.27,0,0,1,40.51.29,7.4,7.4,0,0,1,42.6,0a8.87,8.87,0,0,1,1.12.07q.57.07,1.08.19t.95.26a4.27,4.27,0,0,1,.7.29,1.59,1.59,0,0,1,.49.41.94.94,0,0,1,.15.55v.79q0,.52-.38.52a1.76,1.76,0,0,1-.64-.2,7.74,7.74,0,0,0-3.2-.64,4.37,4.37,0,0,0-2.21.47,1.6,1.6,0,0,0-.79,1.48,1.58,1.58,0,0,0,.49,1.18,4.94,4.94,0,0,0,1.83.92L44.55,7a5.08,5.08,0,0,1,2.57,1.6A3.76,3.76,0,0,1,47.9,11a4.21,4.21,0,0,1-.44,1.93,4.4,4.4,0,0,1-1.21,1.47,5.43,5.43,0,0,1-1.85.93A8.25,8.25,0,0,1,42.05,15.62Z"></path><path class="cls-2" d="M45.19,23.81C39.72,27.85,31.78,30,25,30A36.64,36.64,0,0,1,.22,20.57c-.51-.46-.06-1.09.56-.74A49.78,49.78,0,0,0,25.53,26.4,49.23,49.23,0,0,0,44.4,22.53C45.32,22.14,46.1,23.14,45.19,23.81Z"></path><path class="cls-2" d="M47.47,21.21c-.7-.9-4.63-.42-6.39-.21-.53.06-.62-.4-.14-.74,3.13-2.2,8.27-1.57,8.86-.83s-.16,5.89-3.09,8.35c-.45.38-.88.18-.68-.32C46.69,25.8,48.17,22.11,47.47,21.21Z"></path></svg></a>
+
+    </div>
+    
+        <div class="searchbox">
+    <label for="search-by"><i class="fas fa-search"></i></label>
+    <input data-search-input id="search-by" type="search" placeholder="Search...">
+    <span data-search-clear=""><i class="fas fa-times"></i></span>
+</div>
+
+<script type="text/javascript" src="/js/lunr.min.js?1720832636"></script>
+<script type="text/javascript" src="/js/auto-complete.js?1720832636"></script>
+<script type="text/javascript">
+    
+        var baseurl = "\/\/localhost:1313\/";
+    
+</script>
+<script type="text/javascript" src="/js/search.js?1720832636"></script>
+
+    
+  </div>
+
+    <div class="highlightable">
+    <ul class="topics">
+
+        
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/10_prerequisites.html" title="Prerequisites" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/10_prerequisites.html">
+          Prerequisites
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/10_prerequisites/start_workshop.html" title="Start the Workshop..." class="dd-item ">
+        <a href="/en/10_prerequisites/start_workshop.html">
+        Start the Workshop...
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/10_prerequisites/aws_event.html" title="At an AWS Event" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/10_prerequisites/aws_event.html">
+          At an AWS Event
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/10_prerequisites/self_paced.html" title="...on your own" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/10_prerequisites/self_paced.html">
+          ...on your own
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/10_prerequisites/self_paced/account.html" title="Create an AWS account" class="dd-item ">
+        <a href="/en/10_prerequisites/self_paced/account.html">
+        Create an AWS account
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/10_prerequisites/workspace.html" title="Create a workspace" class="dd-item ">
+        <a href="/en/10_prerequisites/workspace.html">
+        Create a workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/10_prerequisites/iamrole.html" title="Create an IAM role for your workspace" class="dd-item ">
+        <a href="/en/10_prerequisites/iamrole.html">
+        Create an IAM role for your workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/10_prerequisites/workspaceiam.html" title="Attach the IAM role to your Workspace" class="dd-item ">
+        <a href="/en/10_prerequisites/workspaceiam.html">
+        Attach the IAM role to your Workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/10_prerequisites/10_cloud.html" title="Update IAM settings for your Workspace" class="dd-item ">
+        <a href="/en/10_prerequisites/10_cloud.html">
+        Update IAM settings for your Workspace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/10_prerequisites/volume_resize.html" title="Resize workspace&#39;s EBS volume" class="dd-item ">
+        <a href="/en/10_prerequisites/volume_resize.html">
+        Resize workspace&#39;s EBS volume
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/10_prerequisites/50_workshop_setup.html" title="Install Pulumi &amp; Language Dependencies" class="dd-item ">
+        <a href="/en/10_prerequisites/50_workshop_setup.html">
+        Install Pulumi &amp; Language Dependencies
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/20_intro_modern_iac_ts.html" title="Intro to Modern IaC with AWS &amp; Pulumi (TypeScript)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/20_intro_modern_iac_ts.html">
+          Intro to Modern IaC with AWS &amp; Pulumi (TypeScript)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi.html" title="Module 01: S3 Website" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi.html">
+          Module 01: S3 Website
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/1_new_project.html" title="1.1 Creating a New Project" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/1_new_project.html">
+        1.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/10_configuring_aws.html" title="1.2 Configuring AWS" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/10_configuring_aws.html">
+        1.2 Configuring AWS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/20_provisioning_infrastructure.html" title="1.3 Provisioning Infrastructure" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/20_provisioning_infrastructure.html">
+        1.3 Provisioning Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/30_updating_infrastructure.html" title="1.4 Updating Infrastructure" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/30_updating_infrastructure.html">
+        1.4 Updating Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster.html" title="Module 02" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster.html">
+          Module 02
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/1_new_project.html" title="2.1 Creating a New Project" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/1_new_project.html">
+        2.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/10_creating_a_vpc.html" title="2.2 Creating an Amazon VPC" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/10_creating_a_vpc.html">
+        2.2 Creating an Amazon VPC
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/20_creating_an_eks_cluster.html" title="2.3 Creating an Amazon EKS Cluster" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/20_creating_an_eks_cluster.html">
+        2.3 Creating an Amazon EKS Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/30_testing_cluster_access.html" title="2.4 Testing Cluster Access" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/30_testing_cluster_access.html">
+        2.4 Testing Cluster Access
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_webservers.html" title="Module 02: EC2 Webserver" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/20_intro_modern_iac_ts/30_deploying_webservers.html">
+          Module 02: EC2 Webserver
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_webservers/1_new_project.html" title="2.1 Creating a New Project" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/30_deploying_webservers/1_new_project.html">
+        2.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_webservers/10_provision_ec2.html" title="2.2 Provision an EC2 Instances" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/30_deploying_webservers/10_provision_ec2.html">
+        2.2 Provision an EC2 Instances
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_webservers/20_provision_more_ec2.html" title="2.3 Add more EC2 Instances" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/30_deploying_webservers/20_provision_more_ec2.html">
+        2.3 Add more EC2 Instances
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/30_deploying_webservers/30_add_loadbalancer.html" title="2.4 Add a LoadBalancer" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/30_deploying_webservers/30_add_loadbalancer.html">
+        2.4 Add a LoadBalancer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks.html" title="Module 03" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks.html">
+          Module 03
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/1_new_project.html" title="3.1 Creating a New Project" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/1_new_project.html">
+        3.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/10_use_an_existing_cluster.html" title="3.2 Use an Existing Kubernetes Cluster" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/10_use_an_existing_cluster.html">
+        3.2 Use an Existing Kubernetes Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/20_create_a_namespace.html" title="3.3 Creating a Namespace" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/20_create_a_namespace.html">
+        3.3 Creating a Namespace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/30_declare_application_deployment.html" title="3.4 Declare an Application Deployment Object" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/30_declare_application_deployment.html">
+        3.4 Declare an Application Deployment Object
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/40_declare_application_service_object.html" title="3.5 Declare an Application Service Object" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/40_declare_application_service_object.html">
+        3.5 Declare an Application Service Object
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/50_deploy_our_application.html" title="3.6 Deploying our Application Stack" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/50_deploy_our_application.html">
+        3.6 Deploying our Application Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/60_update_application_deployment.html" title="3.7 Update Application Version" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/60_update_application_deployment.html">
+        3.7 Update Application Version
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/70_destroying_your_infrastructure.html" title="3.8 Destroying Your Infrastructure" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/70_destroying_your_infrastructure.html">
+        3.8 Destroying Your Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/20_intro_modern_iac_ts/45_componens.html" title="Module 04" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/20_intro_modern_iac_ts/45_componens.html">
+          Module 04
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/45_componens/1_open_project.html" title="4.1 Creating a New Project" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/45_componens/1_open_project.html">
+        4.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/45_componens/10_create_component.html" title="4.2 Create a ComponentResource" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/45_componens/10_create_component.html">
+        4.2 Create a ComponentResource
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/45_componens/20_use_component.html" title="4.3 Use our Component" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/45_componens/20_use_component.html">
+        4.3 Use our Component
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/45_componens/50_deploy_our_application.html" title="4.4 Deploying our Application Stack" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/45_componens/50_deploy_our_application.html">
+        4.4 Deploying our Application Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/20_intro_modern_iac_ts/45_componens/70_destroying_your_infrastructure.html" title="4.5 Destroying Your Infrastructure" class="dd-item ">
+        <a href="/en/20_intro_modern_iac_ts/45_componens/70_destroying_your_infrastructure.html">
+        4.5 Destroying Your Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/20_intro_modern_iac_ts/70_destroying_our_infrastructure.html" title="Destroying our Infrastructure" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/20_intro_modern_iac_ts/70_destroying_our_infrastructure.html">
+          Destroying our Infrastructure
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/25_intro_modern_iac_python.html" title="Intro to Modern IaC with AWS &amp; Pulumi (Python)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/25_intro_modern_iac_python.html">
+          Intro to Modern IaC with AWS &amp; Pulumi (Python)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi.html" title="Module 01: S3 Website" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi.html">
+          Module 01: S3 Website
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/1_new_project.html" title="1.1 Creating a New Project" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/1_new_project.html">
+        1.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/10_configuring_aws.html" title="1.2 Configuring AWS" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/10_configuring_aws.html">
+        1.2 Configuring AWS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/20_provisioning_infrastructure.html" title="1.3 Provisioning Infrastructure" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/20_provisioning_infrastructure.html">
+        1.3 Provisioning Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/30_updating_infrastructure.html" title="1.4 Updating Infrastructure" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/30_updating_infrastructure.html">
+        1.4 Updating Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/25_intro_modern_iac_python/30_deploying_webservers.html" title="Module 02: EC2 Webserver" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/25_intro_modern_iac_python/30_deploying_webservers.html">
+          Module 02: EC2 Webserver
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/30_deploying_webservers/1_new_project.html" title="2.1 Creating a New Project" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/30_deploying_webservers/1_new_project.html">
+        2.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/30_deploying_webservers/10_provision_ec2.html" title="2.2 Provision an EC2 Instances" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/30_deploying_webservers/10_provision_ec2.html">
+        2.2 Provision an EC2 Instances
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/30_deploying_webservers/20_provision_more_ec2.html" title="2.3 Add more EC2 Instances" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/30_deploying_webservers/20_provision_more_ec2.html">
+        2.3 Add more EC2 Instances
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/30_deploying_webservers/30_add_loadbalancer.html" title="2.4 Add a LoadBalancer" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/30_deploying_webservers/30_add_loadbalancer.html">
+        2.4 Add a LoadBalancer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/25_intro_modern_iac_python/40_ecs.html" title="Module 03: Docker &amp; Amazon ECS on AWS Fargate" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/25_intro_modern_iac_python/40_ecs.html">
+          Module 03: Docker &amp; Amazon ECS on AWS Fargate
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/40_ecs/1_new_project.html" title="3.1 Creating a New Project" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/40_ecs/1_new_project.html">
+        3.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/40_ecs/10_configuring_aws.html" title="3.2 Installing and Configuring the AWS and AWSX Providers" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/40_ecs/10_configuring_aws.html">
+        3.2 Installing and Configuring the AWS and AWSX Providers
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/40_ecs/20_create_cluster.html" title="3.3 Create a VPC, ECS Cluster, &amp; Load Balancer" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/40_ecs/20_create_cluster.html">
+        3.3 Create a VPC, ECS Cluster, &amp; Load Balancer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/25_intro_modern_iac_python/40_ecs/30_deploy_service.html" title="3.4 Deploy a Fargate Service" class="dd-item ">
+        <a href="/en/25_intro_modern_iac_python/40_ecs/30_deploy_service.html">
+        3.4 Deploy a Fargate Service
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/30_intro_modern_iac_java.html" title="Intro to Modern IaC with AWS &amp; Pulumi (Java)" class="dd-item 
+        
+        active
+        
+        ">
+      <a href="/en/30_intro_modern_iac_java.html">
+          Intro to Modern IaC with AWS &amp; Pulumi (Java)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi.html" title="Module 01: S3 Website" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi.html">
+          Module 01: S3 Website
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/1_new_project.html" title="1.1 Creating a New Project" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/1_new_project.html">
+        1.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/10_configuring_aws.html" title="1.2 Configuring AWS" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/10_configuring_aws.html">
+        1.2 Configuring AWS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/20_provisioning_infrastructure.html" title="1.3 Provisioning Infrastructure" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/20_provisioning_infrastructure.html">
+        1.3 Provisioning Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/30_updating_infrastructure.html" title="1.4 Updating Infrastructure" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/30_updating_infrastructure.html">
+        1.4 Updating Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/30_intro_modern_iac_java/30_deploying_webservers.html" title="Module 02: EC2 Webserver" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/30_intro_modern_iac_java/30_deploying_webservers.html">
+          Module 02: EC2 Webserver
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/30_deploying_webservers/1_new_project.html" title="1.1 Creating a New Project" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/30_deploying_webservers/1_new_project.html">
+        1.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/30_deploying_webservers/10_provision_ec2.html" title="2.2 Provision an EC2 Instances" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/30_deploying_webservers/10_provision_ec2.html">
+        2.2 Provision an EC2 Instances
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/30_deploying_webservers/20_provision_more_ec2.html" title="2.3 Add more EC2 Instances" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/30_deploying_webservers/20_provision_more_ec2.html">
+        2.3 Add more EC2 Instances
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/30_deploying_webservers/30_add_loadbalancer.html" title="2.4 Add a LoadBalancer" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/30_deploying_webservers/30_add_loadbalancer.html">
+        2.4 Add a LoadBalancer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/30_intro_modern_iac_java/40_ecs.html" title="Module 03: Docker &amp; ECS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/30_intro_modern_iac_java/40_ecs.html">
+          Module 03: Docker &amp; ECS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/40_ecs/1_new_project.html" title="1.1 Creating a New Project" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/40_ecs/1_new_project.html">
+        1.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/40_ecs/10_configuring_aws.html" title="1.2 Configuring AWS" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/40_ecs/10_configuring_aws.html">
+        1.2 Configuring AWS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/40_ecs/20_create_cluster.html" title="3.2 Create an ECS Cluster &amp; LoadBalancer" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/40_ecs/20_create_cluster.html">
+        3.2 Create an ECS Cluster &amp; LoadBalancer
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/30_intro_modern_iac_java/40_ecs/30_deploy_service.html" title="3.3 Deploy a Docker Image" class="dd-item ">
+        <a href="/en/30_intro_modern_iac_java/40_ecs/30_deploy_service.html">
+        3.3 Deploy a Docker Image
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/40_lambda_microservices_ts.html" title="Deploying Microservices with Pulumi &amp; AWS Lambda (TypeScript)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/40_lambda_microservices_ts.html">
+          Deploying Microservices with Pulumi &amp; AWS Lambda (TypeScript)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/40_lambda_microservices_ts/20_getting_started_with_pulumi.html" title="Module 01: Simple Lambda Function" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/40_lambda_microservices_ts/20_getting_started_with_pulumi.html">
+          Module 01: Simple Lambda Function
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/1_new_project.html" title="1.1 Creating a New Project" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/1_new_project.html">
+        1.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/10_configuring_aws.html" title="1.2 Configuring AWS" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/10_configuring_aws.html">
+        1.2 Configuring AWS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/20_create_function.html" title="1.3 Provisioning a Lambda Function" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/20_create_function.html">
+        1.3 Provisioning a Lambda Function
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/40_lambda_microservices_ts/30_simple_api_gateway.html" title="Module 02: Lambda &amp; API Gateway" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/40_lambda_microservices_ts/30_simple_api_gateway.html">
+          Module 02: Lambda &amp; API Gateway
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/30_simple_api_gateway/1_new_project.html" title="2.1 Creating a New Project" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/30_simple_api_gateway/1_new_project.html">
+        2.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/30_simple_api_gateway/10_configuring_aws.html" title="2.2 Configuring AWS" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/30_simple_api_gateway/10_configuring_aws.html">
+        2.2 Configuring AWS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/30_simple_api_gateway/20_api_gateway_get.html" title="2.3 API Gateway" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/30_simple_api_gateway/20_api_gateway_get.html">
+        2.3 API Gateway
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/30_simple_api_gateway/30_processing_data.html" title="2.4 Processing Input Data" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/30_simple_api_gateway/30_processing_data.html">
+        2.4 Processing Input Data
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/40_lambda_microservices_ts/40_container_thumbnailer.html" title="Module 03: Containers &amp; Microservices" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/40_lambda_microservices_ts/40_container_thumbnailer.html">
+          Module 03: Containers &amp; Microservices
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/40_container_thumbnailer/1_new_project.html" title="3.1 Creating a New Project" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/40_container_thumbnailer/1_new_project.html">
+        3.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/40_container_thumbnailer/10_configuring_aws.html" title="3.2 Configuring AWS" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/40_container_thumbnailer/10_configuring_aws.html">
+        3.2 Configuring AWS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/40_container_thumbnailer/20_create_thumbnailer.html" title="3.3 Thumbnailer Container" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/40_container_thumbnailer/20_create_thumbnailer.html">
+        3.3 Thumbnailer Container
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/40_container_thumbnailer/30_aws_infra.html" title="3.4 Define Lambda Container Function" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/40_container_thumbnailer/30_aws_infra.html">
+        3.4 Define Lambda Container Function
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/40_lambda_microservices_ts/40_container_thumbnailer/40_s3_website.html" title="3.5 Make a thumbnail website" class="dd-item ">
+        <a href="/en/40_lambda_microservices_ts/40_container_thumbnailer/40_s3_website.html">
+        3.5 Make a thumbnail website
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/50_eks_platform.html" title="Building a Kubernetes Platform in Amazon EKS (Multi-language)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/50_eks_platform.html">
+          Building a Kubernetes Platform in Amazon EKS (Multi-language)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/50_eks_platform/20_provision_cluster.html" title="Module 01: EKS Cluster" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/50_eks_platform/20_provision_cluster.html">
+          Module 01: EKS Cluster
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/20_provision_cluster/1_new_project.html" title="1.1 Creating a New Project" class="dd-item ">
+        <a href="/en/50_eks_platform/20_provision_cluster/1_new_project.html">
+        1.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/20_provision_cluster/10_configuring_aws.html" title="1.2 Configuring AWS" class="dd-item ">
+        <a href="/en/50_eks_platform/20_provision_cluster/10_configuring_aws.html">
+        1.2 Configuring AWS
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/20_provision_cluster/20_create_cluster.html" title="1.3 Create an EKS Cluster" class="dd-item ">
+        <a href="/en/50_eks_platform/20_provision_cluster/20_create_cluster.html">
+        1.3 Create an EKS Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/50_eks_platform/30_deploy_ingress_controller.html" title="Module 02: AWS LoadBalancer Controller" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/50_eks_platform/30_deploy_ingress_controller.html">
+          Module 02: AWS LoadBalancer Controller
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/30_deploy_ingress_controller/1_new_project.html" title="2.1 Creating a New Project" class="dd-item ">
+        <a href="/en/50_eks_platform/30_deploy_ingress_controller/1_new_project.html">
+        2.1 Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/30_deploy_ingress_controller/10_create_iam_role.html" title="2.2 Create an IAM Role" class="dd-item ">
+        <a href="/en/50_eks_platform/30_deploy_ingress_controller/10_create_iam_role.html">
+        2.2 Create an IAM Role
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/30_deploy_ingress_controller/20_deploy_ingress_ctrl.html" title="2.3 Deploy Ingress Controller" class="dd-item ">
+        <a href="/en/50_eks_platform/30_deploy_ingress_controller/20_deploy_ingress_ctrl.html">
+        2.3 Deploy Ingress Controller
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/50_eks_platform/40_deploy_app.html" title="Module 03: Deploy an Application" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/50_eks_platform/40_deploy_app.html">
+          Module 03: Deploy an Application
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/40_deploy_app/10_create_app.html" title="3.1 Create a Sample App" class="dd-item ">
+        <a href="/en/50_eks_platform/40_deploy_app/10_create_app.html">
+        3.1 Create a Sample App
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/40_deploy_app/20_build_binary.html" title="3.2 Build Platform Binary" class="dd-item ">
+        <a href="/en/50_eks_platform/40_deploy_app/20_build_binary.html">
+        3.2 Build Platform Binary
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/50_eks_platform/40_deploy_app/30_deploy_with_ploy.html" title="3.3 Deploy with Ploy" class="dd-item ">
+        <a href="/en/50_eks_platform/40_deploy_app/30_deploy_with_ploy.html">
+        3.3 Deploy with Ploy
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/60_policy_as_code.html" title="Policy as Code (Python)" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/60_policy_as_code.html">
+          Policy as Code (Python)
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/60_policy_as_code/10_intro_to_policy_as_code.html" title="Module 1: Intro to Policy as Code in Pulumi" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/60_policy_as_code/10_intro_to_policy_as_code.html">
+          Module 1: Intro to Policy as Code in Pulumi
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/60_policy_as_code/20_authoring_policies.html" title="Module 2: Authoring Pulumi Policies" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/60_policy_as_code/20_authoring_policies.html">
+          Module 2: Authoring Pulumi Policies
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+          
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/additional-content.html" title="Additional Content" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/additional-content.html">
+          Additional Content
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+            
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/additional-content/150_deploying_argocd_to_eks.html" title="Deploying ArgoCD to Amazon EKS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/additional-content/150_deploying_argocd_to_eks.html">
+          Deploying ArgoCD to Amazon EKS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/150_deploying_argocd_to_eks/1_new_project.html" title="Creating a New Project" class="dd-item ">
+        <a href="/en/additional-content/150_deploying_argocd_to_eks/1_new_project.html">
+        Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/150_deploying_argocd_to_eks/10_use_an_existing_cluster.html" title="Use an Existing Kubernetes Cluster" class="dd-item ">
+        <a href="/en/additional-content/150_deploying_argocd_to_eks/10_use_an_existing_cluster.html">
+        Use an Existing Kubernetes Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/150_deploying_argocd_to_eks/20_create_a_namespace.html" title="Creating a Namespace" class="dd-item ">
+        <a href="/en/additional-content/150_deploying_argocd_to_eks/20_create_a_namespace.html">
+        Creating a Namespace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/150_deploying_argocd_to_eks/30_declare_argocd_helm_chart.html" title="Declare an ArgoCD Helm Chart Object" class="dd-item ">
+        <a href="/en/additional-content/150_deploying_argocd_to_eks/30_declare_argocd_helm_chart.html">
+        Declare an ArgoCD Helm Chart Object
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/150_deploying_argocd_to_eks/40_deploy_our_application.html" title="Deploying our Application Stack" class="dd-item ">
+        <a href="/en/additional-content/150_deploying_argocd_to_eks/40_deploy_our_application.html">
+        Deploying our Application Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/additional-content/160_gitops_for_socks_shop.html" title="GitOps for Socks Shop" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/additional-content/160_gitops_for_socks_shop.html">
+          GitOps for Socks Shop
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/160_gitops_for_socks_shop/1_new_project.html" title="Creating a New Project" class="dd-item ">
+        <a href="/en/additional-content/160_gitops_for_socks_shop/1_new_project.html">
+        Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/160_gitops_for_socks_shop/10_use_an_existing_cluster.html" title="Use an Existing Kubernetes Cluster" class="dd-item ">
+        <a href="/en/additional-content/160_gitops_for_socks_shop/10_use_an_existing_cluster.html">
+        Use an Existing Kubernetes Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/160_gitops_for_socks_shop/20_create_a_namespace.html" title="Creating a Namespace" class="dd-item ">
+        <a href="/en/additional-content/160_gitops_for_socks_shop/20_create_a_namespace.html">
+        Creating a Namespace
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/160_gitops_for_socks_shop/30_declare_sock_shop_resource.html" title="Declare a Sock Shop Custom Resource" class="dd-item ">
+        <a href="/en/additional-content/160_gitops_for_socks_shop/30_declare_sock_shop_resource.html">
+        Declare a Sock Shop Custom Resource
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/160_gitops_for_socks_shop/40_deploy_our_application.html" title="Deploying our Application Stack" class="dd-item ">
+        <a href="/en/additional-content/160_gitops_for_socks_shop/40_deploy_our_application.html">
+        Deploying our Application Stack
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/additional-content/100_provision_ec2_virtual_machines.html" title="Provision EC2 Virtual Machines" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/additional-content/100_provision_ec2_virtual_machines.html">
+          Provision EC2 Virtual Machines
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/100_provision_ec2_virtual_machines/1_new_project.html" title="Creating a New Project" class="dd-item ">
+        <a href="/en/additional-content/100_provision_ec2_virtual_machines/1_new_project.html">
+        Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/100_provision_ec2_virtual_machines/10_creating_a_vm.html" title="Creating a VM" class="dd-item ">
+        <a href="/en/additional-content/100_provision_ec2_virtual_machines/10_creating_a_vm.html">
+        Creating a VM
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/100_provision_ec2_virtual_machines/20_create_multiple_vms.html" title="Creating Multiple VMs" class="dd-item ">
+        <a href="/en/additional-content/100_provision_ec2_virtual_machines/20_create_multiple_vms.html">
+        Creating Multiple VMs
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/100_provision_ec2_virtual_machines/30_loadbalancing_the_vms.html" title="Loadbalancing the VMs" class="dd-item ">
+        <a href="/en/additional-content/100_provision_ec2_virtual_machines/30_loadbalancing_the_vms.html">
+        Loadbalancing the VMs
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/100_provision_ec2_virtual_machines/40_destroying_your_infrastructure.html" title="Destroying Your Infrastructure" class="dd-item ">
+        <a href="/en/additional-content/100_provision_ec2_virtual_machines/40_destroying_your_infrastructure.html">
+        Destroying Your Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/additional-content/110_deploying_containers_to_ecs.html" title="Deploying Containers to ECS" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/additional-content/110_deploying_containers_to_ecs.html">
+          Deploying Containers to ECS
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/110_deploying_containers_to_ecs/1_new_project.html" title="Creating a New Project" class="dd-item ">
+        <a href="/en/additional-content/110_deploying_containers_to_ecs/1_new_project.html">
+        Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/110_deploying_containers_to_ecs/10_creating_an_ecs_cluster.html" title="Creating an AWS ECS Cluster" class="dd-item ">
+        <a href="/en/additional-content/110_deploying_containers_to_ecs/10_creating_an_ecs_cluster.html">
+        Creating an AWS ECS Cluster
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/110_deploying_containers_to_ecs/20_creating_a_loadbalanced_service.html" title="Creating an ECS Loadbalanced Service" class="dd-item ">
+        <a href="/en/additional-content/110_deploying_containers_to_ecs/20_creating_a_loadbalanced_service.html">
+        Creating an ECS Loadbalanced Service
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/110_deploying_containers_to_ecs/30_build_and_publish_custom_container.html" title="Build and Publish A Custom Container" class="dd-item ">
+        <a href="/en/additional-content/110_deploying_containers_to_ecs/30_build_and_publish_custom_container.html">
+        Build and Publish A Custom Container
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/110_deploying_containers_to_ecs/40_destroying_your_infrastructure.html" title="Destroying Your Infrastructure" class="dd-item ">
+        <a href="/en/additional-content/110_deploying_containers_to_ecs/40_destroying_your_infrastructure.html">
+        Destroying Your Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+    <li data-nav-id="/en/additional-content/120_serverless_application_patterns.html" title="Lambda for Serverless Application Patterns" class="dd-item 
+        
+        
+        
+        ">
+      <a href="/en/additional-content/120_serverless_application_patterns.html">
+          Lambda for Serverless Application Patterns
+          
+            <i class="fas fa-check read-icon"></i>
+          
+      </a>
+      
+      
+        <ul>
+          
+          
+          
+          
+        
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/120_serverless_application_patterns/1_new_project.html" title="Creating a New Project" class="dd-item ">
+        <a href="/en/additional-content/120_serverless_application_patterns/1_new_project.html">
+        Creating a New Project
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/120_serverless_application_patterns/10_creating_a_dynamodb_table.html" title="Creating a DynamoDB Table" class="dd-item ">
+        <a href="/en/additional-content/120_serverless_application_patterns/10_creating_a_dynamodb_table.html">
+        Creating a DynamoDB Table
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/120_serverless_application_patterns/20_creating_iam_policies.html" title="Creating IAM Policies" class="dd-item ">
+        <a href="/en/additional-content/120_serverless_application_patterns/20_creating_iam_policies.html">
+        Creating IAM Policies
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/120_serverless_application_patterns/30_creating_lambda_based_apigateway.html" title="Creating an API Gateway" class="dd-item ">
+        <a href="/en/additional-content/120_serverless_application_patterns/30_creating_lambda_based_apigateway.html">
+        Creating an API Gateway
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/120_serverless_application_patterns/40_deploying_our_infrastructure.html" title="Deploying Our Infrastructure" class="dd-item ">
+        <a href="/en/additional-content/120_serverless_application_patterns/40_deploying_our_infrastructure.html">
+        Deploying Our Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/120_serverless_application_patterns/50_inline_application_code.html" title="Replacing with Inline Code" class="dd-item ">
+        <a href="/en/additional-content/120_serverless_application_patterns/50_inline_application_code.html">
+        Replacing with Inline Code
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+            
+            
+
+
+
+
+ 
+  
+    
+      <li data-nav-id="/en/additional-content/120_serverless_application_patterns/60_destroying_your_infrastructure.html" title="Destroying Your Infrastructure" class="dd-item ">
+        <a href="/en/additional-content/120_serverless_application_patterns/60_destroying_your_infrastructure.html">
+        Destroying Your Infrastructure
+        <i class="fas fa-check read-icon"></i>
+        </a>
+    </li>
+     
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+            
+          
+        
+        </ul>
+              
+    </li>
+  
+ 
+
+          
+         
+    </ul>
+
+    
+    
+      <section id="shortcuts">
+        <h3>More</h3>
+        <ul>
+          
+              <li> 
+                  <a class="padding" href="https://awsworkshop.io"><i class='fas fa-graduation-cap'></i> Modernization Workshops</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://aws.amazon.com/builders-library/"><i class='fas fa-tools'></i> AWS Builders Library</a>
+              </li>
+          
+              <li> 
+                  <a class="padding" href="https://aws.amazon.com/blogs/modernizing-with-aws/"><i class='far fa-lightbulb'></i> Modernization with AWS</a>
+              </li>
+          
+        </ul>
+      </section>
+    
+
+    
+    <section id="prefooter">
+      <hr/>
+      <ul>
+      
+      
+      
+        <li><a class="padding" href="#" data-clear-history-toggle=""><i class="fas fa-history fa-fw"></i> Clear History</a></li>
+      
+      </ul>
+    </section>
+    
+    <section id="footer">
+      <left>         <a href="https://aws.amazon.com/privacy/?nc1=f_pr">Privacy</a> | <a href="https://aws.amazon.com/terms/?nc1=f_pr">Site Terms</a> | © 2020, Amazon Web Services, Inc. or its affiliates. All rights reserved.        </left>
+    </section>
+  </div>
+</nav>
+
+
+
+
+        <section id="body">
+        <div id="overlay"></div>
+        <div class="padding highlightable">
+              
+              <div>
+                <div id="top-bar">
+                
+                
+                <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+                    <span id="sidebar-toggle-span">
+                        <a href="#" id="sidebar-toggle" data-sidebar-toggle="">
+                          <i class="fas fa-bars"></i>
+                        </a>
+                    </span>
+                  
+                  <span class="links">
+                 
+                 
+                    
+          
+          
+            
+            
+          
+          
+            <a href='/en/'>AWS Modernization with Pulumi</a> > Intro to Modern IaC with AWS & Pulumi (Java)
+          
+        
+          
+        
+                 
+                  </span>
+                </div>
+                
+              </div>
+            </div>
+            
+        <div id="head-tags">
+        
+        </div>
+        
+          <div id="chapter">
+        
+        <div id="body-inner">
+          
+
+        
+
+
+
+	<h1 id="introduction-to-modern-infrastructure-as-code-with-aws-and-pulumi-java">Introduction to Modern Infrastructure as Code with AWS and Pulumi (Java)</h1>
+<h2 id="learning-objectives">Learning Objectives</h2>
+<ul>
+<li>Getting started with Pulumi</li>
+<li>Deploy a website on Amazon S3</li>
+<li>Deploy load balanced Amazon EC2 Instances and an Application Load Balancer</li>
+<li>Deploy an application on Amazon ECS with Fargate</li>
+</ul>
+<p>
+<div class="notices info" ><p>In this workshop, we have selected containers and various other technologies to demonstrante the strength of IaC.
+At the end of the workshop you can continue to the additional content section, where you can find more labs to explore other components to work with such as serverless and EC2.</p>
+</div>
+
+
+<div class="notices warning" ><p style='text-align: left;'>
+The examples and sample code provided in this workshop are intended to be consumed as instructional content.
+These will help you understand how various cloud services can be used to build a solution while demonstrating best
+practices along the way. These examples are not intended for use in production environments.
+</p>
+</div>
+</p>
+
+
+
+
+
+<footer class=" footline" >
+	
+</footer>
+
+        
+            </div> 
+        
+        </div> 
+        
+
+      </div>
+
+    <div id="navigation">
+        
+        
+        
+        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                        
+                        
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                        
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+                        
+            
+            
+                
+                    
+                
+                
+
+                    
+                    
+                    
+
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+                    
+            
+        
+        
+        
+
+
+	 
+	 
+		
+			<a class="nav nav-prev" href="/en/25_intro_modern_iac_python/40_ecs/30_deploy_service.html" title="3.4 Deploy a Fargate Service"> <i class="fa fa-chevron-left"></i></a>
+		
+		
+			<a class="nav nav-next" href="/en/30_intro_modern_iac_java/20_getting_started_with_pulumi.html" title="Module 01: S3 Website" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+	
+    </div>
+
+    </section>
+    
+    <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
+      <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
+    </div>
+    <script src="/js/clipboard.min.js?1720832636"></script>
+    <script src="/js/perfect-scrollbar.min.js?1720832636"></script>
+    <script src="/js/perfect-scrollbar.jquery.min.js?1720832636"></script>
+    <script src="/js/jquery.sticky.js?1720832636"></script>
+    <script src="/js/featherlight.min.js?1720832636"></script>
+    <script src="/js/highlight.pack.js?1720832636"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+    <script src="/js/modernizr.custom-3.6.0.js?1720832636"></script>
+    <script src="/js/learn.js?1720832636"></script>
+    <script src="/js/hugo-learn.js?1720832636"></script>
+
+    <link href="/mermaid/mermaid.css?1720832636" rel="stylesheet" />
+    <script src="/mermaid/mermaid.js?1720832636"></script>
+    <script>
+        mermaid.initialize({ startOnLoad: true });
+    </script>
+    
+
+  </body>
+</html>

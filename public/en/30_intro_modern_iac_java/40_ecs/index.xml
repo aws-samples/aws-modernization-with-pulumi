@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module 03: Docker &amp; ECS on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs.html</link>
+    <description>Recent content in Module 03: Docker &amp; ECS on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/30_intro_modern_iac_java/40_ecs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop-ecs cd iac-workshop-ecs Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/10_configuring_aws.html</guid>
+      <description>Current module of the workshop is updated to use AWS Native and AWS Classic providers side-by-side. AWS Native is in public preview. AWS Native provides coverage of all resources in the AWS Cloud Control API, including same-day access to all new AWS resources. However, some AWS resources are not yet available in AWS Native.&#xA;Now that you have a basic project, let&amp;rsquo;s configure AWS support for it.&#xA;Step 1 — Add AWS dependencies Before we can use AWS Native and AWS Classic providers, we need to update our project with appropriate dependencies.</description>
+    </item>
+    <item>
+      <title>3.2 Create an ECS Cluster &amp; LoadBalancer</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/20_create_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/20_create_cluster.html</guid>
+      <description>Step 1 — Create an ECS Cluster Remove all the boilerplate from the project bootstrap.&#xA;As a first step, we&amp;rsquo;re going to create an ECS cluster:&#xA;var cluster = new Cluster(&amp;#34;cluster&amp;#34;); &amp;#x2705; After this change, your App.java should look like this:&#xA;package myproject; import com.pulumi.Pulumi; import com.pulumi.aws.ecs.Cluster; public class App { public static void main(String[] args) { Pulumi.run(ctx -&amp;gt; { var cluster = new Cluster(&amp;#34;cluster&amp;#34;); }); } } Step 2 — Create a Load-Balanced Container Service Next, allocate the application load balancer (ALB) and listen for HTTP traffic port 80.</description>
+    </item>
+    <item>
+      <title>3.3 Deploy a Docker Image</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/30_deploy_service.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/30_deploy_service.html</guid>
+      <description>Step 1 — Create ECS FargateService In order to create a Fargate service, we need to add an IAM Role and a Task Definition and Service. the ECS Cluster will run the &amp;quot;nginx&amp;quot; image from the Docker Hub.&#xA;Let&amp;rsquo;s define our IAM Role and attach a policy. You should define this at the end of your App.java:&#xA;var role = new Role(&amp;#34;task-exec-role&amp;#34;, RoleArgs.builder() .assumeRolePolicy(&amp;#34;&amp;#34;&amp;#34; { &amp;#34;Version&amp;#34;: &amp;#34;2008-10-17&amp;#34;, &amp;#34;Statement&amp;#34;: [ { &amp;#34;Sid&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;, &amp;#34;Principal&amp;#34;: {&amp;#34;Service&amp;#34;: &amp;#34;ecs-tasks.</description>
+    </item>
+  </channel>
+</rss>

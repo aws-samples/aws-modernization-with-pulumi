@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Intro to Modern IaC with AWS &amp; Pulumi (Java) on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/30_intro_modern_iac_java.html</link>
+    <description>Recent content in Intro to Modern IaC with AWS &amp; Pulumi (Java) on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/30_intro_modern_iac_java/index.xml" rel="self" type="application/rss+xml" />
+  </channel>
+</rss>

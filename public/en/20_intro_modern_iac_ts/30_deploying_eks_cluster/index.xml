@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module 02 on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster.html</link>
+    <description>Recent content in Module 02 on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>2.1 Creating a New Project</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir eks-infrastructure cd eks-infrastructure Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>2.2 Creating an Amazon VPC</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/10_creating_a_vpc.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/10_creating_a_vpc.html</guid>
+      <description>Start by adding the Pulumi AWSX import to your index.ts file:&#xA;import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; Then add the following to your index.ts to create a vpc. The vpc will be made of 2 private and 2 public subnets. The private subnets will be routed to the internet via nat gateways.&#xA;See for more details and examples:&#xA;API Docs Examples const vpc = new awsx.ec2.Vpc(&amp;#34;workshop-vpc&amp;#34;, {}); We will be able to use this vpc in which to deploy our Amazon EKS cluster.</description>
+    </item>
+    <item>
+      <title>2.3 Creating an Amazon EKS Cluster</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/20_creating_an_eks_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/20_creating_an_eks_cluster.html</guid>
+      <description>Add the Pulumi EKS import to your index.ts file:&#xA;import * as eks from &amp;#34;@pulumi/eks&amp;#34;; Then add the following to your index.ts to create the EKS cluster referencing the previously created vpc and to deploy a fargate profile.&#xA;See for more details and examples:&#xA;API Docs Examples const cluster = new eks.Cluster(&amp;#34;eks&amp;#34;, { vpcId: vpc.id, privateSubnetIds: vpc.privateSubnetIds, publicSubnetIds: vpc.publicSubnetIds, }); We&amp;rsquo;ll need to the cluster&amp;rsquo;s kubeconfig to interact with the cluster.</description>
+    </item>
+    <item>
+      <title>2.4 Testing Cluster Access</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/30_testing_cluster_access.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/30_testing_cluster_access.html</guid>
+      <description>Extract the kubeconfig from the stack output and point the KUBECONFIG environment variable at your cluster configuration file:&#xA;pulumi stack output kubeconfig &amp;gt; kubeconfig.json export KUBECONFIG=$PWD/kubeconfig.json To test out connectivity, run kubectl cluster-info. You should see information similar to this:&#xA;Kubernetes master is running at https://E7CD24CD6FADEBA48CA1DE87B4E6A260.gr7.us-west-2.eks.amazonaws.com CoreDNS is running at https://E7CD24CD6FADEBA48CA1DE87B4E6A260.gr7.us-west-2.eks.amazonaws.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy Check the nodes and pods:&#xA;kubectl get nodes -o wide --show-labels kubectl get pods -A -o wide </description>
+    </item>
+  </channel>
+</rss>

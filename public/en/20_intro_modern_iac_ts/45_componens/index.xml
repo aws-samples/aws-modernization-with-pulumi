@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module 04 on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens.html</link>
+    <description>Recent content in Module 04 on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/20_intro_modern_iac_ts/45_componens/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>4.1 Creating a New Project</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/1_open_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/1_open_project.html</guid>
+      <description>Step 1 — Open the Project Go to the folder that contains the deploying_applications_to_eks lab.&#xA;cd eks-demo-apps The code you have in that project should look like this:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; const pulumiConfig = new pulumi.Config(); // Existing Pulumi stack reference in the format: // &amp;lt;organization&amp;gt;/&amp;lt;project&amp;gt;/&amp;lt;stack&amp;gt; e.g. &amp;#34;myUser/myProject/dev&amp;#34; const clusterStackRef = new pulumi.StackReference(pulumiConfig.require(&amp;#34;clusterStackRef&amp;#34;)); // Get the kubeconfig from the cluster stack output.</description>
+    </item>
+    <item>
+      <title>4.2 Create a ComponentResource</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/10_create_component.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/10_create_component.html</guid>
+      <description>To create our component, first create a new file servicedeployment.ts, with the following contents:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; export interface ServiceDeploymentArgs { namespace?: pulumi.Input&amp;lt;string&amp;gt;; replicas?: pulumi.Input&amp;lt;number&amp;gt;; image: pulumi.Input&amp;lt;string&amp;gt;; port: k8s.types.input.core.v1.ServicePort; } export class ServiceDeployment extends pulumi.ComponentResource { deployment: k8s.apps.v1.Deployment; service: k8s.core.v1.Service; url: pulumi.Output&amp;lt;string&amp;gt;; constructor(name: string, args: ServiceDeploymentArgs, opts?: pulumi.ComponentResourceOptions) { super(&amp;#34;my:kubernetes:ServiceDeployment&amp;#34;, name, args, opts); // TODO } } The ServiceDeploymentArgs interface is the arguments we&amp;rsquo;ll allow to be passed to our component.</description>
+    </item>
+    <item>
+      <title>4.3 Use our Component</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/20_use_component.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/20_use_component.html</guid>
+      <description>Next, we&amp;rsquo;ll use our new ServiceDeployment component.&#xA;Start by deleting all of the code in index.ts after the namespace so that you left with just:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; import { ServiceDeployment } from &amp;#34;./servicedeployment&amp;#34;; const config = new pulumi.Config(); const clusterStackRef = new pulumi.StackReference(config.require(&amp;#34;clusterStackRef&amp;#34;)); const kubeconfig = clusterStackRef.getOutput(&amp;#34;kubeconfig&amp;#34;).apply(JSON.stringify); const provider = new k8s.Provider(&amp;#34;k8sProvider&amp;#34;, { kubeconfig }); const ns = new k8s.core.v1.Namespace(&amp;#34;app-ns&amp;#34;, { metadata: { name: &amp;#34;eks-demo-apps&amp;#34;}, }, { provider }); Then add a new import at the top of the file:</description>
+    </item>
+    <item>
+      <title>4.4 Deploying our Application Stack</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/50_deploy_our_application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/50_deploy_our_application.html</guid>
+      <description>We are ready to deploy Everything:&#xA;pulumi up This will show you a preview and, after selecting yes, the application will be deployed:&#xA;Updating (dev2): Type Name Status + pulumi:pulumi:Stack eks-apps-dev2 created + ├─ my:kubernetes:ServiceDeployment eks-demo-app created + │ ├─ kubernetes:core:Service app-svc created + │ └─ kubernetes:apps:Deployment eks-demos-app created + ├─ pulumi:providers:kubernetes k8sProvider created + └─ kubernetes:core:Namespace app-ns created Outputs: url: &amp;#34;http://a8bf84659dc8f4dd1b266e9711de3c2c-1478981199.us-west-2.elb.amazonaws.com:3000&amp;#34; Resources: + 6 created Duration: 15s Permalink: https://app.pulumi.com/workshops/eks-apps/dev2/updates/1 It will take a few seconds for the Load Balancer to be ready, but once it is, you can curl the url to see the same application running again:</description>
+    </item>
+    <item>
+      <title>4.5 Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/70_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/70_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+  </channel>
+</rss>

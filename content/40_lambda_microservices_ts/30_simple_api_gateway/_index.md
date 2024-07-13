@@ -10,4 +10,4 @@ weight = 30
 
 In this lab, you will use Pulumi Crosswalk to create a simple lambda function behind an API Gateway
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

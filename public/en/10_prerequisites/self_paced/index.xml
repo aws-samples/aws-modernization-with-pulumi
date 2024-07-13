@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>...on your own on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/10_prerequisites/self_paced.html</link>
+    <description>Recent content in ...on your own on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/10_prerequisites/self_paced/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Create an AWS account</title>
+      <link>//localhost:1313/en/10_prerequisites/self_paced/account.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/self_paced/account.html</guid>
+      <description> Your account must have the ability to create new IAM roles and scope other IAM permissions.&#xA;If you don&amp;rsquo;t already have an AWS account with Administrator access: create one now by clicking here&#xA;Once you have an AWS account, ensure you are following the remaining workshop steps as an IAM user with administrator access to the AWS account: Create a new IAM user to use for the workshop&#xA;Enter the user details: Attach the AdministratorAccess IAM Policy: Click to create the new user: Take note of the login URL and save: </description>
+    </item>
+  </channel>
+</rss>

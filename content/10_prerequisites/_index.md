@@ -6,6 +6,4 @@ weight = 10
 
 # Prerequisites
 
-{{% children showhidden="false" %}}
-
-
+{{% children showhidden="false"/%}}

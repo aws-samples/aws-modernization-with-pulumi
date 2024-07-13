@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Module 03 on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks.html</link>
+    <description>Recent content in Module 03 on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>3.1 Creating a New Project</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir eks-demo-apps cd eks-demo-apps Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>3.2 Use an Existing Kubernetes Cluster</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/10_use_an_existing_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/10_use_an_existing_cluster.html</guid>
+      <description>Configure the use of a StackReference to the Kubernetes cluster stack to extract and use the kubeconfig. This can be found in the previous lab.&#xA;Let&amp;rsquo;s start by adding these imports to your index.ts file:&#xA;import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; Create a StackReference to the Kubernetes cluster stack using the config clusterStackRef stack setting.&#xA;const pulumiConfig = new pulumi.Config(); // Existing Pulumi stack reference in the format: // &amp;lt;organization&amp;gt;/&amp;lt;project&amp;gt;/&amp;lt;stack&amp;gt; e.</description>
+    </item>
+    <item>
+      <title>3.3 Creating a Namespace</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/20_create_a_namespace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/20_create_a_namespace.html</guid>
+      <description>Next, declare a namespace object. This will scope your objects to a name of your choosing, so that in this workshop you won&amp;rsquo;t accidentally interfere with other participants.&#xA;Append this to your index.ts file, replacing eks-infrastructure with your own name and referencing the Provider created in the previous step:&#xA;const ns = new k8s.core.v1.Namespace(&amp;#34;app-ns&amp;#34;, { metadata: { name: &amp;#34;eks-demo-apps&amp;#34; }, }, { provider }); The index.ts file should now have the following contents:</description>
+    </item>
+    <item>
+      <title>3.4 Declare an Application Deployment Object</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/30_declare_application_deployment.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/30_declare_application_deployment.html</guid>
+      <description>You&amp;rsquo;ll now declare a deployment object, which deploys a specific set of containers to the cluster and scales them. In this case, you&amp;rsquo;ll deploy the pre-built gcr.io/google-samples/kubernetes-bootcamp:v1 container image with only a single replica.&#xA;Append this to your index.ts file:&#xA;const appLabels = { app: &amp;#34;eks-demo-apps&amp;#34; }; const deployment = new k8s.apps.v1.Deployment(&amp;#34;eks-demo-apps-dep&amp;#34;, { metadata: { namespace: ns.metadata.name }, spec: { selector: { matchLabels: appLabels }, replicas: 1, template: { metadata: { labels: appLabels }, spec: { containers: [{ name: &amp;#34;eks-demo-apps&amp;#34;, image: &amp;#34;gcr.</description>
+    </item>
+    <item>
+      <title>3.5 Declare an Application Service Object</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/40_declare_application_service_object.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/40_declare_application_service_object.html</guid>
+      <description>Next, you&amp;rsquo;ll declare a service object, which enables networking and load balancing across your deployment replicas.&#xA;Append this to your index.ts file:&#xA;const service = new k8s.core.v1.Service(&amp;#34;app-svc&amp;#34;, { metadata: { namespace: ns.metadata.name }, spec: { selector: appLabels, ports: [{ port: 80, targetPort: 8080 }], type: &amp;#34;LoadBalancer&amp;#34;, }, }, { provider }); Afterwards, add these lines to export the resulting, dynamically assigned endpoint for the resulting load balancer:&#xA;const address = service.</description>
+    </item>
+    <item>
+      <title>3.6 Deploying our Application Stack</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/50_deploy_our_application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/50_deploy_our_application.html</guid>
+      <description>First, add the StackReference to the cluster stack, which is used to get the kubeconfig from its stack output. This is a reference to the project created in the [previous lab].&#xA;pulumi config set clusterStackRef workshops/eks-infrastructure/dev Replace &amp;ldquo;workshops&amp;rdquo; from above command with your Pulumi username.&#xA;Deploy Everything:&#xA;pulumi up This will show you a preview and, after selecting yes, the application will be deployed:&#xA;Updating (dev): Type Name Status + pulumi:pulumi:Stack eks-demo-apps-dev created + ├─ pulumi:providers:kubernetes k8sProvider created + ├─ kubernetes:core:Namespace eks-demo-apps-ns created + ├─ kubernetes:apps:Deployment eks-demo-apps-dep created + └─ kubernetes:core:Service eks-demo-apps-svc created Outputs: url: &amp;#34;http://ae7c37b7c510511eab4540a6f2211784-521581596.</description>
+    </item>
+    <item>
+      <title>3.7 Update Application Version</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/60_update_application_deployment.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/60_update_application_deployment.html</guid>
+      <description>Next, you&amp;rsquo;ll make two changes to the application:&#xA;Scale out to 3 replicas, instead of just 1. Update the version of your application by changing its container image tag Note that the application says Hello Kubernetes bootcamp! | Running on: app-dep-9p399mj2-6c7cdd7d79-7w7vj | v=1. After deploying, this will change.&#xA;First update your deployment&amp;rsquo;s configuration&amp;rsquo;s replica count:&#xA;replicas=3, And then update its image to:&#xA;image=&amp;#34;jocatalin/kubernetes-bootcamp:v2&amp;#34;, The index.ts file should now have the following contents:</description>
+    </item>
+    <item>
+      <title>3.8 Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/70_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/70_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+  </channel>
+</rss>

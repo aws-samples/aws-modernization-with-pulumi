@@ -1,0 +1,746 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AWS Modernization with Pulumi on Modern Infrastructure as Code with Pulumi</title>
+    <link>//localhost:1313/en/</link>
+    <description>Recent content in AWS Modernization with Pulumi on Modern Infrastructure as Code with Pulumi</description>
+    <generator>Hugo</generator>
+    <language>en-US</language>
+    <atom:link href="//localhost:1313/en/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop cd iac-workshop Pulumi will use the directory name as your project name by default. You can change this during the project initiation process, but we&amp;rsquo;ll stick with the default for now.</description>
+    </item>
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop cd iac-workshop Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop cd iac-workshop Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop-webservers cd iac-workshop-webservers Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop-ecs cd iac-workshop-ecs Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir simple-lambda-function cd simple-lambda-function Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>1.1 Creating a New Project</title>
+      <link>//localhost:1313/en/50_eks_platform/20_provision_cluster/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/20_provision_cluster/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir workshop-cluster cd workshop-cluster Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>2.1 Creating a New Project</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir eks-infrastructure cd eks-infrastructure Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>2.1 Creating a New Project</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_webservers/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_webservers/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop-webservers cd iac-workshop-webservers Pulumi will use the directory name as your project name by default. You can change this during the project initiation process, but we&amp;rsquo;ll stick with the default for now.</description>
+    </item>
+    <item>
+      <title>2.1 Creating a New Project</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/30_deploying_webservers/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/30_deploying_webservers/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop-webservers cd iac-workshop-webservers Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>2.1 Creating a New Project</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/30_simple_api_gateway/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/30_simple_api_gateway/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir lambda-api-gateway cd lambda-api-gateway Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>3.1 Creating a New Project</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir eks-demo-apps cd eks-demo-apps Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>3.1 Creating a New Project</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/40_ecs/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/40_ecs/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir iac-workshop-ecs cd iac-workshop-ecs Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>3.1 Creating a New Project</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir lambda-thumbnailer cd lambda-thumbnailer Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>4.1 Creating a New Project</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/1_open_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/1_open_project.html</guid>
+      <description>Step 1 — Open the Project Go to the folder that contains the deploying_applications_to_eks lab.&#xA;cd eks-demo-apps The code you have in that project should look like this:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; const pulumiConfig = new pulumi.Config(); // Existing Pulumi stack reference in the format: // &amp;lt;organization&amp;gt;/&amp;lt;project&amp;gt;/&amp;lt;stack&amp;gt; e.g. &amp;#34;myUser/myProject/dev&amp;#34; const clusterStackRef = new pulumi.StackReference(pulumiConfig.require(&amp;#34;clusterStackRef&amp;#34;)); // Get the kubeconfig from the cluster stack output.</description>
+    </item>
+    <item>
+      <title>Create an AWS account</title>
+      <link>//localhost:1313/en/10_prerequisites/self_paced/account.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/self_paced/account.html</guid>
+      <description> Your account must have the ability to create new IAM roles and scope other IAM permissions.&#xA;If you don&amp;rsquo;t already have an AWS account with Administrator access: create one now by clicking here&#xA;Once you have an AWS account, ensure you are following the remaining workshop steps as an IAM user with administrator access to the AWS account: Create a new IAM user to use for the workshop&#xA;Enter the user details: Attach the AdministratorAccess IAM Policy: Click to create the new user: Take note of the login URL and save: </description>
+    </item>
+    <item>
+      <title>Creating a New Project</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir ec2-workshop cd ec2-workshop Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>Creating a New Project</title>
+      <link>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir ecs-workshop cd ecs-workshop Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>Creating a New Project</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir serverless-deployment cd serverless-deployment Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>Creating a New Project</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir argocd cd argocd Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>Creating a New Project</title>
+      <link>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/1_new_project.html</guid>
+      <description>Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir socks-shop cd socks-shop Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.&#xA;Step 2 — Initialize Your Project A Pulumi project is just a directory with some files in it. It&amp;rsquo;s possible for you to create a new one by hand.</description>
+    </item>
+    <item>
+      <title>Start the Workshop...</title>
+      <link>//localhost:1313/en/10_prerequisites/start_workshop.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/start_workshop.html</guid>
+      <description>Getting Started To start the workshop, follow one of the following depending on whether you are&amp;hellip;&#xA;&amp;hellip;running the workshop on your own, or &amp;hellip;attending an AWS hosted event Once you have completed with either setup, continue with Install the required tools</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/10_configuring_aws.html</guid>
+      <description>Now that we have a basic project, let&amp;rsquo;s add the Pulumi AWS provider and configure our credentials.&#xA;Step 1 — Install the AWS Provider Run the following command:&#xA;npm i @pulumi/aws This will install the Pulumi AWS node SDK and add it to your package.json file. This is the library that will allow us to manage AWS assets with Pulumi. Pulumi also supports a wide range of other providers. For a complete list of all supported providers, see the Pulumi Registry.</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/10_configuring_aws.html</guid>
+      <description>Now that we have a basic project, let&amp;rsquo;s add the Pulumi AWS provider and configure our credentials.&#xA;Step 1 — Install the AWS Package Pulumi created a virtualenv for us when we created our iac-workshop project. We&amp;rsquo;ll need to activate it to install dependencies:&#xA;source venv/bin/activate Add the following content to requirements.txt:&#xA;pulumi_aws&amp;gt;=5.0.0,&amp;lt;6.0.0 Run the following command to install the AWS packages:&#xA;pip3 install -r requirements.txt Step 2 — Import the AWS Package Now that the AWS package is installed, we need to import it as part of our project.</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/10_configuring_aws.html</guid>
+      <description>Current module of the workshop is updated to use AWS Native and AWS Classic providers side-by-side. AWS Native is in public preview. AWS Native provides coverage of all resources in the AWS Cloud Control API, including same-day access to all new AWS resources. However, some AWS resources are not yet available in AWS Native.&#xA;Now that you have a basic project, let&amp;rsquo;s configure AWS support for it.&#xA;Step 1 — Add AWS dependencies Before we can use AWS Native and AWS Classic providers, we need to update our project with appropriate dependencies.</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/10_configuring_aws.html</guid>
+      <description>Current module of the workshop is updated to use AWS Native and AWS Classic providers side-by-side. AWS Native is in public preview. AWS Native provides coverage of all resources in the AWS Cloud Control API, including same-day access to all new AWS resources. However, some AWS resources are not yet available in AWS Native.&#xA;Now that you have a basic project, let&amp;rsquo;s configure AWS support for it.&#xA;Step 1 — Add AWS dependencies Before we can use AWS Native and AWS Classic providers, we need to update our project with appropriate dependencies.</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/10_configuring_aws.html</guid>
+      <description>Now that you have a basic project, let&amp;rsquo;s configure AWS support for it.&#xA;Step 1 — Install the AWS Package Run the following command to install the AWS package:&#xA;npm install @pulumi/aws The package will be added to node_modules, package.json, and package-lock.json.&#xA;Step 2 — Import the AWS Package Now that the AWS package is installed, we need to import it as part of our project:&#xA;import * as aws from &amp;#34;@pulumi/aws&amp;#34;; The index.</description>
+    </item>
+    <item>
+      <title>1.2 Configuring AWS</title>
+      <link>//localhost:1313/en/50_eks_platform/20_provision_cluster/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/20_provision_cluster/10_configuring_aws.html</guid>
+      <description>Now that you have a basic project, let&amp;rsquo;s configure AWS support for it.&#xA;Step 1 — Install the AWS Package Run the following command to install the AWS and AWS Crosswalk package:&#xA;npm install @pulumi/aws npm install @pulumi/awsx The package will be added to node_modules, package.json, and package-lock.json.&#xA;Step 2 — Import the AWS Package Now that the AWS package is installed, we need to import it as part of our project:</description>
+    </item>
+    <item>
+      <title>2.1 Creating a New Project</title>
+      <link>//localhost:1313/en/50_eks_platform/30_deploy_ingress_controller/1_new_project.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/30_deploy_ingress_controller/1_new_project.html</guid>
+      <description>Infrastructure in Pulumi is organized into projects. Each project is a single program that, when run, declares the desired infrastructure for Pulumi to manage.&#xA;Step 1 — Create a Directory Each Pulumi project lives in its own directory. Create one now and change into it:&#xA;mkdir aws-load-balancer-controller cd aws-load-balancer-controller Pulumi will use the directory name as your project name by default. To create an independent project, simply name the directory differently.</description>
+    </item>
+    <item>
+      <title>2.2 Configuring AWS</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/30_simple_api_gateway/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/30_simple_api_gateway/10_configuring_aws.html</guid>
+      <description>Now that you have a basic project, let&amp;rsquo;s configure AWS support for it.&#xA;Step 1 — Install the AWS Packages Run the following command to install the AWS package:&#xA;npm install @pulumi/aws npm install @pulumi/awsx The package will be added to node_modules, package.json, and package-lock.json.&#xA;Step 2 — Import the AWS Package Now that the AWS packages are installed, we need to import it as part of our project:&#xA;import * as aws from &amp;#34;@pulumi/aws&amp;#34;; import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; The index.</description>
+    </item>
+    <item>
+      <title>2.2 Create an IAM Role</title>
+      <link>//localhost:1313/en/50_eks_platform/30_deploy_ingress_controller/10_create_iam_role.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/30_deploy_ingress_controller/10_create_iam_role.html</guid>
+      <description>We&amp;rsquo;ll be deploying the AWS Load Balancer Controller into our EKS Cluster, but it will need to make API calls to AWS for some operations.&#xA;We can pass an IAM role to our Kubernetes deployment using IAM Roles for Service Accounts which we configured on our cluster&#xA;Let&amp;rsquo;s define the IAM role we need to pass to our Kubernetes resources&#xA;Step 1 — Retrieve Stack References Before we define any resources, we need to retrieve some outputs from our cluster stack.</description>
+    </item>
+    <item>
+      <title>2.2 Creating an Amazon VPC</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/10_creating_a_vpc.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/10_creating_a_vpc.html</guid>
+      <description>Start by adding the Pulumi AWSX import to your index.ts file:&#xA;import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; Then add the following to your index.ts to create a vpc. The vpc will be made of 2 private and 2 public subnets. The private subnets will be routed to the internet via nat gateways.&#xA;See for more details and examples:&#xA;API Docs Examples const vpc = new awsx.ec2.Vpc(&amp;#34;workshop-vpc&amp;#34;, {}); We will be able to use this vpc in which to deploy our Amazon EKS cluster.</description>
+    </item>
+    <item>
+      <title>2.2 Provision an EC2 Instances</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_webservers/10_provision_ec2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_webservers/10_provision_ec2.html</guid>
+      <description>Step 1 — Declare the EC2 Instance Remove any existing code here from the bootstrapping of your project. Then, import the AWS package in an empty __main__.py file:&#xA;from pulumi import export import pulumi_aws as aws Now dynamically query the Amazon Linux machine image. Doing this in code avoids needing to hard-code the machine image (a.k.a., its AMI):&#xA;ami = aws.get_ami( most_recent=&amp;#34;true&amp;#34;, owners=[&amp;#34;137112412989&amp;#34;], filters=[{&amp;#34;name&amp;#34;:&amp;#34;name&amp;#34;,&amp;#34;values&amp;#34;:[&amp;#34;amzn-ami-hvm-*-x86_64-ebs&amp;#34;]}]) We also need to grab the default vpc that is available in our AWS account:</description>
+    </item>
+    <item>
+      <title>2.2 Provision an EC2 Instances</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/30_deploying_webservers/10_provision_ec2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/30_deploying_webservers/10_provision_ec2.html</guid>
+      <description>Step 1 — Declare the EC2 Instance Remove any existing code here from the bootstrapping of your project. Then, import the AWS package in an empty __main__.py file:&#xA;from pulumi import export import pulumi_aws as aws Now dynamically query the Amazon Linux machine image. Doing this in code avoids needing to hard-code the machine image (a.k.a., its AMI):&#xA;ami = aws.get_ami( most_recent=&amp;#34;true&amp;#34;, owners=[&amp;#34;137112412989&amp;#34;], filters=[{&amp;#34;name&amp;#34;:&amp;#34;name&amp;#34;,&amp;#34;values&amp;#34;:[&amp;#34;amzn-ami-hvm-*-x86_64-ebs&amp;#34;]}]) We also need to grab the default vpc that is available in our AWS account:</description>
+    </item>
+    <item>
+      <title>2.2 Provision an EC2 Instances</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/10_provision_ec2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/10_provision_ec2.html</guid>
+      <description>Step 1 — Declare the EC2 Instance Remove any existing code here from the bootstrapping of your project. We&amp;rsquo;re going to use AWS API to query the latest Amazon Linux machine image. Doing this in code avoids needing to hard-code the machine image (a.k.a., its AMI):&#xA;var latestAmi = Ec2Functions .getAmi( GetAmiArgs.builder() .mostRecent(true) .owners(&amp;#34;137112412989&amp;#34;) .filters(GetAmiFilter.builder().name(&amp;#34;name&amp;#34;).values(&amp;#34;amzn-ami-hvm-*-x86_64-ebs&amp;#34;).build()) .build() ).thenApply(GetAmiResult::id); We also need to grab the default vpc that is available in our AWS account:</description>
+    </item>
+    <item>
+      <title>3.1 Create a Sample App</title>
+      <link>//localhost:1313/en/50_eks_platform/40_deploy_app/10_create_app.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/40_deploy_app/10_create_app.html</guid>
+      <description>To simulate the experience of a backend engineer deploying to your Kubernetes platform, we&amp;rsquo;ll write a small application in Go, that we want to use to deploy to a Kubernetes clyster.&#xA;Step 1 — Create App Create a new directory in your Pulumi project called app:&#xA;mkdir platform-app Inside that directory, add a main.go file which will serve a simple webserver that returns Hello, world!:&#xA;package main import ( &amp;#34;fmt&amp;#34; &amp;#34;github.</description>
+    </item>
+    <item>
+      <title>3.2 Configuring AWS</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/10_configuring_aws.html</guid>
+      <description>Now that you have a basic project, let&amp;rsquo;s configure AWS support for it.&#xA;Step 1 — Install the AWS Package Run the following command to install the AWS packages:&#xA;npm install @pulumi/aws npm install @pulumi/awsx The package will be added to node_modules, package.json, and package-lock.json.&#xA;Step 2 — Import the AWS Package Now that the AWS package is installed, we need to import it as part of our project:&#xA;import * as aws from &amp;#34;@pulumi/aws&amp;#34;; import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; The index.</description>
+    </item>
+    <item>
+      <title>3.2 Create an ECS Cluster &amp; LoadBalancer</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/20_create_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/20_create_cluster.html</guid>
+      <description>Step 1 — Create an ECS Cluster Remove all the boilerplate from the project bootstrap.&#xA;As a first step, we&amp;rsquo;re going to create an ECS cluster:&#xA;var cluster = new Cluster(&amp;#34;cluster&amp;#34;); &amp;#x2705; After this change, your App.java should look like this:&#xA;package myproject; import com.pulumi.Pulumi; import com.pulumi.aws.ecs.Cluster; public class App { public static void main(String[] args) { Pulumi.run(ctx -&amp;gt; { var cluster = new Cluster(&amp;#34;cluster&amp;#34;); }); } } Step 2 — Create a Load-Balanced Container Service Next, allocate the application load balancer (ALB) and listen for HTTP traffic port 80.</description>
+    </item>
+    <item>
+      <title>3.2 Installing and Configuring the AWS and AWSX Providers</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/40_ecs/10_configuring_aws.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/40_ecs/10_configuring_aws.html</guid>
+      <description>Now that we have our project boilerplate, we will add 2 Pulumi providers:&#xA;AWS Classic, which gives us all the fundamental AWS resources, like VPC subnets. AWSx, which contains higher level Pulumi components, like a full, production-ready VPC that includes subnets, NAT gateways, routing tables, and so on. At the time of writing, AWSx is in beta and may change before its official 1.0 release. If you encounter any issues with AWSx, please file a GitHub issue.</description>
+    </item>
+    <item>
+      <title>3.2 Use an Existing Kubernetes Cluster</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/10_use_an_existing_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/10_use_an_existing_cluster.html</guid>
+      <description>Configure the use of a StackReference to the Kubernetes cluster stack to extract and use the kubeconfig. This can be found in the previous lab.&#xA;Let&amp;rsquo;s start by adding these imports to your index.ts file:&#xA;import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; Create a StackReference to the Kubernetes cluster stack using the config clusterStackRef stack setting.&#xA;const pulumiConfig = new pulumi.Config(); // Existing Pulumi stack reference in the format: // &amp;lt;organization&amp;gt;/&amp;lt;project&amp;gt;/&amp;lt;stack&amp;gt; e.</description>
+    </item>
+    <item>
+      <title>3.3 Create a VPC, ECS Cluster, &amp; Load Balancer</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/40_ecs/20_create_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/40_ecs/20_create_cluster.html</guid>
+      <description>Step 1 — Create a VPC First, we&amp;rsquo;ll create a VPC to host our ECS cluster. We&amp;rsquo;ll use the AWSx provider to do this. The AWSx provider contains higher-level constructs called component resources that allow us to create production-ready infrastructure without needing to declare every individual resource.&#xA;Add the following to your __main__.py:&#xA;vpc = awsx.ec2.Vpc(&amp;#34;my-vpc&amp;#34;) &amp;#x2705; After this change, your __main__.py should look like this:&#xA;import pulumi as pulumi import pulumi_aws as aws import pulumi_awsx as awsx vpc = awsx.</description>
+    </item>
+    <item>
+      <title>4.2 Create a ComponentResource</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/10_create_component.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/10_create_component.html</guid>
+      <description>To create our component, first create a new file servicedeployment.ts, with the following contents:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; export interface ServiceDeploymentArgs { namespace?: pulumi.Input&amp;lt;string&amp;gt;; replicas?: pulumi.Input&amp;lt;number&amp;gt;; image: pulumi.Input&amp;lt;string&amp;gt;; port: k8s.types.input.core.v1.ServicePort; } export class ServiceDeployment extends pulumi.ComponentResource { deployment: k8s.apps.v1.Deployment; service: k8s.core.v1.Service; url: pulumi.Output&amp;lt;string&amp;gt;; constructor(name: string, args: ServiceDeploymentArgs, opts?: pulumi.ComponentResourceOptions) { super(&amp;#34;my:kubernetes:ServiceDeployment&amp;#34;, name, args, opts); // TODO } } The ServiceDeploymentArgs interface is the arguments we&amp;rsquo;ll allow to be passed to our component.</description>
+    </item>
+    <item>
+      <title>Creating a DynamoDB Table</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/10_creating_a_dynamodb_table.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/10_creating_a_dynamodb_table.html</guid>
+      <description>Start by installing the AWS SDK package. This will allow you to query your DynamoDB from your Lambda:&#xA;$ npm install aws-sdk Next you need to import the necessary packages to the top of your index.ts file:&#xA;import * as AWS from &amp;#34;aws-sdk&amp;#34;; import * as aws from &amp;#34;@pulumi/aws&amp;#34;; import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; We can now create our DynamoDB Table:&#xA;const hits = new aws.</description>
+    </item>
+    <item>
+      <title>Creating a VM</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/10_creating_a_vm.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/10_creating_a_vm.html</guid>
+      <description>Import the AWS package to your empty index.ts file:&#xA;import * as aws from &amp;#34;@pulumi/aws&amp;#34;; Now dynamically query the Amazon Linux machine image. Doing this in code avoids needing to hard-code the machine image (a.k.a., its AMI):&#xA;const ami = aws.getAmi({ filters: [{ name: &amp;#34;name&amp;#34;, values: [&amp;#34;amzn-ami-hvm-*-x86_64-ebs&amp;#34;] }], owners: [ &amp;#34;137112412989&amp;#34; ], mostRecent: true, }).then(ami =&amp;gt; ami.id); Next, create an AWS security group. This enables ping over ICMP and HTTP traffic on port 80:</description>
+    </item>
+    <item>
+      <title>Creating an AWS ECS Cluster</title>
+      <link>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/10_creating_an_ecs_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/10_creating_an_ecs_cluster.html</guid>
+      <description>Install the AWSX package, if you haven&amp;rsquo;t already:&#xA;npm install @pulumi/awsx Import the AWSX and Pulumi packages in an empty index.ts file:&#xA;import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; And now create a new ECS cluster. You will use the default values, so doing so is very concise:&#xA;const cluster = new awsx.ecs.Cluster(&amp;#34;cluster&amp;#34;); The index.ts file should now have the following contents:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; const cluster = new awsx.</description>
+    </item>
+    <item>
+      <title>Creating an ECS Loadbalanced Service</title>
+      <link>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/20_creating_a_loadbalanced_service.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/20_creating_a_loadbalanced_service.html</guid>
+      <description>Next, allocate the application load balancer (ALB) and listen for HTTP traffic port 80. Make sure to pass along the ECS cluster&amp;rsquo;s security groups:&#xA;const alb = new awsx.elasticloadbalancingv2.ApplicationLoadBalancer( &amp;#34;app-lb&amp;#34;, { external: true, securityGroups: cluster.securityGroups }); const atg = alb.createTargetGroup( &amp;#34;app-tg&amp;#34;, { port: 80, deregistrationDelay: 0 }); const web = atg.createListener(&amp;#34;web&amp;#34;, { port: 80 }); Now declare the ECS service that will use &amp;ldquo;Fargate,&amp;rdquo; meaning you don&amp;rsquo;t need to manage the servers behind your ECS cluster.</description>
+    </item>
+    <item>
+      <title>Use an Existing Kubernetes Cluster</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/10_use_an_existing_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/10_use_an_existing_cluster.html</guid>
+      <description>Configure the use of a StackReference to the Kubernetes cluster stack to extract and use the kubeconfig. This can be found in the previous lab.&#xA;Let&amp;rsquo;s start by adding these imports to your index.ts file:&#xA;import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; Create a StackReference to the Kubernetes cluster stack using the config clusterStackRef stack setting.&#xA;const pulumiConfig = new pulumi.Config(); // Existing Pulumi stack reference in the format: // &amp;lt;organization&amp;gt;/&amp;lt;project&amp;gt;/&amp;lt;stack&amp;gt; e.</description>
+    </item>
+    <item>
+      <title>Use an Existing Kubernetes Cluster</title>
+      <link>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/10_use_an_existing_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/10_use_an_existing_cluster.html</guid>
+      <description>Configure the use of a StackReference to the Kubernetes cluster stack to extract and use the kubeconfig. This can be found in the previous lab.&#xA;Let&amp;rsquo;s start by adding these imports to your index.ts file:&#xA;import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; Create a StackReference to the Kubernetes cluster stack using the config clusterStackRef stack setting.&#xA;const pulumiConfig = new pulumi.Config(); // Existing Pulumi stack reference in the format: // &amp;lt;organization&amp;gt;/&amp;lt;project&amp;gt;/&amp;lt;stack&amp;gt; e.</description>
+    </item>
+    <item>
+      <title>Create a workspace</title>
+      <link>//localhost:1313/en/10_prerequisites/workspace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/workspace.html</guid>
+      <description>The Cloud9 workspace should be built by an IAM user with Administrator privileges, not the root account user. Please ensure you are logged in as an IAM user, not the root account user.&#xA;This workshop was designed to run in the Oregon (us-west-2) region. Please don&amp;rsquo;t run in any other region. Future versions of this workshop will expand region availability, and this message will be removed.&#xA;Ad blockers, javascript disablers, and tracking blockers should be disabled for the cloud9 domain, or connecting to the workspace might be impacted.</description>
+    </item>
+    <item>
+      <title>Create an IAM role for your workspace</title>
+      <link>//localhost:1313/en/10_prerequisites/iamrole.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/iamrole.html</guid>
+      <description>Starting from here, when you see command to be entered such as below, you will enter these commands into Cloud9 IDE. You can use the Copy to clipboard feature (right hand upper corner) to simply copy and paste into Cloud9. In order to paste, you can use Ctrl + V for Windows or Command + V for Mac.&#xA;Follow this deep link to create an IAM role with Administrator access.</description>
+    </item>
+    <item>
+      <title>Attach the IAM role to your Workspace</title>
+      <link>//localhost:1313/en/10_prerequisites/workspaceiam.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/workspaceiam.html</guid>
+      <description> Follow this deep link to find your Cloud9 EC2 instance Select the instance, then choose Actions / Instance Settings / Attach/Replace IAM Role Choose Pulumi-Workshop-Admin from the IAM Role drop down, and select Apply </description>
+    </item>
+    <item>
+      <title>Update IAM settings for your Workspace</title>
+      <link>//localhost:1313/en/10_prerequisites/10_cloud.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/10_cloud.html</guid>
+      <description>Cloud9 normally manages IAM credentials dynamically. This isn&amp;rsquo;t currently compatible with the some AWS services authentication, so we will disable it and rely on the IAM role instead.&#xA;Return to your workspace and click the gear icon (in top right corner), or click to open a new tab and choose &amp;ldquo;Open Preferences&amp;rdquo; Select AWS SETTINGS Turn off AWS managed temporary credentials Close the Preferences tab Let&amp;rsquo;s run the command below, the following actions will take place as we do that:</description>
+    </item>
+    <item>
+      <title>1.3 Create an EKS Cluster</title>
+      <link>//localhost:1313/en/50_eks_platform/20_provision_cluster/20_create_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/20_provision_cluster/20_create_cluster.html</guid>
+      <description>Now that you have a project configured to use AWS, you&amp;rsquo;ll need an AWS VPC configured for EKS. Let&amp;rsquo;s create that using Pulumi Crosswalk for AWS.&#xA;Step 1 — Define the VPC Define your VPC. We&amp;rsquo;re going to create a VPC with public and private subnets like so:&#xA;const name = &amp;#39;lbriggs-workshop&amp;#39; // replace this with your name! const clusName = `${name}-cluster` const clusterTag = `kubernetes.io/cluster/${clusName}` // this defines a valid VPC that can be used for EKS const vpc = new awsx.</description>
+    </item>
+    <item>
+      <title>1.3 Provisioning a Lambda Function</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/20_create_function.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/20_getting_started_with_pulumi/20_create_function.html</guid>
+      <description>Now that you have a project configured to use AWS, you&amp;rsquo;ll create some basic infrastructure in it. Let&amp;rsquo;s create a simple lambda function.&#xA;Step 1 — Create a Lambda Execution Role Add a role to your Pulumi project so that your Lambda function can execute.&#xA;const role = new aws.iam.Role(&amp;#39;my-function-role&amp;#39;, { assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({ Service: &amp;#34;lambda.amazonaws.com&amp;#34; }) }) The index.ts file should now have the following contents:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as aws from &amp;#34;@pulumi/aws&amp;#34;; const role = new aws.</description>
+    </item>
+    <item>
+      <title>1.3 Provisioning Infrastructure</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/20_provisioning_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/20_provisioning_infrastructure.html</guid>
+      <description>Now that we have a project configured to use AWS, we can create some basic infrastructure. We will start with a simple S3 bucket.&#xA;Step 1 — Declare a New Bucket Add the following to your index.ts file:&#xA;const bucket = new aws.s3.Bucket(&amp;#34;my-website-bucket&amp;#34;, { website: { indexDocument: &amp;#34;index.html&amp;#34;, }, }); After this change, your index.ts should look like this:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as aws from &amp;#34;@pulumi/aws&amp;#34;; const bucket = new aws.</description>
+    </item>
+    <item>
+      <title>1.3 Provisioning Infrastructure</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/20_provisioning_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/20_provisioning_infrastructure.html</guid>
+      <description>Now that we have a project configured to use AWS, we can create some basic infrastructure. We will start with a simple S3 bucket.&#xA;Step 1 — Declare a New Bucket Add the following to your __main__.py file:&#xA;bucket = aws.s3.Bucket( &amp;#34;my-website-bucket&amp;#34;, aws.s3.BucketArgs( website=aws.s3.BucketWebsiteArgs( index_document=&amp;#34;index.html&amp;#34; ) ) ) &amp;#x2705; After this change, your __main__.py should look like this:&#xA;&amp;#34;&amp;#34;&amp;#34;A Python Pulumi program&amp;#34;&amp;#34;&amp;#34; import pulumi import pulumi_aws as aws aws.s3.Bucket( &amp;#34;my-website-bucket&amp;#34;, aws.</description>
+    </item>
+    <item>
+      <title>1.3 Provisioning Infrastructure</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/20_provisioning_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/20_provisioning_infrastructure.html</guid>
+      <description>Now that you have a project configured to use AWS, you&amp;rsquo;ll create some basic infrastructure in it. We will start with a simple S3 bucket.&#xA;Step 1 — Declare a New Bucket Update the imports in the App.java file as follows:&#xA;// ... import com.pulumi.Pulumi; import com.pulumi.aws.s3.Bucket; import com.pulumi.aws.s3.BucketArgs; import com.pulumi.aws.s3.inputs.BucketWebsiteArgs; Add the following code to your main method in the App class in the App.java file:&#xA;// ... var bucket = new Bucket(&amp;#34;my-website-bucket&amp;#34;, BucketArgs.</description>
+    </item>
+    <item>
+      <title>2.3 Add more EC2 Instances</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_webservers/20_provision_more_ec2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_webservers/20_provision_more_ec2.html</guid>
+      <description>Step 1 – Add more EC2 instances Now you will create multiple EC2 instances, each running the same Python webserver, across all AWS availability zones in your region. Replace the part of your code that creates the webserver and exports the resulting IP address and hostname with the following:&#xA;... ips = [] hostnames = [] for az in aws.get_availability_zones().names: server = aws.ec2.Instance(f&amp;#39;web-server-{az}&amp;#39;, instance_type=&amp;#34;t2.micro&amp;#34;, vpc_security_group_ids=[group.id], ami=ami.id, availability_zone=az, user_data=&amp;#34;&amp;#34;&amp;#34;#!/bin/bash echo \&amp;#34;Hello, World -- from {}!</description>
+    </item>
+    <item>
+      <title>2.3 Add more EC2 Instances</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/30_deploying_webservers/20_provision_more_ec2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/30_deploying_webservers/20_provision_more_ec2.html</guid>
+      <description>Step 1 – Add more EC2 instances Now you will create multiple EC2 instances, each running the same Python webserver, across all AWS availability zones in your region. Replace the part of your code that creates the webserver and exports the resulting IP address and hostname with the following:&#xA;... ips = [] hostnames = [] for az in aws.get_availability_zones().names: server = aws.ec2.Instance(f&amp;#39;web-server-{az}&amp;#39;, instance_type=&amp;#34;t2.micro&amp;#34;, vpc_security_group_ids=[group.id], ami=ami.id, availability_zone=az, user_data=&amp;#34;&amp;#34;&amp;#34;#!/bin/bash echo \&amp;#34;Hello, World -- from {}!</description>
+    </item>
+    <item>
+      <title>2.3 Add more EC2 Instances</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/20_provision_more_ec2.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/20_provision_more_ec2.html</guid>
+      <description>Step 1 – Add more EC2 instances Now you will create multiple EC2 instances, each running the same webserver, across all AWS availability zones in your region. Replace the part of your code that creates the webserver and exports the resulting IP address and hostname with the following:&#xA;var instances = AwsFunctions.getAvailabilityZones().thenApply(response -&amp;gt; response.zoneIds().stream().map(availabilityZone -&amp;gt; new Instance(&amp;#34;web-server-%s&amp;#34;.formatted(availabilityZone), InstanceArgs.builder() .instanceType(&amp;#34;t2.micro&amp;#34;) .vpcSecurityGroupIds(Output.all(securityGroup.getId())) .ami(Output.of(latestAmi)) .userData(&amp;#34;&amp;#34;&amp;#34; #!/bin/bash echo &amp;#34;Hello, World -- from %s!&amp;#34; &amp;gt; index.</description>
+    </item>
+    <item>
+      <title>2.3 API Gateway</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/30_simple_api_gateway/20_api_gateway_get.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/30_simple_api_gateway/20_api_gateway_get.html</guid>
+      <description>Now that you have a project configured to use AWS, you&amp;rsquo;ll create some basic infrastructure in it. Let&amp;rsquo;s use AWS crosswalk to define a lambda function.&#xA;Step 1 — Declare a New Lambda Function Add the following to your index.ts file:&#xA;const api = new awsx.apigateway.API(&amp;#34;hello-world&amp;#34;, { routes: [{ path: &amp;#34;/&amp;#34;, method: &amp;#34;GET&amp;#34;, eventHandler: async (event) =&amp;gt; { return { statusCode: 200, body: &amp;#34;Hello, world!&amp;#34;, }; }, }], }) The index.</description>
+    </item>
+    <item>
+      <title>2.3 Creating an Amazon EKS Cluster</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/20_creating_an_eks_cluster.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/20_creating_an_eks_cluster.html</guid>
+      <description>Add the Pulumi EKS import to your index.ts file:&#xA;import * as eks from &amp;#34;@pulumi/eks&amp;#34;; Then add the following to your index.ts to create the EKS cluster referencing the previously created vpc and to deploy a fargate profile.&#xA;See for more details and examples:&#xA;API Docs Examples const cluster = new eks.Cluster(&amp;#34;eks&amp;#34;, { vpcId: vpc.id, privateSubnetIds: vpc.privateSubnetIds, publicSubnetIds: vpc.publicSubnetIds, }); We&amp;rsquo;ll need to the cluster&amp;rsquo;s kubeconfig to interact with the cluster.</description>
+    </item>
+    <item>
+      <title>3.2 Build Platform Binary</title>
+      <link>//localhost:1313/en/50_eks_platform/40_deploy_app/20_build_binary.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/40_deploy_app/20_build_binary.html</guid>
+      <description>We&amp;rsquo;ve created an application - how do we get it into our Kubernetes cluster?&#xA;Developers often like to use command line tools to deploy applications. We&amp;rsquo;ll build a command line tool locally.&#xA;Step 1 — Clone the Repo Our first step is to clone the Git repository containing the app locally.&#xA;git clone https://github.com/jaxxstorm/ploy.git Change into this directory now ready to build our application:&#xA;cd ploy Step 2 — Examine the Repo This repo contains Pulumi code which uses the Automation API.</description>
+    </item>
+    <item>
+      <title>3.3 Creating a Namespace</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/20_create_a_namespace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/20_create_a_namespace.html</guid>
+      <description>Next, declare a namespace object. This will scope your objects to a name of your choosing, so that in this workshop you won&amp;rsquo;t accidentally interfere with other participants.&#xA;Append this to your index.ts file, replacing eks-infrastructure with your own name and referencing the Provider created in the previous step:&#xA;const ns = new k8s.core.v1.Namespace(&amp;#34;app-ns&amp;#34;, { metadata: { name: &amp;#34;eks-demo-apps&amp;#34; }, }, { provider }); The index.ts file should now have the following contents:</description>
+    </item>
+    <item>
+      <title>3.3 Deploy a Docker Image</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/30_deploy_service.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/40_ecs/30_deploy_service.html</guid>
+      <description>Step 1 — Create ECS FargateService In order to create a Fargate service, we need to add an IAM Role and a Task Definition and Service. the ECS Cluster will run the &amp;quot;nginx&amp;quot; image from the Docker Hub.&#xA;Let&amp;rsquo;s define our IAM Role and attach a policy. You should define this at the end of your App.java:&#xA;var role = new Role(&amp;#34;task-exec-role&amp;#34;, RoleArgs.builder() .assumeRolePolicy(&amp;#34;&amp;#34;&amp;#34; { &amp;#34;Version&amp;#34;: &amp;#34;2008-10-17&amp;#34;, &amp;#34;Statement&amp;#34;: [ { &amp;#34;Sid&amp;#34;: &amp;#34;&amp;#34;, &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;, &amp;#34;Principal&amp;#34;: {&amp;#34;Service&amp;#34;: &amp;#34;ecs-tasks.</description>
+    </item>
+    <item>
+      <title>3.3 Thumbnailer Container</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/20_create_thumbnailer.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/20_create_thumbnailer.html</guid>
+      <description>Now that you have a project configured to use AWS, we can create the thumbnailer. We&amp;rsquo;ll use the AWS Lambda Containers for this.&#xA;Step 1 — Create a Docker Image Create a new directory within your Pulumi project called app&#xA;mkdir app Next, create a Dockerfile within the app directory and use it to build ffmpeg into the image:&#xA;FROM amazon/aws-lambda-nodejs:12 ARG FUNCTION_DIR=&amp;#34;/var/task&amp;#34; # Install tar and xz RUN yum install tar xz unzip -y # Install awscli RUN curl &amp;#34;https://awscli.</description>
+    </item>
+    <item>
+      <title>3.4 Define Lambda Container Function</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/30_aws_infra.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/30_aws_infra.html</guid>
+      <description>In the previous step, we built and pushed a Lambda container to an ECR repository. Now let&amp;rsquo;s define a lambda function whichs runs this container&#xA;Step 1 — Declare an S3 Bucket and IAM Role Add the following to your index.ts file:&#xA;// A bucket to store videos and thumbnails. const bucket = new aws.s3.Bucket(&amp;#34;thumbnailer&amp;#34;,{ forceDestroy: true, }); const role = new aws.iam.Role(&amp;#34;thumbnailerRole&amp;#34;, { assumeRolePolicy: aws.iam.assumeRolePolicyForPrincipal({ Service: &amp;#34;lambda.amazonaws.com&amp;#34; }), }); const lambdaFullAccess = new aws.</description>
+    </item>
+    <item>
+      <title>3.4 Deploy a Fargate Service</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/40_ecs/30_deploy_service.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/40_ecs/30_deploy_service.html</guid>
+      <description>In order to create a Fargate service, we need to add an IAM Role and a Task Definition and Service. the ECS Cluster will run the nginx image from Docker Hub.&#xA;Step 1 — Create an ECS Task Execution Role First, we need to add a new import at the top of our file. We&amp;rsquo;ll use this when defining our ECS task&amp;rsquo;s execution role.&#xA;Add the following to the top of your __main__.</description>
+    </item>
+    <item>
+      <title>4.3 Use our Component</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/20_use_component.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/20_use_component.html</guid>
+      <description>Next, we&amp;rsquo;ll use our new ServiceDeployment component.&#xA;Start by deleting all of the code in index.ts after the namespace so that you left with just:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; import * as k8s from &amp;#34;@pulumi/kubernetes&amp;#34;; import { ServiceDeployment } from &amp;#34;./servicedeployment&amp;#34;; const config = new pulumi.Config(); const clusterStackRef = new pulumi.StackReference(config.require(&amp;#34;clusterStackRef&amp;#34;)); const kubeconfig = clusterStackRef.getOutput(&amp;#34;kubeconfig&amp;#34;).apply(JSON.stringify); const provider = new k8s.Provider(&amp;#34;k8sProvider&amp;#34;, { kubeconfig }); const ns = new k8s.core.v1.Namespace(&amp;#34;app-ns&amp;#34;, { metadata: { name: &amp;#34;eks-demo-apps&amp;#34;}, }, { provider }); Then add a new import at the top of the file:</description>
+    </item>
+    <item>
+      <title>Creating a Namespace</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/20_create_a_namespace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/20_create_a_namespace.html</guid>
+      <description>Next, declare a namespace object. This will allow scoping the deployment of the ArcoCD components to that namespace.&#xA;To do this, we need to create a stack reference to the project where we created the eks infrastructure so we can get the Kubeconfig and be able to build the correct kubernetes provider. We are going to make the stack reference name configurable:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; const pulumiConfig = new pulumi.</description>
+    </item>
+    <item>
+      <title>Creating a Namespace</title>
+      <link>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/20_create_a_namespace.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/20_create_a_namespace.html</guid>
+      <description>Next, declare a namespace object. This will allow scoping the deployment of the Sock Shop&amp;rsquo;s components to that namespace.&#xA;To do this, we need to create a stack reference to the project where we created the eks infrastructure so we can get the Kubeconfig and be able to build the correct kubernetes provider. We are going to make the stack reference name configurable:&#xA;import * as pulumi from &amp;#34;@pulumi/pulumi&amp;#34;; const pulumiConfig = new pulumi.</description>
+    </item>
+    <item>
+      <title>Creating IAM Policies</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/20_creating_iam_policies.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/20_creating_iam_policies.html</guid>
+      <description>Before creating your website, the Lambda will need a certain IAM role and permission. This permits the Lambda&amp;rsquo;s function to assume the right identity at runtime, log into CloudWatch to aid with debugging, and to use the DynamoDB table defined in the previous step:&#xA;const handlerRole = new aws.iam.Role(&amp;#34;handler-role&amp;#34;, { assumeRolePolicy: { Version: &amp;#34;2012-10-17&amp;#34;, Statement: [{ Action: &amp;#34;sts:AssumeRole&amp;#34;, Principal: { Service: &amp;#34;lambda.amazonaws.com&amp;#34; }, Effect: &amp;#34;Allow&amp;#34;, Sid: &amp;#34;&amp;#34;, }], }, }); const handlerPolicy = new aws.</description>
+    </item>
+    <item>
+      <title>Creating Multiple VMs</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/20_create_multiple_vms.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/20_create_multiple_vms.html</guid>
+      <description>Now you will create multiple VM instances, each running the same Python webserver, across all AWS availability zones in your region. Replace the part of your code that creates the webserver and exports the resulting IP address and hostname with the following:&#xA;const ips: any[] = []; const hostnames: any[] = []; const azs = await aws.getAvailabilityZones() for (const az of azs.names) { const server = new aws.ec2.Instance(`web-server-${az}`, { instanceType: &amp;#34;t3.</description>
+    </item>
+    <item>
+      <title>Resize workspace&#39;s EBS volume</title>
+      <link>//localhost:1313/en/10_prerequisites/volume_resize.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/volume_resize.html</guid>
+      <description>The Cloud9 workspace volume should be resized by an IAM user with Administrator privileges, not the root account user. Please ensure you are logged in as an IAM user, not the root account user.&#xA;This workshop was designed to run in the Oregon (us-west-2) region. Please don&amp;rsquo;t run in any other region. Future versions of this workshop will expand region availability, and this message will be removed.&#xA;Set up resize script: Create a file called resize.</description>
+    </item>
+    <item>
+      <title>1.4 Updating Infrastructure</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/30_updating_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/20_getting_started_with_pulumi/30_updating_infrastructure.html</guid>
+      <description>We just saw how to create new infrastructure. Next, let&amp;rsquo;s make a few updates.&#xA;This exercise demonstrates how declarative infrastructure as code tools can be used not just for initial provisioning, but also subsequent changes to existing resources.&#xA;Step 1 — Create Website Files Create a directory www/ and add a new index.html file with the following contents:&#xA;&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;Hello, Pulumi!&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;p&amp;gt;Hello, S3!&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;Made with ❤️ with &amp;lt;a href=&amp;#34;https://pulumi.</description>
+    </item>
+    <item>
+      <title>1.4 Updating Infrastructure</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/30_updating_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/20_getting_started_with_pulumi/30_updating_infrastructure.html</guid>
+      <description>We just saw how to create new infrastructure. Next, let&amp;rsquo;s make a few updates.&#xA;This exercise demonstrates how declarative infrastructure as code tools can be used not just for initial provisioning, but also subsequent changes to existing resources.&#xA;Step 1 — Create Website Files Create a directory www/ and add a new index.html file with the following contents:&#xA;&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;Hello, Pulumi!&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;p&amp;gt;Hello, S3!&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;Made with ❤️ with &amp;lt;a href=&amp;#34;https://pulumi.</description>
+    </item>
+    <item>
+      <title>1.4 Updating Infrastructure</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/30_updating_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/20_getting_started_with_pulumi/30_updating_infrastructure.html</guid>
+      <description>We just saw how to create new infrastructure from scratch. Next, let&amp;rsquo;s make a few updates:&#xA;Add an object to your bucket. Serve content from your bucket as a website. Programmatically create infrastructure. This demonstrates how declarative infrastrucutre as code tools can be used not just for initial provisioning, but also subsequent changes to existing resources.&#xA;Step 1 — Add an Object to Your Bucket Create a directory src/main/resources/www and add a new index.</description>
+    </item>
+    <item>
+      <title>2.4 Add a LoadBalancer</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_webservers/30_add_loadbalancer.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_webservers/30_add_loadbalancer.html</guid>
+      <description>Needing to loop over the webservers isn&amp;rsquo;t very realistic. You will now create a load balancer over them to distribute load evenly.&#xA;Step 1 — Update our Security Group We need to add an egress rule to our security group. Whenever you add a listener to your load balancer or update the health check port for a target group used by the load balancer to route requests, you must verify that the security groups associated with the load balancer allow traffic on the new port in both directions.</description>
+    </item>
+    <item>
+      <title>2.4 Add a LoadBalancer</title>
+      <link>//localhost:1313/en/25_intro_modern_iac_python/30_deploying_webservers/30_add_loadbalancer.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/25_intro_modern_iac_python/30_deploying_webservers/30_add_loadbalancer.html</guid>
+      <description>Needing to loop over the webservers isn&amp;rsquo;t very realistic. You will now create a load balancer over them to distribute load evenly.&#xA;Step 1 — Update our Security Group We need to add an egress rule to our security group. Whenever you add a listener to your load balancer or update the health check port for a target group used by the load balancer to route requests, you must verify that the security groups associated with the load balancer allow traffic on the new port in both directions.</description>
+    </item>
+    <item>
+      <title>2.4 Add a LoadBalancer</title>
+      <link>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/30_add_loadbalancer.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/30_intro_modern_iac_java/30_deploying_webservers/30_add_loadbalancer.html</guid>
+      <description>Needing to loop over the webservers isn&amp;rsquo;t very realistic. You will now create a load balancer over them to distribute load evenly.&#xA;Step 1 — Update our Security Group We need to add an egress rule to our security group. Whenever you add a listener to your load balancer or update the health check port for a target group used by the load balancer to route requests, you must verify that the security groups associated with the load balancer allow traffic on the new port in both directions.</description>
+    </item>
+    <item>
+      <title>2.4 Processing Input Data</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/30_simple_api_gateway/30_processing_data.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/30_simple_api_gateway/30_processing_data.html</guid>
+      <description>We just saw how Pulumi Crosswalk allows you to quickly define serverless API endpoints and created a simple get request.&#xA;Now, let&amp;rsquo;s take things a little further.&#xA;Step 1 — Add a new API Gateway Route Create a new route in your API Gateway that accepts post requests. We&amp;rsquo;ll add this to our already created API Gateway in the routes: [] block. The route should like this this:&#xA;{ path: &amp;#34;encode&amp;#34;, method: &amp;#34;POST&amp;#34;, eventHandler: async (event) =&amp;gt; { console.</description>
+    </item>
+    <item>
+      <title>2.4 Testing Cluster Access</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/30_testing_cluster_access.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/30_deploying_eks_cluster/30_testing_cluster_access.html</guid>
+      <description>Extract the kubeconfig from the stack output and point the KUBECONFIG environment variable at your cluster configuration file:&#xA;pulumi stack output kubeconfig &amp;gt; kubeconfig.json export KUBECONFIG=$PWD/kubeconfig.json To test out connectivity, run kubectl cluster-info. You should see information similar to this:&#xA;Kubernetes master is running at https://E7CD24CD6FADEBA48CA1DE87B4E6A260.gr7.us-west-2.eks.amazonaws.com CoreDNS is running at https://E7CD24CD6FADEBA48CA1DE87B4E6A260.gr7.us-west-2.eks.amazonaws.com/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy Check the nodes and pods:&#xA;kubectl get nodes -o wide --show-labels kubectl get pods -A -o wide </description>
+    </item>
+    <item>
+      <title>3.3 Deploy with Ploy</title>
+      <link>//localhost:1313/en/50_eks_platform/40_deploy_app/30_deploy_with_ploy.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/40_deploy_app/30_deploy_with_ploy.html</guid>
+      <description>Step 1 — Run Ploy We can now use ploy to deploy our application. First let&amp;rsquo;s make sure it&amp;rsquo;s in our $PATH:&#xA;sudo mv ploy /usr/local/bin/ploy Then switch back to our platform-app directory:&#xA;cd ~/environment/platform-app Now, run ploy up from within this directory and specify an organization to use - this should match the name you signed up to the Pulumi SaaS with:&#xA;ploy up -o jaxxstorm --verbose You should see some output from the command line application:</description>
+    </item>
+    <item>
+      <title>3.4 Declare an Application Deployment Object</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/30_declare_application_deployment.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/30_declare_application_deployment.html</guid>
+      <description>You&amp;rsquo;ll now declare a deployment object, which deploys a specific set of containers to the cluster and scales them. In this case, you&amp;rsquo;ll deploy the pre-built gcr.io/google-samples/kubernetes-bootcamp:v1 container image with only a single replica.&#xA;Append this to your index.ts file:&#xA;const appLabels = { app: &amp;#34;eks-demo-apps&amp;#34; }; const deployment = new k8s.apps.v1.Deployment(&amp;#34;eks-demo-apps-dep&amp;#34;, { metadata: { namespace: ns.metadata.name }, spec: { selector: { matchLabels: appLabels }, replicas: 1, template: { metadata: { labels: appLabels }, spec: { containers: [{ name: &amp;#34;eks-demo-apps&amp;#34;, image: &amp;#34;gcr.</description>
+    </item>
+    <item>
+      <title>Build and Publish A Custom Container</title>
+      <link>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/30_build_and_publish_custom_container.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/30_build_and_publish_custom_container.html</guid>
+      <description>Add a few new files. First, create a site directory structure:&#xA;mkdir -p app/site Then create a index.html file in app/site:&#xA;&amp;lt;html&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;#34;UTF-8&amp;#34;&amp;gt; &amp;lt;title&amp;gt;Hello, Pulumi!&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;p&amp;gt;Hello, containers!&amp;lt;/p&amp;gt; &amp;lt;p&amp;gt;Made with ❤️ with &amp;lt;a href=&amp;#34;https://pulumi.com&amp;#34;&amp;gt;Pulumi&amp;lt;/a&amp;gt;&amp;lt;/p&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt; And next, app/Dockerfile:&#xA;FROM nginx COPY site /usr/share/nginx/html Now, you will change the image from &amp;quot;nginx&amp;quot; to a custom build of a local Dockerfile published to a private ECR registry. Add a build step right before the Fargate service definition:</description>
+    </item>
+    <item>
+      <title>Creating an API Gateway</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/30_creating_lambda_based_apigateway.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/30_creating_lambda_based_apigateway.html</guid>
+      <description>Now create an API Gateway powered by Lambda for its sole REST API handler for GET requests at the / route.&#xA;The first step is to create the code for the Lambda itself — this is the code that will run in response to an API call at runtime. Place this code into a new handler/index.js file.&#xA;Create a new handler directory and create a new file index.js Paste the below code in the the javascript file:</description>
+    </item>
+    <item>
+      <title>Declare a Sock Shop Custom Resource</title>
+      <link>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/30_declare_sock_shop_resource.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/30_declare_sock_shop_resource.html</guid>
+      <description>Let&amp;rsquo;s look up the namespace in which ArgoCD has been deployed by using the StackReference registered before:&#xA;const argoCDNamespace = argoStackRef.getOutput(&amp;#34;argoNamespace&amp;#34;); Now, let&amp;rsquo;s register an Argo Application in the Kubernetes API using a CustomResource:&#xA;const sockshop = new k8s.apiextensions.CustomResource( &amp;#34;sock-shop&amp;#34;, { apiVersion: &amp;#34;argoproj.io/v1alpha1&amp;#34;, kind: &amp;#34;Application&amp;#34;, metadata: { namespace: argoCDNamespace, // the ns where argocd is deployed name: name, // name of app in ArgoCd }, spec: { destination: { namespace: ns.</description>
+    </item>
+    <item>
+      <title>Declare an ArgoCD Helm Chart Object</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/30_declare_argocd_helm_chart.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/30_declare_argocd_helm_chart.html</guid>
+      <description>You&amp;rsquo;ll now declare a helm chart, which deploys all of the components that is required to deploy ArgoCD.&#xA;Next, let&amp;rsquo;s declare the helm chart:&#xA;const argocd = new k8s.helm.v2.Chart(&amp;#34;argocd&amp;#34;, { namespace: ns.metadata.name, chart: &amp;#34;argo-cd&amp;#34;, fetchOpts: { repo: &amp;#34;https://argoproj.github.io/argo-helm&amp;#34; }, values: { installCRDs: false, server: { service: { type: &amp;#39;LoadBalancer&amp;#39;, }, } }, // The helm chart is using a deprecated apiVersion, // So let&amp;#39;s transform it transformations: [ (obj: any) =&amp;gt; { if (obj.</description>
+    </item>
+    <item>
+      <title>Loadbalancing the VMs</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/30_loadbalancing_the_vms.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/30_loadbalancing_the_vms.html</guid>
+      <description>Needing to loop over the webservers isn&amp;rsquo;t very realistic. You will now create a load balancer over them to distribute load evenly.&#xA;Now install the AWSX package, a collection of helpers that makes things like configuring load balancing easier:&#xA;npm install @pulumi/awsx And import this package at the top of your program:&#xA;import * as awsx from &amp;#34;@pulumi/awsx&amp;#34;; Delete the port 80 ingress rule from your security group, leaving behind only the ICMP rule:</description>
+    </item>
+    <item>
+      <title>2.3 Deploy Ingress Controller</title>
+      <link>//localhost:1313/en/50_eks_platform/30_deploy_ingress_controller/20_deploy_ingress_ctrl.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/50_eks_platform/30_deploy_ingress_controller/20_deploy_ingress_ctrl.html</guid>
+      <description>We have an IAM role defined, we can deploy the AWS Load Balancer controller using the Helm Chart&#xA;Step 1 — Create a Provider Before we create resources in our Kubernetes cluster, we need to provide a valid Kubernetes endpoint for Pulumi to talk to.&#xA;Usually, we would use KUBECONFIG file for interacting with Kubernetes, but we can also explicitly set a provider on each Kubernetes resource.&#xA;Let&amp;rsquo;s do this now.</description>
+    </item>
+    <item>
+      <title>3.5 Declare an Application Service Object</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/40_declare_application_service_object.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/40_declare_application_service_object.html</guid>
+      <description>Next, you&amp;rsquo;ll declare a service object, which enables networking and load balancing across your deployment replicas.&#xA;Append this to your index.ts file:&#xA;const service = new k8s.core.v1.Service(&amp;#34;app-svc&amp;#34;, { metadata: { namespace: ns.metadata.name }, spec: { selector: appLabels, ports: [{ port: 80, targetPort: 8080 }], type: &amp;#34;LoadBalancer&amp;#34;, }, }, { provider }); Afterwards, add these lines to export the resulting, dynamically assigned endpoint for the resulting load balancer:&#xA;const address = service.</description>
+    </item>
+    <item>
+      <title>Deploying our Application Stack</title>
+      <link>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/40_deploy_our_application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/150_deploying_argocd_to_eks/40_deploy_our_application.html</guid>
+      <description>First, add the StackReference to the cluster stack, which is used to get the kubeconfig from its stack output. This is a reference to the project created in the previous lab.&#xA;pulumi config set clusterStackRef workshops/eks-infrastructure/dev Now we can deploy Everything:&#xA;pulumi up This will show you a preview and, after selecting yes, the application will be deployed:&#xA;Updating (dev): Type Name Status Info + pulumi:pulumi:Stack argocd-dev created + ├─ kubernetes:helm.</description>
+    </item>
+    <item>
+      <title>Deploying our Application Stack</title>
+      <link>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/40_deploy_our_application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/160_gitops_for_socks_shop/40_deploy_our_application.html</guid>
+      <description>First, add the StackReferences to the cluster and argoCD stacks, which will be used to get the kubeconfig and argocd namespace from their stack outputs.&#xA;pulumi config set clusterStackRef workshops/eks-infrastructure/dev pulumi config set argoCDStackRef workshops/argocd/dev Now we can deploy Everything:&#xA;pulumi up This will show you a preview and, after selecting yes, the application will be deployed:&#xA;Updating (dev): Type Name Status + pulumi:pulumi:Stack socks-shop-dev created + ├─ pulumi:providers:kubernetes k8sProvider created + └─ kubernetes:core:Namespace sock-shop-ns created + └─ kubernetes:argoproj.</description>
+    </item>
+    <item>
+      <title>Deploying Our Infrastructure</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/40_deploying_our_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/40_deploying_our_infrastructure.html</guid>
+      <description>To provision our infrastructure, run:&#xA;pulumi up After confirming, you will see output like the following:&#xA;Updating (dev): Type Name Status + pulumi:pulumi:Stack serverless-demo-dev created + ├─ aws:apigateway:x:API site created + │ ├─ aws:apigateway:RestApi site created + │ ├─ aws:apigateway:Deployment site created + │ ├─ aws:lambda:Permission site-fa520765 created + │ └─ aws:apigateway:Stage site created + ├─ aws:dynamodb:Table hits created + ├─ aws:iam:Role handler-role created + ├─ aws:iam:RolePolicy handler-policy created + └─ aws:lambda:Function get-handler created Outputs: url: &amp;#34;https://02fpixl9jf.</description>
+    </item>
+    <item>
+      <title>Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/40_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/100_provision_ec2_virtual_machines/40_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+    <item>
+      <title>Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/40_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/110_deploying_containers_to_ecs/40_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+    <item>
+      <title>Install Pulumi &amp; Language Dependencies</title>
+      <link>//localhost:1313/en/10_prerequisites/50_workshop_setup.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/10_prerequisites/50_workshop_setup.html</guid>
+      <description>These hands-on labs will walk you through various cloud infrastructure tasks. The prerequisites listed below are required to successfully complete them.&#xA;Pulumi In order to run this workshop you will need to work with the Pulumi CLI.&#xA;You will use Pulumi to deploy infrastructure changes using code.&#xA;To install Pulumi run the following command:&#xA;curl -fsSL https://get.pulumi.com | sh source ~/.bashrc Now restart your Cloud 9 terminal&#xA;After installing the CLI, verify that it is working:</description>
+    </item>
+    <item>
+      <title>3.5 Make a thumbnail website</title>
+      <link>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/40_s3_website.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/40_lambda_microservices_ts/40_container_thumbnailer/40_s3_website.html</guid>
+      <description>The final step is to make a website to display our images. We can use S3&amp;rsquo;s static content host for this.&#xA;Step 1 — Add a bucket policy Add the following to your index.ts file:&#xA;const bucketPolicy = new aws.s3.BucketPolicy(&amp;#34;thumbnailer&amp;#34;, { bucket: bucket.id, policy: bucket.arn.apply(arn =&amp;gt; JSON.stringify({ &amp;#34;Version&amp;#34;: &amp;#34;2012-10-17&amp;#34;, &amp;#34;Statement&amp;#34;: [{ &amp;#34;Effect&amp;#34;: &amp;#34;Allow&amp;#34;, &amp;#34;Principal&amp;#34;: &amp;#34;*&amp;#34;, &amp;#34;Action&amp;#34;: [ &amp;#34;s3:*&amp;#34; ], &amp;#34;Resource&amp;#34;: [ `${arn}/*`, `${arn}` ] }] })) }) The index.ts file should now have the following contents:</description>
+    </item>
+    <item>
+      <title>3.6 Deploying our Application Stack</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/50_deploy_our_application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/50_deploy_our_application.html</guid>
+      <description>First, add the StackReference to the cluster stack, which is used to get the kubeconfig from its stack output. This is a reference to the project created in the [previous lab].&#xA;pulumi config set clusterStackRef workshops/eks-infrastructure/dev Replace &amp;ldquo;workshops&amp;rdquo; from above command with your Pulumi username.&#xA;Deploy Everything:&#xA;pulumi up This will show you a preview and, after selecting yes, the application will be deployed:&#xA;Updating (dev): Type Name Status + pulumi:pulumi:Stack eks-demo-apps-dev created + ├─ pulumi:providers:kubernetes k8sProvider created + ├─ kubernetes:core:Namespace eks-demo-apps-ns created + ├─ kubernetes:apps:Deployment eks-demo-apps-dep created + └─ kubernetes:core:Service eks-demo-apps-svc created Outputs: url: &amp;#34;http://ae7c37b7c510511eab4540a6f2211784-521581596.</description>
+    </item>
+    <item>
+      <title>4.4 Deploying our Application Stack</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/50_deploy_our_application.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/50_deploy_our_application.html</guid>
+      <description>We are ready to deploy Everything:&#xA;pulumi up This will show you a preview and, after selecting yes, the application will be deployed:&#xA;Updating (dev2): Type Name Status + pulumi:pulumi:Stack eks-apps-dev2 created + ├─ my:kubernetes:ServiceDeployment eks-demo-app created + │ ├─ kubernetes:core:Service app-svc created + │ └─ kubernetes:apps:Deployment eks-demos-app created + ├─ pulumi:providers:kubernetes k8sProvider created + └─ kubernetes:core:Namespace app-ns created Outputs: url: &amp;#34;http://a8bf84659dc8f4dd1b266e9711de3c2c-1478981199.us-west-2.elb.amazonaws.com:3000&amp;#34; Resources: + 6 created Duration: 15s Permalink: https://app.pulumi.com/workshops/eks-apps/dev2/updates/1 It will take a few seconds for the Load Balancer to be ready, but once it is, you can curl the url to see the same application running again:</description>
+    </item>
+    <item>
+      <title>Replacing with Inline Code</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/50_inline_application_code.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/50_inline_application_code.html</guid>
+      <description>It&amp;rsquo;s possible to simplify this serverless application by moving the runtime code into the infrastructure definition. This isn&amp;rsquo;t always the right way to design your infrastructure as code, but for &amp;ldquo;fully serverless&amp;rdquo; applications like this one, where the boundary between application and infrastructure is intentionally blurred, this can be a great way to go.&#xA;First, delete the IAM handlerRole and handlerPolicy definitions altogether.&#xA;Next, replace your API Gateway site with the following code:</description>
+    </item>
+    <item>
+      <title>3.7 Update Application Version</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/60_update_application_deployment.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/60_update_application_deployment.html</guid>
+      <description>Next, you&amp;rsquo;ll make two changes to the application:&#xA;Scale out to 3 replicas, instead of just 1. Update the version of your application by changing its container image tag Note that the application says Hello Kubernetes bootcamp! | Running on: app-dep-9p399mj2-6c7cdd7d79-7w7vj | v=1. After deploying, this will change.&#xA;First update your deployment&amp;rsquo;s configuration&amp;rsquo;s replica count:&#xA;replicas=3, And then update its image to:&#xA;image=&amp;#34;jocatalin/kubernetes-bootcamp:v2&amp;#34;, The index.ts file should now have the following contents:</description>
+    </item>
+    <item>
+      <title>Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/additional-content/120_serverless_application_patterns/60_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/additional-content/120_serverless_application_patterns/60_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+    <item>
+      <title>3.8 Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/70_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/40_deploying_applications_to_eks/70_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+    <item>
+      <title>4.5 Destroying Your Infrastructure</title>
+      <link>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/70_destroying_your_infrastructure.html</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>//localhost:1313/en/20_intro_modern_iac_ts/45_componens/70_destroying_your_infrastructure.html</guid>
+      <description>Finally, destroy the resources and the stack itself to ensure no unnecessary costs occur:&#xA;pulumi destroy pulumi stack rm </description>
+    </item>
+  </channel>
+</rss>

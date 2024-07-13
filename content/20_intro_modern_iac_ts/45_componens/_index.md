@@ -15,4 +15,4 @@ This lab builds on the final state of the [deploying_applications_to_eks](../40_
 This lab assumes you have a Kubernetes cluster up and running. If you don't have a cluster yet, please
 complete [deploying_eks_cluster](./30_deploying_eks_cluster.html) lab first.
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

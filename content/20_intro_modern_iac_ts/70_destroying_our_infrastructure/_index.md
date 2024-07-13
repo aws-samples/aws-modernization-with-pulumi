@@ -14,4 +14,4 @@ pulumi destroy
 pulumi stack rm
 ```
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

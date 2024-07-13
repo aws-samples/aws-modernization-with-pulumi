@@ -10,4 +10,4 @@ weight = 120
 
 In this lab, you will create a serverless web application that uses API Gateway and Lambda, along with a dynamic DynamoDB-based hit counter.
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}
