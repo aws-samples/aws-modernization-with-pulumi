@@ -10,4 +10,4 @@ weight = 40
 
 In this lab, you will use Pulumi to deploy a Docker Image to ECS with Fargate
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

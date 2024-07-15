@@ -35,3 +35,6 @@ msbuild.wrn
 # Node Modules
 node_modules/
 .hugo_build.lock
+
+# Hugo generated directories
+public/

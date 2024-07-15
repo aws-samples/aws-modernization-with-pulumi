@@ -10,4 +10,4 @@ weight = 40
 
 In this lab, you will use Pulumi to deploy a Docker image to [Amazon ECS on AWS Fargate](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/AWS_Fargate.html)
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

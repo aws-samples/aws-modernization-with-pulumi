@@ -10,4 +10,4 @@ weight = 20
 
 In this lab, you will use Pulumi to create a static website served from AWS S3.
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

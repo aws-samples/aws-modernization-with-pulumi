@@ -10,4 +10,4 @@ weight = 20
 
 In this lab, you will use Pulumi to create an Amazon EKS cluster.
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

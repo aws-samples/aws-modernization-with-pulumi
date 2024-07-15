@@ -10,4 +10,4 @@ weight = 30
 
 In this lab, you will use Pulumi to create webservers across subnets and use an application loadbalancer to balance load between them.
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}

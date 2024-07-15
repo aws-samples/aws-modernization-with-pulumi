@@ -15,24 +15,24 @@ You will use Pulumi to deploy infrastructure changes using code.
 To install Pulumi run the following command:
 
 ```bash
-$ curl -fsSL https://get.pulumi.com | sh
+curl -fsSL https://get.pulumi.com | sh
 
 ```
 
 ```bash
-$ source ~/.bashrc
+source ~/.bashrc
 
 ```
-
 
 Now restart your Cloud 9 terminal
 
 After installing the CLI, verify that it is working:
- 
+
 ```bash
 $ pulumi version
 v2.8.0
 ```
+
 If the Pulumi command isn't recognized yet, You should close and relaunch the terminal window first.
 
 You'll also need to login to Pulumi to manage the storage of your infrastructure state.  Run `pulumi login`:
@@ -45,7 +45,7 @@ Enter your access token from https://app.pulumi.com/account/tokens
     or hit <ENTER> to log in using your browser                   :
 ```
 
-Then click on the https://app.pulumi.com/account/tokens URL.  If you have not yet signed up for a Pulumi account, login with your email, GitHub or other identity.  After logging in, you will see the screen below.
+Then click on the <https://app.pulumi.com/account/tokens> URL.  If you have not yet signed up for a Pulumi account, login with your email, GitHub or other identity.  After logging in, you will see the screen below.
 
 ![Pulumi Console - New Token](/images/pulumi-console-new-token.png)
 
@@ -71,7 +71,7 @@ Logged in to pulumi.com as nabohekul (https://app.pulumi.com/nabohekul)
 
 ## Node.js
 
-If you are not running this workshop from Cloud9 you will need to install Node.js. 
+If you are not running this workshop from Cloud9 you will need to install Node.js.
 
 You will need Node.js version 10 or later to run Pulumi programs written in [TypeScript](https://www.typescriptlang.org/).
 Install your desired LTS version from [the Node.js download page](https://nodejs.org/en/download/) or
@@ -93,7 +93,7 @@ $ npm --version
 
 ## Docker
 
-If you are not running this workshop from Cloud9 you will need to install Docker. 
+If you are not running this workshop from Cloud9 you will need to install Docker.
 
 If you will be completing the container labs, [install Docker Community Edition](https://docs.docker.com/install). After doing so, verify that the docker CLI is operational:
 
@@ -109,37 +109,36 @@ If you will be completing the Kubernetes labs, [install the kubectl CLI](https:/
 Download the latest release:
 
 ```bash
-$ curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"
 
 ```
 
 Make the kubetcl binary executable:
 
 ```bash
-$ chmod +x ./kubectl
+chmod +x ./kubectl
 
 ```
 
 Move the binary into your path:
 
 ```bash
-$ sudo mv ./kubectl /usr/local/bin/kubectl
+sudo mv ./kubectl /usr/local/bin/kubectl
 
 ```
+
 Test to ensure the version you installed is up to date:
 
 ```bash
-$ kubectl version --client
+kubectl version --client
 
 ```
 
-
 ## AWS Subscription and CLI
 
-At various points, you will use the AWS CLI to interact with infrastructure you've provisioned. Installation instructions are 
-[available here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html), or are available for Linux below. As explained further on that page, the 
+At various points, you will use the AWS CLI to interact with infrastructure you've provisioned. Installation instructions are
+[available here](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html), or are available for Linux below. As explained further on that page, the
 CLI requires Python.
-
 
 ```bash
 curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
@@ -148,22 +147,22 @@ sudo ./aws/install
 
 ```
 
-
-> If you have multiple AWS accounts, you'll need to configure a profile for the account you're using in these labs. That process is 
+> If you have multiple AWS accounts, you'll need to configure a profile for the account you're using in these labs. That process is
 >[described here](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html). All Pulumi operations will respect your profile settings.
 
 To verify that everything is working, run:
 
 ```bash
-$ aws sts get-caller-identity
+aws sts get-caller-identity
 
 ```
-```bash
 
+```json
 {
     "UserId": "ABDAII73ZGOGZ5V4QSTWY",
     "Account": "161298451113",
     "Arn": "arn:aws:iam::161298451113:user/joe@pulumi.com"
 }
 ```
-{{% children showhidden="false" %}}
+
+{{% children showhidden="false" /%}}

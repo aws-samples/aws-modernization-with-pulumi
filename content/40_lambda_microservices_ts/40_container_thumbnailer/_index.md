@@ -10,4 +10,4 @@ weight = 30
 
 In this lab, you'll use Lambda Containers to process data inside Lambda functions. We'll create a thumbnailer service using ffmpeg
 
-{{% children showhidden="false" %}}
+{{% children showhidden="false" /%}}
