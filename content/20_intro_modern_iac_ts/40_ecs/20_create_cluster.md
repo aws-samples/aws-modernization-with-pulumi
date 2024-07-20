@@ -29,25 +29,30 @@ Next, we will add an application load balancer (ALB) to the public subnet of our
 Add the following to your `index.ts`:
 
 ```typescript
-const group = new aws.ec2.SecurityGroup("web-secgrp", {
+const albSecGroup = new aws.ec2.SecurityGroup("alb-security-group", {
   vpcId: vpc.vpcId,
-  description: "Enable HTTP access",
+  description: "ALB",
   ingress: [{
+    description: "Allow HTTP from anywhere",
     protocol: "tcp",
     fromPort: 80,
     toPort: 80,
     cidrBlocks: ["0.0.0.0/0"],
   }],
   egress: [{
-    protocol: "-1",
-    fromPort: 0,
-    toPort: 0,
-    cidrBlocks: ["0.0.0.0/0"],
+    description: "Allow HTTP to VPC",
+    protocol: "tcp",
+    fromPort: 80,
+    toPort: 80,
+    cidrBlocks: [vpc.vpc.cidrBlock],
   }],
+  tags: {
+    Name: "ALB"
+  }
 });
 
 const alb = new aws.lb.LoadBalancer("app-lb", {
-  securityGroups: [group.id],
+  securityGroups: [albSecGroup.id],
   subnets: vpc.publicSubnetIds,
 });
 
@@ -58,7 +63,7 @@ const targetGroup = new aws.lb.TargetGroup("app-tg", {
   vpcId: vpc.vpcId,
 });
 
-const listener = new aws.lb.Listener("web", {
+new aws.lb.Listener("http-listener", {
   loadBalancerArn: alb.arn,
   port: 80,
   defaultActions: [{
@@ -83,25 +88,30 @@ const vpc = new awsx.ec2.Vpc("vpc", {
 
 const cluster = new aws.ecs.Cluster("cluster");
 
-const group = new aws.ec2.SecurityGroup("web-secgrp", {
+const albSecGroup = new aws.ec2.SecurityGroup("alb-security-group", {
   vpcId: vpc.vpcId,
-  description: "Enable HTTP access",
+  description: "ALB",
   ingress: [{
+    description: "Allow HTTP from anywhere",
     protocol: "tcp",
     fromPort: 80,
     toPort: 80,
     cidrBlocks: ["0.0.0.0/0"],
   }],
   egress: [{
-    protocol: "-1",
-    fromPort: 0,
-    toPort: 0,
-    cidrBlocks: ["0.0.0.0/0"],
+    description: "Allow HTTP to VPC",
+    protocol: "tcp",
+    fromPort: 80,
+    toPort: 80,
+    cidrBlocks: [vpc.vpc.cidrBlock],
   }],
+  tags: {
+    Name: "ALB"
+  }
 });
 
 const alb = new aws.lb.LoadBalancer("app-lb", {
-  securityGroups: [group.id],
+  securityGroups: [albSecGroup.id],
   subnets: vpc.publicSubnetIds,
 });
 
@@ -112,7 +122,7 @@ const targetGroup = new aws.lb.TargetGroup("app-tg", {
   vpcId: vpc.vpcId,
 });
 
-const listener = new aws.lb.Listener("web", {
+new aws.lb.Listener("http-listener", {
   loadBalancerArn: alb.arn,
   port: 80,
   defaultActions: [{
@@ -128,4 +138,4 @@ Run your program to deploy the infrastructure we've declared so far:
 pulumi up
 ```
 
-In the next step, we'll define a Fargate service and deploy a container.
+In the next step, we'll define an ECS on Fargate service and deploy a container.

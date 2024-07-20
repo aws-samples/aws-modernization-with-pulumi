@@ -34,13 +34,19 @@ new aws.iam.RolePolicyAttachment("task-exec-policy", {
 
 ## Step 2 &mdash; Create an ECS Task Definition
 
-Now we define a task definition for our ECS service and add the DNS name of the ALB we defined earlier so we can get the public URL for our service.
+Now we need to define some additional resources for our ECS service:
+
+- A task definition
+- A security group used by the ECS service
+- An ECS service
+
+We'll also add a stack output: the DNS name of the ALB we defined earlier so we can get the public URL for our service.
 
 Add the following to your `index.ts`:
 
 ```typescript
 const taskDefinition = new aws.ecs.TaskDefinition("app-task", {
-  family: "fargate-task-definition",
+  family: "nginx",
   cpu: "256",
   memory: "512",
   networkMode: "awsvpc",
@@ -49,16 +55,31 @@ const taskDefinition = new aws.ecs.TaskDefinition("app-task", {
   containerDefinitions: JSON.stringify([{
     name: "my-app",
     image: "nginx:latest",
-    portMappings: [{
-      containerPort: 80,
-      hostPort: 80,
-      protocol: "tcp",
-    }],
+    portMappings: [{ containerPort: 80 }],
   }]),
 });
 
+const serviceSecGroup = new aws.ec2.SecurityGroup("service-sec-grp", {
+  vpcId: vpc.vpcId,
+  description: "NGINX service",
+  ingress: [{
+    description: "Allow HTTP from within the VPC",
+    protocol: "tcp",
+    fromPort: 80,
+    toPort: 80,
+    cidrBlocks: [vpc.vpc.cidrBlock],
+  }],
+  egress: [{
+    description: "Allow HTTPS to anywhere (to pull container images)",
+    protocol: "tcp",
+    fromPort: 443,
+    toPort: 443,
+    cidrBlocks: ["0.0.0.0/0"],
+  }],
+});
 
-const service = new aws.ecs.Service("app-svc", {
+new aws.ecs.Service("app-svc", {
+  name: "NGINX",
   cluster: cluster.arn,
   desiredCount: 1,
   launchType: "FARGATE",
@@ -66,7 +87,7 @@ const service = new aws.ecs.Service("app-svc", {
   networkConfiguration: {
     assignPublicIp: true,
     subnets: vpc.privateSubnetIds,
-    securityGroups: [group.id],
+    securityGroups: [serviceSecGroup.id],
   },
   loadBalancers: [{
     targetGroupArn: targetGroup.arn,
@@ -93,25 +114,30 @@ const vpc = new awsx.ec2.Vpc("vpc", {
 
 const cluster = new aws.ecs.Cluster("cluster");
 
-const group = new aws.ec2.SecurityGroup("web-secgrp", {
+const albSecGroup = new aws.ec2.SecurityGroup("alb-security-group", {
   vpcId: vpc.vpcId,
-  description: "Enable HTTP access",
+  description: "ALB",
   ingress: [{
+    description: "Allow HTTP from anywhere",
     protocol: "tcp",
     fromPort: 80,
     toPort: 80,
     cidrBlocks: ["0.0.0.0/0"],
   }],
   egress: [{
-    protocol: "-1",
-    fromPort: 0,
-    toPort: 0,
-    cidrBlocks: ["0.0.0.0/0"],
+    description: "Allow HTTP to VPC",
+    protocol: "tcp",
+    fromPort: 80,
+    toPort: 80,
+    cidrBlocks: [vpc.vpc.cidrBlock],
   }],
+  tags: {
+    Name: "ALB"
+  }
 });
 
 const alb = new aws.lb.LoadBalancer("app-lb", {
-  securityGroups: [group.id],
+  securityGroups: [albSecGroup.id],
   subnets: vpc.publicSubnetIds,
 });
 
@@ -122,14 +148,14 @@ const targetGroup = new aws.lb.TargetGroup("app-tg", {
   vpcId: vpc.vpcId,
 });
 
-const listener = new aws.lb.Listener("web", {
+new aws.lb.Listener("http-listener", {
   loadBalancerArn: alb.arn,
   port: 80,
   defaultActions: [{
     type: "forward",
     targetGroupArn: targetGroup.arn,
   }],
-});
+}, { aliases: [{ name: "web" }] });
 
 const role = new aws.iam.Role("task-exec-role", {
   assumeRolePolicy: JSON.stringify({
@@ -151,7 +177,7 @@ new aws.iam.RolePolicyAttachment("task-exec-policy", {
 });
 
 const taskDefinition = new aws.ecs.TaskDefinition("app-task", {
-  family: "fargate-task-definition",
+  family: "nginx",
   cpu: "256",
   memory: "512",
   networkMode: "awsvpc",
@@ -160,15 +186,31 @@ const taskDefinition = new aws.ecs.TaskDefinition("app-task", {
   containerDefinitions: JSON.stringify([{
     name: "my-app",
     image: "nginx:latest",
-    portMappings: [{
-      containerPort: 80,
-      hostPort: 80,
-      protocol: "tcp",
-    }],
+    portMappings: [{ containerPort: 80 }],
   }]),
 });
 
-const service = new aws.ecs.Service("app-svc", {
+const serviceSecGroup = new aws.ec2.SecurityGroup("service-sec-grp", {
+  vpcId: vpc.vpcId,
+  description: "NGINX service",
+  ingress: [{
+    description: "Allow HTTP from within the VPC",
+    protocol: "tcp",
+    fromPort: 80,
+    toPort: 80,
+    cidrBlocks: [vpc.vpc.cidrBlock],
+  }],
+  egress: [{
+    description: "Allow HTTPS to anywhere (to pull container images)",
+    protocol: "tcp",
+    fromPort: 443,
+    toPort: 443,
+    cidrBlocks: ["0.0.0.0/0"],
+  }],
+});
+
+new aws.ecs.Service("app-svc", {
+  name: "NGINX",
   cluster: cluster.arn,
   desiredCount: 1,
   launchType: "FARGATE",
@@ -176,7 +218,7 @@ const service = new aws.ecs.Service("app-svc", {
   networkConfiguration: {
     assignPublicIp: true,
     subnets: vpc.privateSubnetIds,
-    securityGroups: [group.id],
+    securityGroups: [serviceSecGroup.id],
   },
   loadBalancers: [{
     targetGroupArn: targetGroup.arn,
