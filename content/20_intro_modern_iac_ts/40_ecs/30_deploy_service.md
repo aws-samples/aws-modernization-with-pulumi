@@ -85,7 +85,7 @@ new aws.ecs.Service("app-svc", {
   launchType: "FARGATE",
   taskDefinition: taskDefinition.arn,
   networkConfiguration: {
-    assignPublicIp: true,
+    assignPublicIp: false,
     subnets: vpc.privateSubnetIds,
     securityGroups: [serviceSecGroup.id],
   },
@@ -216,7 +216,7 @@ new aws.ecs.Service("app-svc", {
   launchType: "FARGATE",
   taskDefinition: taskDefinition.arn,
   networkConfiguration: {
-    assignPublicIp: true,
+    assignPublicIp: false,
     subnets: vpc.privateSubnetIds,
     securityGroups: [serviceSecGroup.id],
   },
