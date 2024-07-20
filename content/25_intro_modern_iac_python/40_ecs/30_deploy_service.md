@@ -68,63 +68,98 @@ task_definition = aws.ecs.TaskDefinition(
     }])
 )
 
-service = aws.ecs.Service(
+service_security_group = aws.ec2.SecurityGroup(
+    "service-security-group",
+    vpc_id=vpc.vpc_id,
+    description="NGINX service",
+    ingress=[aws.ec2.SecurityGroupIngressArgs(
+        description="Allow HTTP from within the VPC",
+        protocol="tcp",
+        from_port=80,
+        to_port=80,
+        cidr_blocks=[vpc.vpc.cidr_block],
+    )],
+    egress=[aws.ec2.SecurityGroupEgressArgs(
+        description="Allow HTTPS to anywhere (to pull container images)",
+        protocol="tcp",
+        from_port=443,
+        to_port=443,
+        cidr_blocks=["0.0.0.0/0"],
+    )],
+    tags={
+        "Name": "NGINX"
+    },)
+
+aws.ecs.Service(
     "app-svc",
     cluster=cluster.arn,
     desired_count=1,
     launch_type="FARGATE",
     task_definition=task_definition.arn,
-    network_configuration={
-        "assign_public_ip": "true",
-        "subnets": vpc.private_subnet_ids,
-        "security_groups": [group.id]
-    },
-    load_balancers=[{
-        "target_group_arn": target_group.arn,
-        "container_name": "my-app",
-        "container_port": 80
-    }],
-    opts=pulumi.ResourceOptions(depends_on=[listener])
+    network_configuration=aws.ecs.ServiceNetworkConfigurationArgs(
+        assign_public_ip=False,
+        subnets=vpc.private_subnet_ids,
+        security_groups=[service_security_group.id],
+    ),
+    load_balancers=[aws.ecs.ServiceLoadBalancerArgs(
+        target_group_arn=target_group.arn,
+        container_name="my-app",
+        container_port=80,
+    )],
+    opts=pulumi.ResourceOptions(
+        depends_on=[http_listener]
+    ),
 )
 
-pulumi.export("url", pulumi.Output.concat(
-    "http://", alb.dns_name))
+pulumi.export("url", pulumi.Output.concat("http://", alb.dns_name))
 ```
 
 > :white_check_mark: After these changes, your `__main__.py` should look like this
 
 ```python
-import pulumi as pulumi
+"""A Python Pulumi program"""
+
+import pulumi
 import pulumi_aws as aws
 import pulumi_awsx as awsx
 
 import json
 
+vpc = awsx.ec2.Vpc(
+    "vpc",
+    nat_gateways=awsx.ec2.NatGatewayConfigurationArgs(
+        strategy=awsx.ec2.NatGatewayStrategy.SINGLE
+    )
+)
+
 cluster = aws.ecs.Cluster("cluster")
 
-vpc = awsx.ec2.Vpc("my-vpc")
-
-group = aws.ec2.SecurityGroup(
-    "web-secgrp",
+alb_security_group = aws.ec2.SecurityGroup(
+    "alb-security-group",
     vpc_id=vpc.vpc_id,
-    description="Enable HTTP access",
+    description="ALB",
     ingress=[aws.ec2.SecurityGroupIngressArgs(
+        description="Allow HTTP from anywhere",
         protocol="tcp",
         from_port=80,
         to_port=80,
         cidr_blocks=["0.0.0.0/0"],
     )],
     egress=[aws.ec2.SecurityGroupEgressArgs(
-        protocol="-1",
-        from_port=0,
-        to_port=0,
-        cidr_blocks=["0.0.0.0/0"],
+        description="Allow HTTP to VPC",
+        protocol="tcp",
+        from_port=80,
+        to_port=80,
+        cidr_blocks=[vpc.vpc.cidr_block],
     )],
+    tags={
+        "Name": "ALB"
+    },
 )
 
 alb = aws.lb.LoadBalancer(
     "app-lb",
-    security_groups=[group.id],
+    security_groups=[alb_security_group.id],
     subnets=vpc.public_subnet_ids,
 )
 
@@ -136,14 +171,14 @@ target_group = aws.lb.TargetGroup(
     vpc_id=vpc.vpc_id,
 )
 
-listener = aws.lb.Listener(
-    "web",
+http_listener = aws.lb.Listener(
+    "http-listener",
     load_balancer_arn=alb.arn,
     port=80,
-    default_actions=[aws.lb.ListenerDefaultActionArgs(
-        type="forward",
-        target_group_arn=target_group.arn,
-    )],
+    default_actions=[{
+        "type": "forward",
+        "target_group_arn": target_group.arn
+    }]
 )
 
 role = aws.iam.Role(
@@ -167,7 +202,6 @@ aws.iam.RolePolicyAttachment(
     policy_arn="arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy",
 )
 
-# Spin up a load balanced service running our container image.
 task_definition = aws.ecs.TaskDefinition(
     "app-task",
     family="fargate-task-definition",
@@ -187,6 +221,28 @@ task_definition = aws.ecs.TaskDefinition(
     }])
 )
 
+service_security_group = aws.ec2.SecurityGroup(
+    "service-security-group",
+    vpc_id=vpc.vpc_id,
+    description="NGINX service",
+    ingress=[aws.ec2.SecurityGroupIngressArgs(
+        description="Allow HTTP from within the VPC",
+        protocol="tcp",
+        from_port=80,
+        to_port=80,
+        cidr_blocks=[vpc.vpc.cidr_block],
+    )],
+    egress=[aws.ec2.SecurityGroupEgressArgs(
+        description="Allow HTTPS to anywhere (to pull container images)",
+        protocol="tcp",
+        from_port=443,
+        to_port=443,
+        cidr_blocks=["0.0.0.0/0"],
+    )],
+    tags={
+        "Name": "NGINX"
+    },)
+
 aws.ecs.Service(
     "app-svc",
     cluster=cluster.arn,
@@ -194,9 +250,9 @@ aws.ecs.Service(
     launch_type="FARGATE",
     task_definition=task_definition.arn,
     network_configuration=aws.ecs.ServiceNetworkConfigurationArgs(
-        assign_public_ip=True,
+        assign_public_ip=False,
         subnets=vpc.private_subnet_ids,
-        security_groups=[group.id],
+        security_groups=[service_security_group.id],
     ),
     load_balancers=[aws.ecs.ServiceLoadBalancerArgs(
         target_group_arn=target_group.arn,
@@ -204,12 +260,11 @@ aws.ecs.Service(
         container_port=80,
     )],
     opts=pulumi.ResourceOptions(
-        depends_on=[listener]
+        depends_on=[http_listener]
     ),
 )
 
-pulumi.export("url", pulumi.Output.concat(
-    "http://", alb.dns_name))
+pulumi.export("url", pulumi.Output.concat("http://", alb.dns_name))
 ```
 
 ## Step 3 &mdash; Provision the Cluster and Service
