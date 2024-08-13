@@ -195,7 +195,7 @@ pulumi up
 Now you can view the contents of your website!
 
 ```bash
-$ curl $(pulumi stack output websiteUrl)
+$ curl $(pulumi stack output url)
 
 <html>
 
