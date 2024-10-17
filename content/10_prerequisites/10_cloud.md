@@ -1,4 +1,8 @@
-+++ title = "Update IAM settings for your Workspace" chapter = false weight = 19 +++
+---
+title: "Update IAM settings for your Workspace" 
+chapter:  false 
+weight:  19
+---
 
 {{% notice info %}}
 Cloud9 normally manages IAM credentials dynamically. This isn't currently compatible with
