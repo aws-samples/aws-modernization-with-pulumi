@@ -1,8 +1,8 @@
-﻿+++
-title = "Install Pulumi & Language Dependencies"
-chapter = false
-weight = 40
-+++
+﻿---
+title: "Install Pulumi & Language Dependencies"
+chapter: false
+weight: 40
+---
 
 These hands-on labs will walk you through various cloud infrastructure tasks. The prerequisites listed below are required to successfully complete them.
 
